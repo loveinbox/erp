@@ -12,6 +12,7 @@ const series = require('stream-series');
 const watch = require('gulp-watch');
 const flatten = require('gulp-flatten');
 const runSequence = require('run-sequence');
+const stylus = require('gulp-stylus');
 
 const inject = require('gulp-inject');
 const clean = require('gulp-clean');
@@ -49,23 +50,29 @@ gulp.task('html', function() {
   gulp.src(['./src/**/*.html'])
     .pipe(plumber())
     .pipe(changed(codebase))
-    .pipe(gulp.dest(codebase));
+    .pipe(gulp.dest(codebase))
+    .pipe(livereload());
 });
 
 gulp.task('src-js', function() {
   files.js =
-    gulp.src(['./src/**/*.js'])
+    gulp.src(['./src/index.js', './src/**/*.js'])
     .pipe(changed(codebase))
     .pipe(concat('main.js'))
-    .pipe(gulp.dest(codebase));
+    .pipe(gulp.dest(codebase))
+    .pipe(livereload());
 });
 
-gulp.task('src-css', function() {
+gulp.task('src-styl', function() {
   files.css =
-    gulp.src(['./src/**/*.css'])
+    gulp.src(['./src/**/*.styl'])
     .pipe(changed(codebase))
+    .pipe(stylus({
+      compress: true
+    }))
     .pipe(concat('main.css'))
-    .pipe(gulp.dest(codebase));
+    .pipe(gulp.dest(codebase))
+    .pipe(livereload());
 });
 
 gulp.task('inject', function() {
@@ -79,12 +86,12 @@ gulp.task('inject', function() {
 
 // 开发时，使用watch监测变化并重新build
 gulp.task('default', ['build'], function() {
-  // livereload.listen();
+  livereload.listen();
   gulp.watch(['./src/**/*.html'], ['html']);
-  gulp.watch(['./src/**/*.css'], ['src-css']);
+  gulp.watch(['./src/**/*.styl'], ['src-styl']);
   gulp.watch(['./src/**/*.js'], ['src-js']);
 });
 
 gulp.task('build', function() {
-  runSequence('clean', 'html', 'vendor', 'src-css', 'src-js', 'inject')
+  runSequence('clean', 'html', 'vendor', 'src-styl', 'src-js', 'inject')
 })
