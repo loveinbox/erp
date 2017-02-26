@@ -2,6 +2,11 @@
   <section class="filters">
     <filter class="filter" ng-repeat="item in filters" filter-data=item filter-value=filtersValue[item.name]></filter>
   </section>
+  <div class="btn-group fr" role="group">
+    <button type="button" class="btn btn-primary" ng-if="button.query" ng-click="buttonAction('query')">查询</button>
+    <button type="button" class="btn btn-default" ng-if="button.new" ng-click="buttonAction('new')">新增</button>
+    <button type="button" class="btn btn-default" ng-if="button.export" ng-click="buttonAction('export')">导出表格</button>
+  </div>
   <section class="table">
     <table class="table table-bordered">
       <thead>

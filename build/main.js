@@ -76,8 +76,28 @@ angular.module('erp.services')
 ;
 angular.module('erp.controllers')
 
+.controller('FrameCtrl', function($scope) {
+  $scope.navToggle = function(event) {
+    var dom = $(event.target)
+    if (dom.is('header') || dom.is('i')) {
+      dom.closest('div')
+        .find('i').toggleClass('rotate').end()
+        .find('ul').toggle()
+    }
+  }
+
+  $scope.bva = 123
+
+})
+
+;
+angular.module('erp.controllers')
+
 .controller('GoodsFruitCtrl', function($scope) {
   $scope.data = initData();
+  $scope.$on('query', function() {
+    console.log('query')
+  })
 
   function initData(argument) {
     return {
@@ -132,26 +152,14 @@ angular.module('erp.controllers')
       }, {
         text: '送回管家',
         event: 'change-send'
-      }]
+      }],
+      button: {
+        query: true,
+        new: true,
+        export: true
+      }
     }
   }
-})
-
-;
-angular.module('erp.controllers')
-
-.controller('FrameCtrl', function($scope) {
-  $scope.navToggle = function(event) {
-    var dom = $(event.target)
-    if (dom.is('header') || dom.is('i')) {
-      dom.closest('div')
-        .find('i').toggleClass('rotate').end()
-        .find('ul').toggle()
-    }
-  }
-
-  $scope.bva = 123
-
 })
 
 ;
@@ -181,12 +189,16 @@ function tableData() {
       header: '=?',
       body: '=?',
       actions: '=?',
+      button: '=?'
     },
     templateUrl: '/shared/tableData.html',
     controller: function($scope) {
       $scope.actionHandler = function(item, action) {
         console.log(item)
         console.log(action)
+      }
+      $scope.buttonAction = function(type) {
+        $scope.$emit(type)
       }
     }
   }

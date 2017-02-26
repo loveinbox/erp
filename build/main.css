@@ -18,6 +18,12 @@ ul {
 .tc {
   text-align: center;
 }
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
 .main-header {
   overflow: hidden;
   border-bottom: 1px solid;
@@ -60,6 +66,9 @@ ul {
   left: 200px;
   bottom: 0px;
   right: 0px;
+}
+.btn-group {
+  margin: 10px;
 }
 .login-wrap {
   width: 300px;

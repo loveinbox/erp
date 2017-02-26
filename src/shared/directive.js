@@ -7,12 +7,16 @@ function tableData() {
       header: '=?',
       body: '=?',
       actions: '=?',
+      button: '=?'
     },
     templateUrl: '/shared/tableData.html',
     controller: function($scope) {
       $scope.actionHandler = function(item, action) {
         console.log(item)
         console.log(action)
+      }
+      $scope.buttonAction = function(type) {
+        $scope.$emit(type)
       }
     }
   }

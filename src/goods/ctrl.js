@@ -3,6 +3,9 @@ angular.module('erp.controllers')
 
 .controller('GoodsFruitCtrl', function($scope) {
   $scope.data = initData();
+  $scope.$on('query', function() {
+    console.log('query')
+  })
 
   function initData(argument) {
     return {
@@ -57,7 +60,12 @@ angular.module('erp.controllers')
       }, {
         text: '送回管家',
         event: 'change-send'
-      }]
+      }],
+      button: {
+        query: true,
+        new: true,
+        export: true
+      }
     }
   }
 })
