@@ -5,11 +5,16 @@
   <section class="table">
     <table class="table table-bordered">
       <thead>
-        <th></th>
+        <th>序号</th>
+        <th ng-repeat="th in header">{{th.text}}</th>
+        <th>操作</th>
       </thead>
       <tbody>
         <tr>
-          <td></td>
+          <td ng-repeat="td in body">{{td.text}}</td>
+          <td>
+            <span class="action" ng-repeat="action in actions" ng-click="actionHandler(td, action)">{{action.text}}</span>
+          </td>
         </tr>
       </tbody>
     </table>

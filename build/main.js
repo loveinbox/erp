@@ -76,6 +76,70 @@ angular.module('erp.services')
 ;
 angular.module('erp.controllers')
 
+.controller('GoodsFruitCtrl', function($scope) {
+  $scope.data = initData();
+
+  function initData(argument) {
+    return {
+      header: [{
+        text: '订单分类',
+        apiName: ''
+      }, {
+        text: '订单号',
+        apiName: ''
+      }, {
+        text: '注册手机',
+        apiName: ''
+      }, {
+        text: '收货人',
+        apiName: ''
+      }, {
+        text: '收货地址',
+        apiName: ''
+      }, {
+        text: '商家名称',
+        apiName: ''
+      }, {
+        text: '取货管家',
+        apiName: ''
+      }, {
+        text: '送回官家',
+        apiName: ''
+      }, {
+        text: '订单金额',
+        apiName: ''
+      }, {
+        text: '订单状态',
+        apiName: ''
+      }, {
+        text: '下单时间',
+        apiName: ''
+      }],
+      filters: [{
+        name: 'test',
+        type: 'text'
+      }, {
+        name: 'test2',
+        type: 'text'
+      }],
+      filtersValue: {
+        'test': '123',
+        'test2': '456'
+      },
+      actions: [{
+        text: '改派取件',
+        event: 'change-fetch'
+      }, {
+        text: '送回管家',
+        event: 'change-send'
+      }]
+    }
+  }
+})
+
+;
+angular.module('erp.controllers')
+
 .controller('FrameCtrl', function($scope) {
   $scope.navToggle = function(event) {
     var dom = $(event.target)
@@ -88,25 +152,6 @@ angular.module('erp.controllers')
 
   $scope.bva = 123
 
-})
-
-;
-angular.module('erp.controllers')
-
-.controller('GoodsFruitCtrl', function($scope) {
-  $scope.data = {
-    filters: [{
-      name: 'test',
-      type: 'text'
-    }, {
-      name: 'test2',
-      type: 'text'
-    }],
-    filtersValue: {
-      'test': '123',
-      'test2': '456'
-    }
-  }
 })
 
 ;
@@ -135,12 +180,14 @@ function tableData() {
       filtersValue: '=?',
       header: '=?',
       body: '=?',
-      action: '=?',
+      actions: '=?',
     },
     templateUrl: '/shared/tableData.html',
     controller: function($scope) {
-      $scope.asd = '123'
-        // $scope.filtersValue = {}
+      $scope.actionHandler = function(item, action) {
+        console.log(item)
+        console.log(action)
+      }
     }
   }
 }
@@ -156,12 +203,7 @@ function filter() {
     <label>
       <span>{{filterData.name}}：</span>
       <input type="{{filterData.type}}" ng-model="filterValue">
-    </label>`,
-    link: function($scope, $element, $attr) {
-      // $scope.inputValue = $scope.filterValue
-      // console.log($scope.inputValue)
-      // $element.append('<input type="' + $scope.filterData.type + '" ng-model="inputValue">')
-    }
+    </label>`
   }
 }
 

@@ -6,12 +6,14 @@ function tableData() {
       filtersValue: '=?',
       header: '=?',
       body: '=?',
-      action: '=?',
+      actions: '=?',
     },
     templateUrl: '/shared/tableData.html',
     controller: function($scope) {
-      $scope.asd = '123'
-        // $scope.filtersValue = {}
+      $scope.actionHandler = function(item, action) {
+        console.log(item)
+        console.log(action)
+      }
     }
   }
 }
@@ -27,12 +29,7 @@ function filter() {
     <label>
       <span>{{filterData.name}}：</span>
       <input type="{{filterData.type}}" ng-model="filterValue">
-    </label>`,
-    link: function($scope, $element, $attr) {
-      // $scope.inputValue = $scope.filterValue
-      // console.log($scope.inputValue)
-      // $element.append('<input type="' + $scope.filterData.type + '" ng-model="inputValue">')
-    }
+    </label>`
   }
 }
 

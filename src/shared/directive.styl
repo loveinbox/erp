@@ -3,3 +3,10 @@
 		display inline-block
 		min-width 200px
 		width 20%
+	.action
+		color $click
+		cursor pointer
+		&:not(:last-child):after
+			content '/'
+			padding 0 5px
+			color #000

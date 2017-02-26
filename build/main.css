@@ -77,3 +77,12 @@ ul {
   min-width: 200px;
   width: 20%;
 }
+.table-data .action {
+  color: #619de5;
+  cursor: pointer;
+}
+.table-data .action:not(:last-child):after {
+  content: '/';
+  padding: 0 5px;
+  color: #000;
+}
