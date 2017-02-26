@@ -19,5 +19,10 @@ angular.module('erp')
       templateUrl: '/orders/index.html',
     })
 
+    .state('app.goods-fruit', {
+      url: '/goods-fruit',
+      templateUrl: '/goods/fruit.html',
+    })
+
     ;
   })

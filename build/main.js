@@ -47,6 +47,11 @@ angular.module('erp')
       templateUrl: '/orders/index.html',
     })
 
+    .state('app.goods-fruit', {
+      url: '/goods-fruit',
+      templateUrl: '/goods/fruit.html',
+    })
+
     ;
   })
 
@@ -88,6 +93,25 @@ angular.module('erp.controllers')
 ;
 angular.module('erp.controllers')
 
+.controller('GoodsFruitCtrl', function($scope) {
+  $scope.data = {
+    filters: [{
+      name: 'test',
+      type: 'text'
+    }, {
+      name: 'test2',
+      type: 'text'
+    }],
+    filtersValue: {
+      'test': '123',
+      'test2': '456'
+    }
+  }
+})
+
+;
+angular.module('erp.controllers')
+
 .controller('LoginCtrl', function($scope, API) {
   $scope.user = {
     name: '',
@@ -102,3 +126,45 @@ angular.module('erp.controllers')
   }
 
 })
+
+function tableData() {
+  return {
+    restrict: 'E',
+    scope: {
+      filters: '=?',
+      filtersValue: '=?',
+      header: '=?',
+      body: '=?',
+      action: '=?',
+    },
+    templateUrl: '/shared/tableData.html',
+    controller: function($scope) {
+      $scope.asd = '123'
+        // $scope.filtersValue = {}
+    }
+  }
+}
+
+function filter() {
+  return {
+    restrict: 'E',
+    scope: {
+      filterData: '=?',
+      filterValue: '=?'
+    },
+    template: `
+    <label>
+      <span>{{filterData.name}}：</span>
+      <input type="{{filterData.type}}" ng-model="filterValue">
+    </label>`,
+    link: function($scope, $element, $attr) {
+      // $scope.inputValue = $scope.filterValue
+      // console.log($scope.inputValue)
+      // $element.append('<input type="' + $scope.filterData.type + '" ng-model="inputValue">')
+    }
+  }
+}
+
+angular.module('erp.directives')
+  .directive('filter', filter)
+  .directive('tableData', tableData);

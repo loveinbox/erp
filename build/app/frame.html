@@ -1,8 +1,8 @@
 <header class="main-header">
-  <h1 class="tc">U选到家后台管理</h1>
+  <!-- <h1 class="tc">U选到家后台管理</h1> -->
 </header>
 <nav class="main-nav" ng-controller="FrameCtrl" ng-click="navToggle($event)">
-  <div>
+  <!--   <div>
     <header>用户管理中心<i class="glyphicon glyphicon-chevron-down"></i></header>
     <ul>
       <li>用户信息管理</li>
@@ -11,7 +11,7 @@
   <div>
     <header>商品管理中心<i class="glyphicon glyphicon-chevron-down"></i></header>
     <ul>
-      <li>水果产品管理</li>
+      <li ui-sref="app.goods-fruit">水果产品管理</li>
       <li>水果分类管理</li>
       <li>衣服产品管理</li>
       <li>衣服分类管理</li>
@@ -20,7 +20,7 @@
   <div>
     <header>订单管理中心<i class="glyphicon glyphicon-chevron-down"></i></header>
     <ul>
-      <li>订单管理</li>
+      <li ui-sref="app.orders">订单管理</li>
       <li>订单时间流程追踪</li>
       <li>订单商品明细</li>
     </ul>
@@ -51,7 +51,7 @@
     <ul>
       <li>Banner管理</li>
     </ul>
-  </div>
+  </div> -->
 </nav>
 <ui-view class="main-frame"></ui-view>
 

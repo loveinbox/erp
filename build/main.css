@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   background: #f2f7fa;
+  min-width: 1000px;
 }
 h1 {
   color: #619de5;
@@ -70,4 +71,9 @@ ul {
 }
 .login-wrap .form-group {
   text-align: left;
+}
+.table-data .filter {
+  display: inline-block;
+  min-width: 200px;
+  width: 20%;
 }
