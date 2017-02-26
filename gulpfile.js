@@ -5,21 +5,19 @@ const changed = require('gulp-changed');
 const plumber = require('gulp-plumber');
 const babel = require('gulp-babel');
 const series = require('stream-series');
-// const rename = require('gulp-rename');
-// const zipjs = require('gulp-uglify');
-// const zipcss = require('gulp-minify-css');
-// const htmlmin = require('gulp-htmlmin');
 const watch = require('gulp-watch');
 const flatten = require('gulp-flatten');
 const runSequence = require('run-sequence');
 const stylus = require('gulp-stylus');
-
 const inject = require('gulp-inject');
 const clean = require('gulp-clean');
 const livereload = require('gulp-livereload')
+  // const rename = require('gulp-rename');
+  // const zipjs = require('gulp-uglify');
+  // const zipcss = require('gulp-minify-css');
+  // const htmlmin = require('gulp-htmlmin');
 
 const codebase = './build'
-
 let files = {};
 
 gulp.task('clean', function() {
@@ -67,8 +65,9 @@ gulp.task('src-styl', function() {
   files.css =
     gulp.src(['./src/**/*.styl'])
     .pipe(changed(codebase))
+    .pipe(concat('main.styl'))
     .pipe(stylus({
-      compress: true
+      // compress: true
     }))
     .pipe(concat('main.css'))
     .pipe(gulp.dest(codebase))

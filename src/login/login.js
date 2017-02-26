@@ -11,8 +11,6 @@ angular.module('erp.controllers')
   $scope.action.login = function() {
     API['login']().get({}, function(data) {
       console.log(data);
-    }, function(data) {
-      alert('NO DATA MainPageHot');
     });
   }
 

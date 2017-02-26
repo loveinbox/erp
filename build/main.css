@@ -1,2 +1,73 @@
-html,body{height:100%;background:#f2f7fa}ul{margin:0;padding:0}.rel{position:relative}
-.login-wrap{width:300px;margin:140px auto;padding:25px;text-align:center;background:#fff;border-radius:10%;}.login-wrap .form-group{text-align:left}
+html,
+body {
+  height: 100%;
+  background: #f2f7fa;
+}
+h1 {
+  color: #619de5;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rel {
+  position: relative;
+}
+.tc {
+  text-align: center;
+}
+.main-header {
+  overflow: hidden;
+  border-bottom: 1px solid;
+  height: 80px;
+}
+.main-nav {
+  width: 200px;
+  border-right: 1px solid;
+  cursor: default;
+}
+.main-nav header,
+.main-nav li {
+  border-bottom: 1px solid;
+  padding: 5px 15px;
+  text-align: center;
+}
+.main-nav header {
+  position: relative;
+  font-weight: bold;
+}
+.main-nav header i {
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  color: #619de5;
+}
+.main-nav header i.rotate {
+  transform: rotate(90deg);
+}
+.main-nav li {
+  text-align: right;
+  cursor: pointer;
+}
+.main-nav li::selection {
+  background: none;
+}
+.main-frame {
+  position: absolute;
+  top: 80px;
+  left: 200px;
+  bottom: 0px;
+  right: 0px;
+}
+.login-wrap {
+  width: 300px;
+  margin: 140px auto;
+  padding: 25px;
+  text-align: center;
+  background: #fff;
+  border-radius: 10%;
+}
+.login-wrap .form-group {
+  text-align: left;
+}

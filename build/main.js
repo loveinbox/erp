@@ -4,6 +4,9 @@ angular.module('erp.directives', [])
 angular.module('erp.services', ['ngResource'])
 
 angular.module('erp')
+  .config(['$qProvider', function($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+  }])
   .config(function($httpProvider) {
     $httpProvider.interceptors.push(function($q) {
       return {
@@ -14,7 +17,7 @@ angular.module('erp')
             if (response.data.code === 0) {
               return response.data;
             } else {
-              alet(response.msg);
+              alert(response.data.msg);
               return $q.reject(response);
             }
           }
@@ -30,19 +33,22 @@ angular.module('erp')
     $stateProvider
       .state('login', {
         url: '/login',
-        cache: false,
         templateUrl: '/login/index.html'
       })
 
-    .state('washSingleOrder', {
-      url: '/washSingleOrder/:shopId/:orderId',
-      cache: false,
-      templateUrl: 'templates/washTemplates/washSingle-order.html ',
-      controller: 'washSingleOrderCtrl'
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: '/app/frame.html',
+    })
+
+    .state('app.orders', {
+      url: '/orders',
+      templateUrl: '/orders/index.html',
     })
 
     ;
-  });
+  })
 
 const baseUrl = 'http://www.lifeuxuan.com/index.php';
 const URL = {
@@ -65,6 +71,23 @@ angular.module('erp.services')
 ;
 angular.module('erp.controllers')
 
+.controller('FrameCtrl', function($scope) {
+  $scope.navToggle = function(event) {
+    var dom = $(event.target)
+    if (dom.is('header') || dom.is('i')) {
+      dom.closest('div')
+        .find('i').toggleClass('rotate').end()
+        .find('ul').toggle()
+    }
+  }
+
+  $scope.bva = 123
+
+})
+
+;
+angular.module('erp.controllers')
+
 .controller('LoginCtrl', function($scope, API) {
   $scope.user = {
     name: '',
@@ -75,8 +98,6 @@ angular.module('erp.controllers')
   $scope.action.login = function() {
     API['login']().get({}, function(data) {
       console.log(data);
-    }, function(data) {
-      alert('NO DATA MainPageHot');
     });
   }
 

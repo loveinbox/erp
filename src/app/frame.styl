@@ -1,0 +1,36 @@
+.main-header
+	overflow: hidden
+	border-bottom 1px solid 
+	height 80px
+
+.main-nav
+	width 200px
+	border-right 1px solid
+	cursor: default
+	header, li
+		border-bottom 1px solid
+		padding 5px 15px
+		text-align center
+	header
+		position: relative
+		font-weight bold
+		i
+			position: absolute
+			right: 15px
+			top: 7px
+			color $click
+			&.rotate
+				transform rotate(90deg)
+	li
+		text-align right
+		cursor pointer
+		&::selection
+			background none
+			
+			
+.main-frame
+	position absolute
+	top 80px
+	left 200px
+	bottom 0px
+	right 0px

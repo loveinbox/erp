@@ -4,6 +4,9 @@ angular.module('erp.directives', [])
 angular.module('erp.services', ['ngResource'])
 
 angular.module('erp')
+  .config(['$qProvider', function($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+  }])
   .config(function($httpProvider) {
     $httpProvider.interceptors.push(function($q) {
       return {
@@ -14,32 +17,11 @@ angular.module('erp')
             if (response.data.code === 0) {
               return response.data;
             } else {
-              alet(response.msg);
+              alert(response.data.msg);
               return $q.reject(response);
             }
           }
         }
       };
     });
-  });
-
-angular.module('erp')
-  .config(function($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
-
-    $stateProvider
-      .state('login', {
-        url: '/login',
-        cache: false,
-        templateUrl: '/login/index.html'
-      })
-
-    .state('washSingleOrder', {
-      url: '/washSingleOrder/:shopId/:orderId',
-      cache: false,
-      templateUrl: 'templates/washTemplates/washSingle-order.html ',
-      controller: 'washSingleOrderCtrl'
-    })
-
-    ;
   });
