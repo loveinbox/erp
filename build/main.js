@@ -1,7 +1,7 @@
 angular.module('erp', ['erp.controllers', 'erp.directives', 'erp.services', 'ui.router'])
 angular.module('erp.controllers', [])
 angular.module('erp.directives', [])
-angular.module('erp.services', [])
+angular.module('erp.services', ['ngResource'])
 
 angular.module('erp')
   .config(function($stateProvider, $locationProvider) {
@@ -24,9 +24,40 @@ angular.module('erp')
     ;
   });
 
+const baseUrl = 'http://www.lifeuxuan.com/index.php';
+const URL = {
+  'login': '/account/eguard/login'
+}
+
+angular.module('erp.services')
+
+.service('API', function($resource) {
+  let service = this
+  for (var p in URL) {
+    (function(param) {
+      service[p] = function() {
+        return $resource(baseUrl + URL[p])
+      }
+    })(p);
+  }
+})
+
 ;
 angular.module('erp.controllers')
 
-.controller('LoginCtrl', function($scope) {
-  $scope.abc = '23'
+.controller('LoginCtrl', function($scope, API) {
+  $scope.user = {
+    name: '',
+    password: ''
+  }
+  $scope.action = {}
+
+  $scope.action.login = function() {
+    API['login']().get({}, function(data) {
+      console.log(data);
+    }, function(data) {
+      alert('NO DATA MainPageHot');
+    });
+  }
+
 })
