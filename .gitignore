@@ -3,4 +3,5 @@ sftp-config.json
 source/.DS_Store
 source/modules/.DS_Store
 node_modules/
+/build
 

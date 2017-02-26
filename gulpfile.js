@@ -11,11 +11,13 @@ const runSequence = require('run-sequence');
 const stylus = require('gulp-stylus');
 const inject = require('gulp-inject');
 const clean = require('gulp-clean');
-const livereload = require('gulp-livereload')
-  // const rename = require('gulp-rename');
-  // const zipjs = require('gulp-uglify');
-  // const zipcss = require('gulp-minify-css');
-  // const htmlmin = require('gulp-htmlmin');
+const livereload = require('gulp-livereload');
+
+const ngAnnotate = require('gulp-ng-annotate');
+// const rename = require('gulp-rename');
+var uglify = require('gulp-uglifyjs');
+// const zipcss = require('gulp-minify-css');
+// const htmlmin = require('gulp-htmlmin');
 
 const codebase = './build'
 let files = {};
@@ -57,6 +59,11 @@ gulp.task('src-js', function() {
     gulp.src(['./src/index.js', './src/**/*.js'])
     .pipe(changed(codebase))
     .pipe(concat('main.js'))
+    .pipe(ngAnnotate())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    // .pipe(uglify())
     .pipe(gulp.dest(codebase))
     .pipe(livereload());
 });
