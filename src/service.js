@@ -1,6 +1,7 @@
 const baseUrl = 'http://www.lifeuxuan.com/index.php';
 const URL = {
-  'login': '/account/eguard/login'
+  'login': '/mgr/admin/login',
+  'logout': '/mgr/admin/logout',
 }
 
 angular.module('erp.services')
@@ -9,9 +10,11 @@ angular.module('erp.services')
   let service = this
   for (var p in URL) {
     (function(param) {
-      service[p] = function() {
-        return $resource(baseUrl + URL[p])
-      }
+      service[p] = $resource(baseUrl + URL[p])
     })(p);
   }
+})
+
+.service('User', function() {
+  this.id = ''
 })
