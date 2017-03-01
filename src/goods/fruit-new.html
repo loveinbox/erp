@@ -1,0 +1,90 @@
+<div class="form-wrap" ng-controller="addFruitCtrl">
+    <form class="form-inline">
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="name">商品名称</label>
+                <input type="text" class="form-control" id="name" ng-model="good.name" placeholder="商品名称">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="desc">商品描述</label>
+                <input type="text" class="form-control" id="desc" ng-model="good.desc" placeholder="商品描述">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="sell-price">售价</label>
+                <input type="number" class="form-control" id="sell-price" ng-model="good.sell-price" placeholder="售价">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="onTime">上架日期</label>
+                <input type="date" class="form-control" id="onTime" ng-model="good.onTime" placeholder="上架日期">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="rentFee">佣金率</label>
+                <input type="text" class="form-control" id="rentFee" ng-model="good.rentFee" placeholder="佣金率">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="password">管家抽成</label>
+                <input type="text" class="form-control" id="password" ng-model="good.password" placeholder="管家抽成">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="password">库存</label>
+                <input type="number" class="form-control" id="password" ng-model="good.password" placeholder="库存">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="password">规格</label>
+                <input type="text" class="form-control" id="password" ng-model="good.password" placeholder="规格">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="password">商家名称</label>
+                <input type="text" class="form-control" id="password" ng-model="good.password" placeholder="商家名称">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="password">产品分类</label>
+                <input type="text" class="form-control" id="password" ng-model="good.password" placeholder="产品分类">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="password">状态</label>
+                <select class="form-control" name="status" id="">
+                    <option value="0">上架</option>
+                    <option value="1">下架</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="password">爆品</label>
+                <select class="form-control" name="status" id="">
+                    <option value="0">是</option>
+                    <option value="1">否</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-md-offset-2">
+                <label for="password">热卖</label>
+                <select class="form-control" name="status" id="">
+                    <option value="0">是</option>
+                    <option value="1">否</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-10 col-md-offset-2">
+                <label for="password">图片</label>
+                <input type="file" class="form-control" id="password" accept="image/*" placeholder="图片">
+            </div>
+        </div>
+        <div class="row btn-row">
+            <div class="col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-primary btn-block">确认</button>
+            </div>
+        </div>
+    </form>
+</div>

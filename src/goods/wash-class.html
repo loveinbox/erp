@@ -1,0 +1,26 @@
+<div class="form-wrap" ng-controller="classWashCtrl">
+    <form class="form-inline">
+        <div class="row">
+            <div class="form-group col-md-2 tc" ng-repeat="class in fruit.class">
+                <h4><span class="label label-primary class-tag">{{class.value}}</span></h4>
+                <input type="checkbox" ng-model="class.isSelected">
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-2 tc">
+            <input type="text" name="" class="class-tag-input" ng-model="fruit.newClass">
+        </div>
+    </div>
+    <div class="row btn-row">
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" ng-click="newClass()">添加</button>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" ng-click="editClass()">修改</button>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" ng-click="disableClass()">废弃</button>
+        </div>
+    </div>
+</div>
