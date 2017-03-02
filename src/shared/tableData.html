@@ -24,5 +24,29 @@
       </tbody>
     </table>
   </section>
+  <nav aria-label="Page navigation" class="fr">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous" ng-click="gotoPage('begin')">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" aria-label="Next" ng-click="gotoPage('pre')">
+          <span aria-hidden="true">&lt;</span>
+        </a>
+      </li>
+      <li ng-repeat="i in getNumber(page.show) track by $index" class="pagination-li" ng-class="{'active': page.current - page.adjust + $index == page.current}" ng-click="gotoPage(page.current - page.adjust + $index)"><a href="#">{{page.current - page.adjust + $index}}</a></li>
+      <li>
+        <a href="#" aria-label="Previous" ng-click="gotoPage('next')">
+          <span aria-hidden="true">&gt;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" aria-label="Next" ng-click="gotoPage('end')">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
-
