@@ -18,7 +18,7 @@ angular.module('erp.controllers')
       password: $scope.user.password
     }, function(data) {
       User.id = $scope.user.name
-      $state.go('app.orders')
+      $state.go('app.list', { type: 'user' })
     });
   }
 

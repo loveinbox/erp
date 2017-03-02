@@ -9,7 +9,7 @@ function tableData() {
       actions: '=?',
       button: '=?'
     },
-    templateUrl: '/shared/tableData.html',
+    templateUrl: '/shared/template/tableData.html',
     controller: function($scope) {
       $scope.page = {
         total: 100,
