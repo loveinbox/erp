@@ -1,6 +1,7 @@
 angular.module('erp.services')
 
 .service('Banner', function($resource) {
+  this.name = 'Banner'
   this.listMetaData = {
     header: [{
       text: '订单分类',

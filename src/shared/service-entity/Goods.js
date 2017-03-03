@@ -1,6 +1,7 @@
 angular.module('erp.services')
 
 .service('Fruit', function($resource) {
+  this.name = 'Fruit'
   this.listMetaData = {
     header: [{
       text: '订单分类',
@@ -63,6 +64,7 @@ angular.module('erp.services')
 })
 
 .service('Wash', function($resource) {
+  this.name = 'Wash'
   this.listMetaData = {
     header: [{
       text: '订单分类',

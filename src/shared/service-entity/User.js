@@ -1,16 +1,17 @@
 angular.module('erp.services')
 
 .service('User', function($resource) {
+  this.name = 'User'
   this.listMetaData = {
     header: [{
       text: '订单分类',
-      apiName: ''
+      apiName: 'a'
     }, {
       text: '订单号',
       apiName: ''
     }, {
       text: '注册手机',
-      apiName: ''
+      apiName: 'c'
     }, {
       text: '收货人',
       apiName: ''

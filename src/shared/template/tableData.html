@@ -15,8 +15,9 @@
         <th>操作</th>
       </thead>
       <tbody>
-        <tr>
-          <td ng-repeat="td in body">{{td.text}}</td>
+        <tr ng-repeat="tr in body">
+          <td>{{$index}}</td>
+          <td ng-repeat="td in header">{{tr[td.apiName]}}</td>
           <td>
             <span class="action" ng-repeat="action in actions" ng-click="actionHandler(td, action)">{{action.text}}</span>
           </td>
