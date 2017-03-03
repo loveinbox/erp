@@ -30,7 +30,7 @@ angular.module('erp.controllers')
   }
 
   //init
-  page()
+  pageInit()
   query()
   getFilters()
 
@@ -47,7 +47,7 @@ angular.module('erp.controllers')
     })
   })
 
-  function page() {
+  function pageInit() {
     $scope.data.page = {
       totalPage: 100,
       current: 1
@@ -57,7 +57,7 @@ angular.module('erp.controllers')
   function query() {
     Entity.query.get(buildParam(), function(data) {
       $scope.data.body = data.data.content
-      $scope.data.page.totalPage = data.data.totalPage
+      $scope.data.page.totalPage = data.data.totalPage - 0
     })
   }
 

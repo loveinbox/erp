@@ -13,10 +13,10 @@ function tableData() {
     templateUrl: '/shared/template/tableData.html',
     controller: function($scope) {
       $scope.$watch('page.current', function() {
-        $scope.page.show = $scope.page.totalPage > 10 ? 10 : $scope.page.totalPage
-        $scope.page.adjust = $scope.page.current - 5 <= 0 ?
-          $scope.page.current - 1 :
-          $scope.page.current + 5 > $scope.page.totalPage ? 9 : 5
+        buildPage()
+      })
+      $scope.$watch('page.totalPage', function() {
+        buildPage()
       })
       $scope.getNumber = function(num) {
         return new Array(num);
@@ -46,6 +46,13 @@ function tableData() {
       }
       $scope.buttonAction = function(type) {
         $scope.$emit(type)
+      }
+
+      function buildPage() {
+        $scope.page.show = $scope.page.totalPage > 10 ? 10 : $scope.page.totalPage
+        $scope.page.adjust = $scope.page.current - 5 <= 0 ?
+          $scope.page.current - 1 :
+          $scope.page.current + 5 > $scope.page.totalPage ? 9 : 5
       }
     }
   }
