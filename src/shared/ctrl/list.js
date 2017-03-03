@@ -41,7 +41,7 @@ angular.module('erp.controllers')
     Entity.new()
   })
   $scope.$on('export', function() {
-    Entity.export.get({}, function(data) {
+    Entity.export.get(buildParam(), function(data) {
       let url = data.data.path
       window.open('http://www.lifeuxuan.com/' + url)
     })
@@ -49,20 +49,15 @@ angular.module('erp.controllers')
 
   function page() {
     $scope.data.page = {
-      total: 100,
+      totalPage: 100,
       current: 1
     }
   }
 
   function query() {
-    let param = { page: $scope.data.page.current }
-    for (var p in $scope.data.filters) {
-      let value = $scope.data.filters[p]
-      if (value.value)
-        param[value.key] = value.value
-    }
-    Entity.query.get(param, function(data) {
-      $scope.data.body = data.data
+    Entity.query.get(buildParam(), function(data) {
+      $scope.data.body = data.data.content
+      $scope.data.page.totalPage = data.data.totalPage
     })
   }
 
@@ -72,6 +67,16 @@ angular.module('erp.controllers')
         $scope.data.filters[value.key].options = data.data
       })
     })
+  }
+
+  function buildParam() {
+    let param = { page: $scope.data.page.current }
+    for (var p in $scope.data.filters) {
+      let value = $scope.data.filters[p]
+      if (value.value)
+        param[value.key] = value.value
+    }
+    return param
   }
 
 })

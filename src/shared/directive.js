@@ -13,10 +13,10 @@ function tableData() {
     templateUrl: '/shared/template/tableData.html',
     controller: function($scope) {
       $scope.$watch('page.current', function() {
-        $scope.page.show = $scope.page.total > 10 ? 10 : $scope.page.total
+        $scope.page.show = $scope.page.totalPage > 10 ? 10 : $scope.page.totalPage
         $scope.page.adjust = $scope.page.current - 5 <= 0 ?
           $scope.page.current - 1 :
-          $scope.page.current + 5 > $scope.page.total ? 9 : 5
+          $scope.page.current + 5 > $scope.page.totalPage ? 9 : 5
       })
       $scope.getNumber = function(num) {
         return new Array(num);
@@ -30,10 +30,10 @@ function tableData() {
             $scope.page.current = $scope.page.current > 1 ? $scope.page.current - 1 : 1;
             break;
           case 'next':
-            $scope.page.current = $scope.page.current < $scope.page.total ? $scope.page.current + 1 : $scope.page.total;
+            $scope.page.current = $scope.page.current < $scope.page.totalPage ? $scope.page.current + 1 : $scope.page.totalPage;
             break;
           case 'end':
-            $scope.page.current = $scope.page.total;
+            $scope.page.current = $scope.page.totalPage;
             break;
           default:
             $scope.page.current = page
