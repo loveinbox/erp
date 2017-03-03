@@ -15,7 +15,7 @@ angular.module('erp')
             return response;
           } else {
             if (response.data.code === 0) {
-              return response.data;
+              return response;
             } else {
               alert(response.data.msg);
               return $q.reject(response);

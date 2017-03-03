@@ -2,6 +2,11 @@ const baseUrl = 'http://www.lifeuxuan.com/index.php';
 const URL = {
   'login': '/mgr/admin/login',
   'logout': '/mgr/admin/logout',
+  'wash': '/mgr/wash/query',
+  'washFilterStatus': '/mgr/comm/washstatus',
+  'washFilterHot': '/mgr/comm/washhot',
+  'washFilterSale': '/mgr/comm/washonsale',
+  'washExport': '/mgr/wash/export'
 }
 
 angular.module('erp.services')

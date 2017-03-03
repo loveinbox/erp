@@ -7,14 +7,11 @@ function tableData() {
       header: '=?',
       body: '=?',
       actions: '=?',
-      button: '=?'
+      button: '=?',
+      page: '='
     },
     templateUrl: '/shared/template/tableData.html',
     controller: function($scope) {
-      $scope.page = {
-        total: 100,
-        current: 1
-      }
       $scope.$watch('page.current', function() {
         $scope.page.show = $scope.page.total > 10 ? 10 : $scope.page.total
         $scope.page.adjust = $scope.page.current - 5 <= 0 ?
@@ -41,10 +38,11 @@ function tableData() {
           default:
             $scope.page.current = page
         }
+        $scope.$emit('query')
+        $scope.actionHandler($scope.page.current)
       }
-      $scope.actionHandler = function(item, action) {
-        console.log(item)
-        console.log(action)
+      $scope.actionHandler = function(item) {
+        $scope.$emit('paramChange', item)
       }
       $scope.buttonAction = function(type) {
         $scope.$emit(type)
@@ -57,14 +55,15 @@ function filter() {
   return {
     restrict: 'E',
     scope: {
-      filterData: '=?',
-      filterValue: '=?'
+      filter: '='
+        // key: '=',
+        // name: '=',
+        // type: '=?',
+        // value: '=?',
+        // options: '=?',
+        // method: '=?'
     },
-    template: `
-    <label>
-      <span>{{filterData.name}}：</span>
-      <input type="{{filterData.type}}" ng-model="filterValue">
-    </label>`
+    templateUrl: '/shared/template/filter.html'
   }
 }
 

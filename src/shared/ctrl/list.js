@@ -22,27 +22,56 @@ angular.module('erp.controllers')
   let type = $stateParams.type;
   let Entity = typeMap[type];
 
+  $scope.data = Entity.listMetaData
+
   if (!Entity) {
-    console.error('[MY ERROR]type error!')
+    console.error('[MY ERROR]No Entity!')
     $state.go('login')
   }
 
-  $scope.data = Object.assign({}, Entity.listMetaData, {
-    body: [{ a: '123',c:'123sdf' }, { 'a': 1234 }]
-  })
+  //init
+  page()
+  query()
+  getFilters()
 
-  // $scope.metaData = Entity.listMetaData;
-  // $scope.body = [{ a: '123' }, { 'a': 1234 }]
   $scope.$on('query', function() {
-    Entity.query();
+    query()
   })
   $scope.$on('new', function() {
-    // $state.go('app.goods-fruit-new')
     Entity.new()
   })
   $scope.$on('export', function() {
-    Entity.export()
-      // $state.go('app.goods-fruit-add')
+    Entity.export.get({}, function(data) {
+      let url = data.data.path
+      window.open('http://www.lifeuxuan.com/' + url)
+    })
   })
+
+  function page() {
+    $scope.data.page = {
+      total: 100,
+      current: 1
+    }
+  }
+
+  function query() {
+    let param = { page: $scope.data.page.current }
+    for (var p in $scope.data.filters) {
+      let value = $scope.data.filters[p]
+      if (value.value)
+        param[value.key] = value.value
+    }
+    Entity.query.get(param, function(data) {
+      $scope.data.body = data.data
+    })
+  }
+
+  function getFilters() {
+    Entity.filters.forEach((value) => {
+      value.API.get({}, function(data) {
+        $scope.data.filters[value.key].options = data.data
+      })
+    })
+  }
 
 })

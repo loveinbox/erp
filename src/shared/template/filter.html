@@ -1,0 +1,13 @@
+<label ng-if="filter.type === undefined || filter.type === 'text'">
+  <span>{{filter.name}}：</span>
+  <input class="form-control"
+    ng-model="filter.value">
+</label>
+<label ng-if="filter.type === 'select'">
+  <span>{{filter.name}}：</span>
+  <select ng-model="filter.value">
+    <option value=''>全部</option>
+    <option ng-repeat="option in filter.options"
+      value={{option.id}}>{{option.name}}</option>
+  </select>
+</label>

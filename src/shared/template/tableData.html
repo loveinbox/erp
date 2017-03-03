@@ -1,11 +1,23 @@
 <div class="table-data">
   <section class="filters">
-    <filter class="filter" ng-repeat="item in filters" filter-data=item filter-value=filtersValue[item.name]></filter>
+    <filter class="filter"
+      ng-repeat="(key, item) in filters"
+      filter="item"></filter>
   </section>
-  <div class="btn-group fr" role="group">
-    <button type="button" class="btn btn-primary" ng-if="button.query" ng-click="buttonAction('query')">查询</button>
-    <button type="button" class="btn btn-default" ng-if="button.new" ng-click="buttonAction('new')">新增</button>
-    <button type="button" class="btn btn-default" ng-if="button.export" ng-click="buttonAction('export')">导出表格</button>
+  <div class="btn-group fr"
+    role="group">
+    <button type="button"
+      class="btn btn-primary"
+      ng-if="button.query"
+      ng-click="buttonAction('query')">查询</button>
+    <button type="button"
+      class="btn btn-default"
+      ng-if="button.new"
+      ng-click="buttonAction('new')">新增</button>
+    <button type="button"
+      class="btn btn-default"
+      ng-if="button.export"
+      ng-click="buttonAction('export')">导出表格</button>
   </div>
   <section class="table">
     <table class="table table-bordered">
@@ -16,35 +28,49 @@
       </thead>
       <tbody>
         <tr ng-repeat="tr in body">
-          <td>{{$index}}</td>
+          <td>{{$index + 1}}</td>
           <td ng-repeat="td in header">{{tr[td.apiName]}}</td>
           <td>
-            <span class="action" ng-repeat="action in actions" ng-click="actionHandler(td, action)">{{action.text}}</span>
+            <span class="action"
+              ng-repeat="action in actions"
+              ng-click="actionHandler(td, action)">{{action.text}}</span>
           </td>
         </tr>
       </tbody>
     </table>
   </section>
-  <nav aria-label="Page navigation" class="fr">
+  <nav aria-label="Page navigation"
+    class="fr">
     <ul class="pagination">
       <li>
-        <a href="#" aria-label="Previous" ng-click="gotoPage('begin')">
+        <a href="#"
+          aria-label="Previous"
+          ng-click="gotoPage('begin')">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li>
-        <a href="#" aria-label="Next" ng-click="gotoPage('pre')">
+        <a href="#"
+          aria-label="Next"
+          ng-click="gotoPage('pre')">
           <span aria-hidden="true">&lt;</span>
         </a>
       </li>
-      <li ng-repeat="i in getNumber(page.show) track by $index" class="pagination-li" ng-class="{'active': page.current - page.adjust + $index == page.current}" ng-click="gotoPage(page.current - page.adjust + $index)"><a href="#">{{page.current - page.adjust + $index}}</a></li>
+      <li ng-repeat="i in getNumber(page.show) track by $index"
+        class="pagination-li"
+        ng-class="{'active': page.current - page.adjust + $index == page.current}"
+        ng-click="gotoPage(page.current - page.adjust + $index)"><a href="#">{{page.current - page.adjust + $index}}</a></li>
       <li>
-        <a href="#" aria-label="Previous" ng-click="gotoPage('next')">
+        <a href="#"
+          aria-label="Previous"
+          ng-click="gotoPage('next')">
           <span aria-hidden="true">&gt;</span>
         </a>
       </li>
       <li>
-        <a href="#" aria-label="Next" ng-click="gotoPage('end')">
+        <a href="#"
+          aria-label="Next"
+          ng-click="gotoPage('end')">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

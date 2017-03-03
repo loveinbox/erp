@@ -1,14 +1,24 @@
 .main-header
-	overflow: hidden
+	width 100%
+	position fixed
+	overflow hidden
 	border-bottom 1px solid 
 	height 60px
+	background $bg
+	z-index 100
 	h1
 		margin 8px
 		
 .main-nav
-	width 200px
+	position fixed
+	top 60px
+	bottom 0px
+	width 160px
 	border-right 1px solid
-	cursor: default
+	cursor default
+	overflow scroll
+	background $bg
+	z-index 100
 	header, li
 		border-bottom 1px solid
 		padding 5px 15px
@@ -29,13 +39,14 @@
 		&::selection
 			background none
 			
-			
 .main-frame
-	position absolute
-	top 60px
-	left 200px
-	bottom 0px
-	right 0px
+	overflow auto
+	padding 70px 10px 10px 170px
+	// position absolute
+	// top 60px
+	// left 160px
+	// bottom 0px
+	// right 0px
 	
 .btn-group
 	margin 10px
@@ -50,7 +61,7 @@
 	padding 25px
 	
 label
-	width 90px
+	width 150px
 .row
 	padding 5px
 .btn-row
