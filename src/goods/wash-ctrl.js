@@ -93,12 +93,23 @@ angular.module('erp.controllers')
       }
     }
   };
-  $scope.getLocation = function(val) {
+  $scope.getOptions = function(val) {
     return API.washFilterClass.get({}).$promise.then(function(data) {
       $scope.typeaheadOptions = data.data
       return data.data
     })
   };
+  $scope.submit = function() {
+    let submitObject = {}
+    for (var i = $scope.forms.length - 1; i >= 0; i--) {
+      if (!$scope.forms[i].value) {
+        alert('所有字段必填')
+        return
+      }
+      submitObject[$scope.forms[i].key] = $scope.forms[i].value
+    }
+    console.log(submitObject)
+  }
 })
 
 .controller('classWashCtrl', function($scope) {

@@ -30,7 +30,7 @@
         <input type="text"
           ng-model="form.value"
           placeholder="{{form.text}}"
-          uib-typeahead="state.id as state.name for state in getLocation($viewValue)"
+          uib-typeahead="state.id as state.name for state in getOptions($viewValue)"
           typeahead-loading="loadingLocations"
           typeahead-no-results="noResults"
           typeahead-input-formatter="formatLabel($model)"
@@ -48,110 +48,9 @@
     <div class="row btn-row">
       <div class="col-md-4 col-md-offset-4">
         <button type="submit"
-          class="btn btn-primary btn-block">确认</button>
+          class="btn btn-primary btn-block"
+          ng-click="submit()">确认</button>
       </div>
     </div>
   </form>
 </div>
-<!-- <div class="form-group col-md-4 col-md-offset-2">
-      <label for="name">衣服名称</label>
-      <input type="text"
-        class="form-control"
-        ng-model="good.name"
-        placeholder="衣服名称">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="desc">清洗单位</label>
-      <input type="text"
-        class="form-control"
-        id="desc"
-        ng-model="good.desc"
-        placeholder="商品描述">
-    </div>
-    <div class="form-group col-md-4 col-md-offset-2">
-      <label for="sell-price">售价</label>
-      <input type="number"
-        class="form-control"
-        id="sell-price"
-        ng-model="good.sellPrice"
-        placeholder="售价">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="onTime">上架日期</label>
-      <input type="date"
-        class="form-control"
-        id="onTime"
-        ng-model="good.onTime"
-        placeholder="上架日期">
-    </div>
-    <div class="form-group col-md-4 col-md-offset-2">
-      <label for="rentFee">佣金率</label>
-      <input type="text"
-        class="form-control"
-        id="rentFee"
-        ng-model="good.rentFee"
-        placeholder="佣金率">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="password">管家抽成</label>
-      <input type="text"
-        class="form-control"
-        id="password"
-        ng-model="good.password"
-        placeholder="管家抽成">
-    </div>
-    <div class="form-group col-md-4 col-md-offset-2">
-      <label for="password">库存</label>
-      <input type="number"
-        class="form-control"
-        id="password"
-        ng-model="good.password"
-        placeholder="库存">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="password">规格</label>
-      <input type="text"
-        class="form-control"
-        id="password"
-        ng-model="good.password"
-        placeholder="规格">
-    </div>
-    <div class="form-group col-md-4 col-md-offset-2">
-      <label for="password">商家名称</label>
-      <input type="text"
-        class="form-control"
-        id="password"
-        ng-model="good.password"
-        placeholder="商家名称">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="password">衣服分类</label>
-      <input type="text"
-        class="form-control"
-        id="password"
-        ng-model="good.password"
-        placeholder="产品分类">
-    </div>
-    <div class="form-group col-md-4 col-md-offset-2">
-      <label for="password">状态</label>
-      <select class="form-control"
-        name="status"
-        ng-model="good.statusId">
-      </select>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="password">爆品</label>
-      <select class="form-control"
-        name="status"
-        ng-model="good.hotId">
-      </select>
-    </div>
-    <div class="form-group col-md-4 col-md-offset-2">
-      <label for="password">热卖</label>
-      <select class="form-control"
-        name="status"
-        ng-model="good.onSaleId">
-        <option value="0">是</option>
-        <option value="1">否</option>
-      </select>
-    </div> -->
