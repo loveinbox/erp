@@ -87,6 +87,9 @@ angular.module('erp.services')
   }, {
     key: 'onSaleId',
     API: API.washFilterSale
+  }, {
+    key: 'classifyId',
+    API: API.washFilterClass
   }]
   this.listMetaData = {
     header: [{
@@ -136,6 +139,13 @@ angular.module('erp.services')
         key: 'shopName',
         value: '',
         name: '商家名称',
+      },
+      'classifyId': {
+        key: 'classifyId',
+        value: '',
+        name: '商品分类',
+        type: 'select',
+        options: []
       },
       'status': {
         key: 'status',

@@ -6,6 +6,7 @@ const URL = {
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
   'washFilterSale': '/mgr/comm/washonsale',
+  'washFilterClass': '/mgr/classify/wash/query',
   'washExport': '/mgr/wash/export'
 }
 
