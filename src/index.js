@@ -1,4 +1,6 @@
-angular.module('erp', ['erp.controllers', 'erp.directives', 'erp.services', 'ui.router'])
+angular.module('erp', ['erp.controllers', 'erp.directives', 'erp.services',
+  'ui.router', 'angular-loading-bar'
+])
 angular.module('erp.controllers', [])
 angular.module('erp.directives', [])
 angular.module('erp.services', ['ngResource'])
