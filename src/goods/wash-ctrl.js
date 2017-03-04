@@ -1,8 +1,87 @@
 ;
 angular.module('erp.controllers')
 
-.controller('addWashCtrl', function($scope) {
-  $scope.good = {}
+.controller('addWashCtrl', function($scope, API) {
+  $scope.good = {
+    'productName': '', // 衣服名称
+    'productUnitId': '', // 洗衣单位
+    'marketDate': '', // 上架日期
+    'productPrice': '', // 售价
+    'feeRate': '', // 佣金率
+    'eguardProfitRate': '', // 管家抽成
+    'shopId': '', // 商家ID
+    'classifyId': '', // 产品分类ID
+    'statusId': '', // 状态ID
+    'hotId': '', // 是否爆品 1001->是，1002->否
+    'onSaleId': '', // 是否热卖 1001->是，1002->否
+  }
+
+  $scope.forms = [{
+    key: 'productName',
+    value: '',
+    name: '衣服名称'
+  }, {
+    key: 'productUnitId',
+    value: '',
+    name: '洗衣单位',
+    type: 'select',
+    API: API.washFilterClass
+  }, {
+    key: 'marketDate',
+    value: '',
+    name: '上架日期',
+    type: 'date'
+  }, {
+    key: 'productPrice',
+    value: '',
+    name: '售价'
+  }, {
+    key: 'feeRate',
+    value: '',
+    name: '佣金率'
+  }, {
+    key: 'eguardProfitRate',
+    value: '',
+    name: '管家抽成'
+  }, {
+    key: 'shopId',
+    value: '',
+    name: '商家名称',
+    type: 'ahead',
+    API: API.washFilterClass
+  }, {
+    key: 'classifyId',
+    value: '',
+    name: '衣服分类',
+    type: 'ahead',
+    API: API.washFilterClass
+  }, {
+    key: 'statusId',
+    value: '',
+    name: '状态',
+    type: 'select',
+    API: API.washFilterStatus
+  }, {
+    key: 'hotId',
+    value: '',
+    name: '是否爆品',
+    type: 'select',
+    API: API.washFilterHot
+  }, {
+    key: 'onSaleId',
+    value: '',
+    name: '是否热卖',
+    type: 'select',
+    API: API.washFilterSale
+  }]
+
+  $scope.forms.forEach((value) => {
+    if (value.type === 'select') {
+      value.API.get({}, function(data) {
+        value.options = data.data
+      })
+    }
+  })
 })
 
 .controller('classWashCtrl', function($scope) {

@@ -60,10 +60,10 @@ gulp.task('src-js', function() {
     .pipe(changed(codebase))
     .pipe(concat('main.js'))
     .pipe(plumber())
-    .pipe(ngAnnotate())
     .pipe(babel({
       presets: ['es2015']
     }))
+    .pipe(ngAnnotate())
     // .pipe(uglify())
     .pipe(gulp.dest(codebase))
     .pipe(livereload());
