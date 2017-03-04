@@ -3,7 +3,6 @@ function tableData() {
     restrict: 'E',
     scope: {
       filters: '=?',
-      filtersValue: '=?',
       header: '=?',
       body: '=?',
       actions: '=?',

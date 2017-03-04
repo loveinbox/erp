@@ -2,7 +2,7 @@ angular.module('erp.services')
 
 .service('GuardWage', function($resource) {
   this.name = 'GuardWage'
-  this.listMetaData = {
+  this.meta = {
     header: [{
       text: '订单分类',
       apiName: ''
@@ -66,7 +66,7 @@ angular.module('erp.services')
 
 .service('ShopWage', function($resource) {
   this.name = 'ShopWage'
-  this.listMetaData = {
+  this.meta = {
     header: [{
       text: '订单分类',
       apiName: ''

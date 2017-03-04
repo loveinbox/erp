@@ -2,7 +2,7 @@ angular.module('erp.services')
 
 .service('Orders', function($resource) {
   this.name = 'Orders'
-  this.listMetaData = {
+  this.meta = {
     header: [{
       text: '订单分类',
       apiName: ''
@@ -66,7 +66,7 @@ angular.module('erp.services')
 
 .service('OrderTime', function($resource) {
   this.name = 'OrderTime'
-  this.listMetaData = {
+  this.meta = {
     header: [{
       text: '订单分类',
       apiName: ''
@@ -130,7 +130,7 @@ angular.module('erp.services')
 
 .service('OrderGoods', function($resource) {
   this.name = 'OrderGoods'
-  this.listMetaData = {
+  this.meta = {
     header: [{
       text: '订单分类',
       apiName: ''

@@ -22,7 +22,8 @@ angular.module('erp.controllers')
   let type = $stateParams.type;
   let Entity = typeMap[type];
 
-  $scope.data = Entity.listMetaData
+  $scope.data = Entity.meta
+  $scope.filters = Entity.filters
 
   if (!Entity) {
     console.error('[MY ERROR]No Entity!')
@@ -47,7 +48,7 @@ angular.module('erp.controllers')
     })
   })
   $scope.$on('rowAction', function(action, type, data) {
-    Entity.actionsHandler[type](data)
+    Entity.rowActionHandler[type](data)
   })
 
   function pageInit() {
@@ -66,16 +67,18 @@ angular.module('erp.controllers')
 
   function getFilters() {
     Entity.filters.forEach((value) => {
-      value.API.get({}, function(data) {
-        $scope.data.filters[value.key].options = data.data
-      })
+      if (value.API) {
+        value.API.get({}, function(data) {
+          value.options = data.data
+        })
+      }
     })
   }
 
   function buildParam() {
     let param = { page: $scope.data.page.current }
-    for (var p in $scope.data.filters) {
-      let value = $scope.data.filters[p]
+    for (var p in $scope.filters) {
+      let value = $scope.filters[p]
       if (value.value)
         param[value.key] = value.value
     }

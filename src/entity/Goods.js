@@ -2,7 +2,7 @@ angular.module('erp.services')
 
 .service('Fruit', function($resource) {
   this.name = 'Fruit'
-  this.listMetaData = {
+  this.meta = {
     header: [{
       text: '订单分类',
       apiName: ''
@@ -74,24 +74,48 @@ angular.module('erp.services')
     confirm('确定要废弃么？')
     console.log(a)
   }
-  this.actionsHandler = {
+  this.rowActionHandler = {
     'edit': this.edit,
     'disable': this.disable
   }
   this.filters = [{
+    key: 'productName',
+    value: '',
+    name: '衣服名称',
+  }, {
+    key: 'shopName',
+    value: '',
+    name: '商家名称',
+  }, {
+    key: 'classifyId',
+    value: '',
+    name: '商品分类',
+    type: 'select',
+    options: [],
+    API: API.washFilterClass
+  }, {
     key: 'status',
+    value: '',
+    name: '状态',
+    type: 'select',
+    options: [],
     API: API.washFilterStatus
   }, {
     key: 'hotId',
+    value: '',
+    name: '是否爆品',
+    type: 'select',
+    options: [],
     API: API.washFilterHot
   }, {
     key: 'onSaleId',
+    value: '',
+    name: '是否热卖',
+    type: 'select',
+    options: [],
     API: API.washFilterSale
-  }, {
-    key: 'classifyId',
-    API: API.washFilterClass
-  }]
-  this.listMetaData = {
+  }];
+  this.meta = {
     header: [{
       text: '衣服名称',
       apiName: 'productName'
@@ -129,46 +153,6 @@ angular.module('erp.services')
       text: '总销量',
       apiName: 'totalSaleVolume'
     }],
-    filters: {
-      'productName': {
-        key: 'productName',
-        value: '',
-        name: '衣服名称',
-      },
-      'shopName': {
-        key: 'shopName',
-        value: '',
-        name: '商家名称',
-      },
-      'classifyId': {
-        key: 'classifyId',
-        value: '',
-        name: '商品分类',
-        type: 'select',
-        options: []
-      },
-      'status': {
-        key: 'status',
-        value: '',
-        name: '状态',
-        type: 'select',
-        options: []
-      },
-      'hotId': {
-        key: 'hotId',
-        value: '',
-        name: '是否爆品',
-        type: 'select',
-        options: []
-      },
-      'onSaleId': {
-        key: 'onSaleId',
-        value: '',
-        name: '是否热卖',
-        type: 'select',
-        options: []
-      },
-    },
     actions: [{
       text: '修改',
       type: 'edit'
