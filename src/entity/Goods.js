@@ -49,11 +49,11 @@ angular.module('erp.services')
       'test2': '456'
     },
     actions: [{
-      text: '改派取件',
-      event: 'change-fetch'
+      text: '修改',
+      type: 'edit'
     }, {
-      text: '送回管家',
-      event: 'change-send'
+      text: '废弃',
+      type: 'disable'
     }],
     button: {
       query: true,
@@ -63,10 +63,21 @@ angular.module('erp.services')
   }
 })
 
-.service('Wash', function($resource, API) {
+.service('Wash', function($resource, $state, API) {
   this.name = 'Wash'
   this.query = API.wash
   this.export = API.washExport
+  this.edit = function(rowData) {
+    $state.go('app.goods-wash-new', { id: rowData.productId })
+  }
+  this.disable = function(rowData) {
+    confirm('确定要废弃么？')
+    console.log(a)
+  }
+  this.actionsHandler = {
+    'edit': this.edit,
+    'disable': this.disable
+  }
   this.filters = [{
     key: 'status',
     API: API.washFilterStatus
@@ -131,32 +142,29 @@ angular.module('erp.services')
         value: '',
         name: '状态',
         type: 'select',
-        options: [] //[{ name: 123, value: 123 }]
+        options: []
       },
       'hotId': {
         key: 'hotId',
         value: '',
         name: '是否爆品',
         type: 'select',
-        options: [] //[{ name: 123, value: 123 }]
+        options: []
       },
       'onSaleId': {
         key: 'onSaleId',
         value: '',
         name: '是否热卖',
         type: 'select',
-        options: [] //[{ name: 123, value: 123 }]
+        options: []
       },
-      // }, {
-      //   name: 'test2',
-      //   type: 'text'
     },
     actions: [{
-      text: '改派取件',
-      event: 'change-fetch'
+      text: '修改',
+      type: 'edit'
     }, {
-      text: '送回管家',
-      event: 'change-send'
+      text: '废弃',
+      type: 'disable'
     }],
     button: {
       query: true,

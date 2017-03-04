@@ -46,6 +46,9 @@ angular.module('erp.controllers')
       window.open('http://www.lifeuxuan.com/' + url)
     })
   })
+  $scope.$on('rowAction', function(action, type, data) {
+    Entity.actionsHandler[type](data)
+  })
 
   function pageInit() {
     $scope.data.page = {
@@ -57,7 +60,7 @@ angular.module('erp.controllers')
   function query() {
     Entity.query.get(buildParam(), function(data) {
       $scope.data.body = data.data.content
-      $scope.data.page.totalPage = data.data.totalPage - 0
+      $scope.data.page.totalPage = data.data.totalPage
     })
   }
 

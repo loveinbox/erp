@@ -59,6 +59,7 @@ gulp.task('src-js', function() {
     gulp.src(['./src/index.js', './src/**/*.js'])
     .pipe(changed(codebase))
     .pipe(concat('main.js'))
+    .pipe(plumber())
     .pipe(ngAnnotate())
     .pipe(babel({
       presets: ['es2015']

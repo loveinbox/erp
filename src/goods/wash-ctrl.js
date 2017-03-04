@@ -2,7 +2,7 @@
 angular.module('erp.controllers')
 
 .controller('addWashCtrl', function($scope) {
-
+  $scope.good = {}
 })
 
 .controller('classWashCtrl', function($scope) {

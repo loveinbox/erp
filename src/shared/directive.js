@@ -38,11 +38,9 @@ function tableData() {
           default:
             $scope.page.current = page
         }
-        $scope.$emit('query')
-        $scope.actionHandler($scope.page.current)
       }
-      $scope.actionHandler = function(item) {
-        $scope.$emit('paramChange', item)
+      $scope.rowActionHandler = function(action, rowData) {
+        $scope.$emit('rowAction', action.type, rowData)
       }
       $scope.buttonAction = function(type) {
         $scope.$emit(type)

@@ -33,7 +33,7 @@
           <td>
             <span class="action"
               ng-repeat="action in actions"
-              ng-click="actionHandler(td, action)">{{action.text}}</span>
+              ng-click="rowActionHandler(action, tr)">{{action.text}}</span>
           </td>
         </tr>
       </tbody>

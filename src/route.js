@@ -26,7 +26,7 @@ angular.module('erp')
   })
 
   .state('app.goods-fruit-new', {
-    url: '/goods-fruit/new',
+    url: '/goods-fruit/new/:id',
     templateUrl: '/goods/fruit-new.html',
   })
 
@@ -36,7 +36,7 @@ angular.module('erp')
   })
 
   .state('app.goods-wash-new', {
-    url: '/goods-wash/new',
+    url: '/goods-wash/new/:id',
     templateUrl: '/goods/wash-new.html',
   })
 
