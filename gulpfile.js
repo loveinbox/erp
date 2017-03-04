@@ -33,7 +33,16 @@ gulp.task('vendor', function() {
     .pipe(gulp.dest(codebase + '/vendor/fonts'));
 
   files.vendorScript =
-    gulp.src(['./vendor/angular/angular.min.js', './vendor/jquery/jquery.min.js', './vendor/**/*.js'])
+    gulp.src([
+      './vendor/jquery/jquery.min.js',
+      // './vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js',
+      // './vendor/bootstrap-3.3.7-dist/js/typeahead.js',
+      './vendor/angular/angular.min.js',
+      './vendor/angular/angular-resource.min.js',
+      './vendor/angular/angular-ui-route.js',
+      './vendor/angular/loading-bar.min.js',
+      './vendor/angular/ui-bootstrap-tpls-2.5.0.min.js'
+    ])
     .pipe(changed(codebase))
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest(codebase + '/vendor/js'));
@@ -63,7 +72,8 @@ gulp.task('src-js', function() {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(ngAnnotate())
+    // .pipe(ngAnnotate())
+    // .pipe(ngAnnotate({ add: true, rename: [{ from: '$tooltip', to: '$asTooltip' }] }))
     // .pipe(uglify())
     .pipe(gulp.dest(codebase))
     .pipe(livereload());

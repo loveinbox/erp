@@ -1,7 +1,7 @@
 ;
 angular.module('erp.controllers')
 
-.controller('addWashCtrl', function($scope, API) {
+.controller('addWashCtrl', function($scope, $timeout, $http, API) {
   $scope.good = {
     'productName': '', // 衣服名称
     'productUnitId': '', // 洗衣单位
@@ -48,12 +48,14 @@ angular.module('erp.controllers')
     value: '',
     name: '商家名称',
     type: 'ahead',
+    value: '',
     API: API.washFilterClass
   }, {
     key: 'classifyId',
     value: '',
     name: '衣服分类',
     type: 'ahead',
+    value: '',
     API: API.washFilterClass
   }, {
     key: 'statusId',
@@ -82,6 +84,21 @@ angular.module('erp.controllers')
       })
     }
   })
+
+  $scope.typeaheadOptions = []
+  $scope.formatLabel = function(model) {
+    for (var i = 0; i < $scope.typeaheadOptions.length; i++) {
+      if (model === $scope.typeaheadOptions[i].id) {
+        return $scope.typeaheadOptions[i].name;
+      }
+    }
+  };
+  $scope.getLocation = function(val) {
+    return API.washFilterClass.get({}).$promise.then(function(data) {
+      $scope.typeaheadOptions = data.data
+      return data.data
+    })
+  };
 })
 
 .controller('classWashCtrl', function($scope) {

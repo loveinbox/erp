@@ -28,9 +28,13 @@
       <div class="form-repeat-wrap"
         ng-if="form.type === 'ahead'">
         <input type="text"
-          class="form-control"
           ng-model="form.value"
-          data-provide="typeahead">
+          placeholder="{{form.text}}"
+          uib-typeahead="state.id as state.name for state in getLocation($viewValue)"
+          typeahead-loading="loadingLocations"
+          typeahead-no-results="noResults"
+          typeahead-input-formatter="formatLabel($model)"
+          class="form-control">
       </div>
     </div>
     <div class="form-group col-md-10 col-md-offset-2">
