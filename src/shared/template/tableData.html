@@ -31,9 +31,12 @@
           <td>{{$index + 1}}</td>
           <td ng-repeat="td in header">{{tr[td.apiName]}}</td>
           <td>
-            <span class="action"
-              ng-repeat="action in actions"
-              ng-click="rowActionHandler(action, tr)">{{action.text}}</span>
+            <p class="action"
+              ng-repeat="action in actions">
+              <span ng-if="action.directive === undefined"
+                ng-click="rowActionHandler(action, tr, $event)">{{action.text}}</span>
+              <span-modal ng-if="action.directive === 'modal'">{{action.text}}</span-modal>
+            </p>
           </td>
         </tr>
       </tbody>

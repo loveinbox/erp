@@ -1,13 +1,16 @@
 <div ng-controller="FrameCtrl">
   <header class="main-header rel">
     <h1 class="tc">U选到家后台管理</h1>
-    <p class="logout fr" ng-click="logout()">登出</p>
+    <p class="logout fr"
+      ng-click="logout()">登出</p>
   </header>
-  <nav class="main-nav" ng-click="navToggle($event)">
+  <nav class="main-nav"
+    ng-click="navToggle($event)">
     <div>
       <header>用户管理中心<i class="glyphicon glyphicon-chevron-down"></i></header>
       <ul>
-        <li ui-sref="app.list({type:'user'})">用户信息管理</li>
+        <li ui-sref="app.list({type:'user'})"
+          class="active">用户信息管理</li>
       </ul>
     </div>
     <div>
