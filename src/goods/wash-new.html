@@ -40,10 +40,20 @@
     <div class="form-group col-md-10 col-md-offset-2">
       <label for="password">图片</label>
       <input type="file"
-        class="form-control"
-        id="password"
+        name="file"
         accept="image/*"
-        placeholder="图片">
+        ngf-max-size="2MB"
+        ngf-select="uploadFile($file)"
+        class="form-control">
+    </div>
+    <div class="form-group col-md-10 col-md-offset-3">
+      <div class="img-wrap"
+        ng-repeat="pic in good.pics">
+        <img class="img-thumb"
+          ng-src="http://www.lifeuxuan.com/{{pic}}">
+        <p class="img-remove"
+          ng-click="removePic(pic)"><i class="glyphicon glyphicon-remove"></i> </p>
+      </div>
     </div>
     <div class="row btn-row">
       <div class="col-md-4 col-md-offset-4">

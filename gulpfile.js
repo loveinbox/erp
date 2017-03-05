@@ -14,10 +14,7 @@ const clean = require('gulp-clean');
 const livereload = require('gulp-livereload');
 
 const ngAnnotate = require('gulp-ng-annotate');
-// const rename = require('gulp-rename');
 var uglify = require('gulp-uglifyjs');
-// const zipcss = require('gulp-minify-css');
-// const htmlmin = require('gulp-htmlmin');
 
 const codebase = './build'
 let files = {};
@@ -35,13 +32,13 @@ gulp.task('vendor', function() {
   files.vendorScript =
     gulp.src([
       './vendor/jquery/jquery.min.js',
-      // './vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js',
-      // './vendor/bootstrap-3.3.7-dist/js/typeahead.js',
       './vendor/angular/angular.min.js',
       './vendor/angular/angular-resource.min.js',
       './vendor/angular/angular-ui-route.js',
       './vendor/angular/loading-bar.min.js',
-      './vendor/angular/ui-bootstrap-tpls-2.5.0.min.js'
+      './vendor/angular/ui-bootstrap-tpls-2.5.0.min.js',
+      './vendor/angular/ng-file-upload-shim.min.js',
+      './vendor/angular/ng-file-upload.min.js',
     ])
     .pipe(changed(codebase))
     .pipe(concat('vendor.js'))
@@ -73,7 +70,6 @@ gulp.task('src-js', function() {
       presets: ['es2015']
     }))
     // .pipe(ngAnnotate())
-    // .pipe(ngAnnotate({ add: true, rename: [{ from: '$tooltip', to: '$asTooltip' }] }))
     // .pipe(uglify())
     .pipe(gulp.dest(codebase))
     .pipe(livereload());
@@ -84,9 +80,7 @@ gulp.task('src-styl', function() {
     gulp.src(['./src/**/*.styl'])
     .pipe(changed(codebase))
     .pipe(concat('main.styl'))
-    .pipe(stylus({
-      // compress: true
-    }))
+    .pipe(stylus())
     .pipe(concat('main.css'))
     .pipe(gulp.dest(codebase))
     .pipe(livereload());

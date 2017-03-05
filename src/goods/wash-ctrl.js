@@ -1,7 +1,7 @@
 ;
 angular.module('erp.controllers')
 
-.controller('addWashCtrl', function($scope, $timeout, $http, API) {
+.controller('addWashCtrl', function($scope, $timeout, $http, Upload, API) {
   $scope.good = {
     'productName': '', // 衣服名称
     'productUnitId': '', // 洗衣单位
@@ -14,6 +14,7 @@ angular.module('erp.controllers')
     'statusId': '', // 状态ID
     'hotId': '', // 是否爆品 1001->是，1002->否
     'onSaleId': '', // 是否热卖 1001->是，1002->否
+    'pics': []
   }
 
   $scope.forms = [{
@@ -110,6 +111,25 @@ angular.module('erp.controllers')
     }
     console.log(submitObject)
   }
+
+  $scope.uploadFile = function(file) {
+    if (!file) return;
+    uploadFile(file).success(function(data) {
+      $scope.good.pics.push(data.data[0]);
+    });
+  }
+  $scope.removePic = function(pic) {
+    let index = pic.indexOf($scope.good.pics)
+    $scope.good.pics.splice(index, 1)
+  }
+
+  function uploadFile(file) {
+    return Upload.upload({
+      url: 'http://www.lifeuxuan.com/index.php/mgr/image/upload',
+      data: { file: file },
+    });
+  }
+
 })
 
 .controller('classWashCtrl', function($scope) {

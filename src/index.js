@@ -1,5 +1,5 @@
 let erp = angular.module('erp', ['erp.controllers', 'erp.directives', 'erp.services',
-  'ui.router', 'angular-loading-bar', 'ui.bootstrap'
+  'ui.router', 'angular-loading-bar', 'ui.bootstrap', 'ngFileUpload'
 ])
 angular.module('erp.controllers', [])
 angular.module('erp.directives', [])
