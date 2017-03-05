@@ -39,6 +39,7 @@ gulp.task('vendor', function() {
       './vendor/angular/ui-bootstrap-tpls-2.5.0.min.js',
       './vendor/angular/ng-file-upload-shim.min.js',
       './vendor/angular/ng-file-upload.min.js',
+      './vendor/moment.js',
     ])
     .pipe(changed(codebase))
     .pipe(concat('vendor.js'))

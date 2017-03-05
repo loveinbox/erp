@@ -38,8 +38,8 @@ function tableData() {
             $scope.page.current = page
         }
       }
-      $scope.rowActionHandler = function(action, rowData, mouseEvent) {
-        $scope.$emit('rowAction', action.type, rowData, mouseEvent)
+      $scope.rowActionHandler = function(action, rowData) {
+        $scope.$emit('rowAction', action.type, rowData)
       }
       $scope.buttonAction = function(type) {
         $scope.$emit(type)

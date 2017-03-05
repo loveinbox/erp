@@ -1,7 +1,7 @@
 ;
 angular.module('erp.controllers')
 
-.controller('addWashCtrl', function($scope, $timeout, $http, Upload, API) {
+.controller('addWashCtrl', function($scope, $timeout, $http, Upload, API, $filter, $stateParams) {
   $scope.good = {
     'productName': '', // 衣服名称
     'productUnitId': '', // 洗衣单位
@@ -14,7 +14,7 @@ angular.module('erp.controllers')
     'statusId': '', // 状态ID
     'hotId': '', // 是否爆品 1001->是，1002->否
     'onSaleId': '', // 是否热卖 1001->是，1002->否
-    'pics': []
+    'productImgsList': []
   }
 
   $scope.forms = [{
@@ -26,7 +26,7 @@ angular.module('erp.controllers')
     value: '',
     name: '洗衣单位',
     type: 'select',
-    API: API.washFilterClass
+    API: API.washUnit
   }, {
     key: 'marketDate',
     value: '',
@@ -50,14 +50,14 @@ angular.module('erp.controllers')
     name: '商家名称',
     type: 'ahead',
     value: '',
-    API: API.washFilterClass
+    API: API.washShopName
   }, {
     key: 'classifyId',
     value: '',
     name: '衣服分类',
-    type: 'ahead',
+    type: 'select',
     value: '',
-    API: API.washFilterClass
+    API: API.washClass
   }, {
     key: 'statusId',
     value: '',
@@ -86,6 +86,25 @@ angular.module('erp.controllers')
     }
   })
 
+  if ($stateParams.id) {
+    API.washDetail.get({
+      productId: $stateParams.id
+    }, function(data) {
+      $scope.good = data.data
+      $scope.forms.forEach((value) => {
+        if (value.type === 'date') {
+          value.value =
+            // new Date(2015, 10, 22)
+            // "2014-09-30"
+            //$filter("date")($scope.good[value.key] * 1000, 'yyyy-MM-dd');
+            new Date($scope.good[value.key] * 1000)
+        } else {
+          value.value = $scope.good[value.key]
+        }
+      })
+    })
+  }
+
   $scope.typeaheadOptions = []
   $scope.formatLabel = function(model) {
     for (var i = 0; i < $scope.typeaheadOptions.length; i++) {
@@ -94,8 +113,8 @@ angular.module('erp.controllers')
       }
     }
   };
-  $scope.getOptions = function(val) {
-    return API.washFilterClass.get({}).$promise.then(function(data) {
+  $scope.getOptions = function(searchVal) {
+    return API.washShopName.get({ name: searchVal }).$promise.then(function(data) {
       $scope.typeaheadOptions = data.data
       return data.data
     })
@@ -107,20 +126,31 @@ angular.module('erp.controllers')
         alert('所有字段必填')
         return
       }
-      submitObject[$scope.forms[i].key] = $scope.forms[i].value
+      if ($scope.forms[i].type === 'date') {
+        submitObject[$scope.forms[i].key] = moment($scope.forms[i].value).unix()
+      } else {
+        submitObject[$scope.forms[i].key] = $scope.forms[i].value
+      }
     }
-    console.log(submitObject)
+    submitObject.productImgsList = $scope.good.productImgsList
+    API.washAdd.save(submitObject, function(data) {
+      if (data.code === 0) {
+        alert('操作成功！')
+      }
+    })
   }
 
   $scope.uploadFile = function(file) {
     if (!file) return;
     uploadFile(file).success(function(data) {
-      $scope.good.pics.push(data.data[0]);
+      $scope.good.productImgsList.push({
+        url: data.data[0]
+      });
     });
   }
   $scope.removePic = function(pic) {
-    let index = pic.indexOf($scope.good.pics)
-    $scope.good.pics.splice(index, 1)
+    let index = pic.indexOf($scope.good.productImgsList)
+    $scope.good.productImgsList.splice(index, 1)
   }
 
   function uploadFile(file) {
@@ -129,6 +159,8 @@ angular.module('erp.controllers')
       data: { file: file },
     });
   }
+
+
 
 })
 

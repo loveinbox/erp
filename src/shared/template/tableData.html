@@ -29,7 +29,10 @@
       <tbody>
         <tr ng-repeat="tr in body">
           <td>{{$index + 1}}</td>
-          <td ng-repeat="td in header">{{tr[td.apiName]}}</td>
+          <td ng-repeat="td in header">
+            <span ng-if="td.apiName === 'marketDate'">{{tr[td.apiName] | time}}</span>
+            <span ng-if="td.apiName !== 'marketDate'">{{tr[td.apiName]}}</span>
+          </td>
           <td>
             <p class="action"
               ng-repeat="action in actions">
@@ -87,3 +90,4 @@
     </ul>
   </nav>
 </div>
+

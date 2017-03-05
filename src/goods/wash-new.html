@@ -46,13 +46,31 @@
         ngf-select="uploadFile($file)"
         class="form-control">
     </div>
-    <div class="form-group col-md-10 col-md-offset-3">
+    <div class="form-group col-md-8 col-md-offset-3">
       <div class="img-wrap"
-        ng-repeat="pic in good.pics">
+        ng-repeat="pic in good.productImgsList">
         <img class="img-thumb"
-          ng-src="http://www.lifeuxuan.com/{{pic}}">
+          ng-src="http://www.lifeuxuan.com/{{pic.url}}">
         <p class="img-remove"
-          ng-click="removePic(pic)"><i class="glyphicon glyphicon-remove"></i> </p>
+          ng-click="removePic(pic)"><i class="glyphicon glyphicon-remove"></i>
+        </p>
+        <div>
+          <label style="width: auto">
+            <input type="radio"
+              ng-name="{{pic.url}}"
+              value="1"
+              ng-model="pic.type">图标</label>
+          <label style="width: auto">
+            <input type="radio"
+              ng-name="{{pic.url}}"
+              value="3"
+              ng-model="pic.type">主图</label>
+          <label style="width: auto">
+            <input type="radio"
+              ng-name="{{pic.url}}"
+              value="0"
+              ng-model="pic.type">详情图</label>
+        </div>
       </div>
     </div>
     <div class="row btn-row">
@@ -64,3 +82,4 @@
     </div>
   </form>
 </div>
+

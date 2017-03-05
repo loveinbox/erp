@@ -47,8 +47,8 @@ angular.module('erp.controllers')
       window.open('http://www.lifeuxuan.com/' + url)
     })
   })
-  $scope.$on('rowAction', function(action, type, rowData, mouseEvent) {
-    Entity.rowActionHandler[type](rowData, mouseEvent)
+  $scope.$on('rowAction', function(action, type, rowData) {
+    Entity.rowActionHandler[type](rowData)
   })
 
   $scope.$on('modalConfirm', function(data) {

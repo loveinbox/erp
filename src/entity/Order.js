@@ -1,6 +1,6 @@
 angular.module('erp.services')
 
-.service('Orders', function($resource, API, Modal) {
+.service('Orders', function($resource, API) {
   this.name = 'Orders'
   this.query = API.wash
   this.export = API.washExport
@@ -10,7 +10,6 @@ angular.module('erp.services')
   this.rowActionHandler = {
     'fetch': function(rowData, event) {
       1
-      Modal.show(event)
     },
     'send': function(rowData, event) {
       1
