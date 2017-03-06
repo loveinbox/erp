@@ -2,7 +2,7 @@ const baseUrl = 'http://www.lifeuxuan.com/index.php';
 const URL = {
   'login': '/mgr/admin/login',
   'logout': '/mgr/admin/logout',
-  /*Wash  -------------------------*/
+  /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
   'washFilterSale': '/mgr/comm/washonsale',
@@ -10,6 +10,14 @@ const URL = {
   'washExport': '/mgr/wash/export',
   'washShopName': '/mgr/fquery/washshopname',
   'washUnit': '/mgr/comm/washunit',
+  /*Fruit meat---------------------------*/
+  'fruitFilterStatus': '/mgr/comm/fruitstatus',
+  'fruitFilterHot': '/mgr/comm/fruithot',
+  'fruitFilterSale': '/mgr/comm/fruitonsale',
+  'fruitFilterClass': '/mgr/classify/fruit/query',
+  'fruitExport': '/mgr/fruit/export',
+  'fruitShopName': '/mgr/fquery/fruitshopname',
+  'fruitUnit': '/mgr/comm/fruitunit',
   //-----CRUD-----
   'wash': '/mgr/wash/query',
   'washAdd': '/mgr/wash/add',

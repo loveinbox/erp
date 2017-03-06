@@ -1,53 +1,102 @@
 angular.module('erp.services')
 
-.service('Fruit', function($resource) {
+.service('Fruit', function($resource, $state, API) {
   this.name = 'Fruit'
+  this.query = API.fruit
+  this.export = API.fruitExport
+  this.new = function() {
+    $state.go('app.good-new', { type: 'fruit' })
+  }
+  this.rowActionHandler = {
+    'edit': function(rowData) {
+      $state.go('app.good-new', { type: 'fruit', id: rowData.productId })
+    },
+    'disable': function(rowData) {
+      if (confirm('确定要废弃么？')) {
+        API.fruitRemove(rowData, function() {
+          $state.go('app.lsit', { type: 'fruit' })
+        })
+      }
+    }
+  }
+  this.filters = [{
+    key: 'productName',
+    value: '',
+    name: '水果名称',
+  }, {
+    key: 'shopName',
+    value: '',
+    name: '商家名称',
+  }, {
+    key: 'classifyId',
+    value: '',
+    name: '商品分类',
+    type: 'select',
+    options: [],
+    API: API.fruitFilterClass
+  }, {
+    key: 'status',
+    value: '',
+    name: '状态',
+    type: 'select',
+    options: [],
+    API: API.fruitFilterStatus
+  }, {
+    key: 'hotId',
+    value: '',
+    name: '是否爆品',
+    type: 'select',
+    options: [],
+    API: API.fruitFilterHot
+  }, {
+    key: 'onSaleId',
+    value: '',
+    name: '是否热卖',
+    type: 'select',
+    options: [],
+    API: API.fruitFilterSale
+  }];
   this.meta = {
     header: [{
-      text: '订单分类',
-      apiName: ''
+      text: '商品名称',
+      apiName: 'productName'
     }, {
-      text: '订单号',
-      apiName: ''
+      text: '售价',
+      apiName: 'productPrice'
     }, {
-      text: '注册手机',
-      apiName: ''
+      text: '佣金率',
+      apiName: 'feeRate'
     }, {
-      text: '收货人',
-      apiName: ''
+      text: '管家抽成',
+      apiName: 'eguardProfitRate'
     }, {
-      text: '收货地址',
-      apiName: ''
+      text: '库存',
+      apiName: 'totalSaleVolume'
+    }, {
+      text: '规格',
+      apiName: 'productMeasure'
+    }, {
+      text: '水果分类',
+      apiName: 'classifyName'
     }, {
       text: '商家名称',
-      apiName: ''
+      apiName: 'shopName'
     }, {
-      text: '取货管家',
-      apiName: ''
+      text: '状态',
+      apiName: 'statusName'
     }, {
-      text: '送回官家',
-      apiName: ''
+      text: '上架日期',
+      apiName: 'marketDate'
     }, {
-      text: '订单金额',
-      apiName: ''
+      text: '热卖',
+      apiName: 'onSaleName'
     }, {
-      text: '订单状态',
-      apiName: ''
+      text: '爆款',
+      apiName: 'hotName'
     }, {
-      text: '下单时间',
-      apiName: ''
+      text: '总销量',
+      apiName: 'totalSaleVolume'
     }],
-    filters: [{
-      name: 'test',
-      type: 'text'
-    }, {
-      name: 'test2',
-      type: 'text'
-    }],
-    filtersValue: {
-      'test': '123',
-      'test2': '456'
-    },
     actions: [{
       text: '修改',
       type: 'edit'
@@ -61,6 +110,7 @@ angular.module('erp.services')
       export: true
     }
   }
+
 })
 
 .service('Wash', function($resource, $state, API) {

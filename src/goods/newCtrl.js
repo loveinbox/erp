@@ -15,10 +15,77 @@ angular.module('erp.controllers')
     // 'statusId': '', // 状态ID
     // 'hotId': '', // 是否爆品 1001->是，1002->否
     // 'onSaleId': '', // 是否热卖 1001->是，1002->否
-    // 'productImgsList': []
+    'productImgsList': []
   }
 
   let formPool = {}
+
+  formPool.fruit = [{
+    key: 'productName',
+    value: '',
+    name: '水果名称'
+  }, {
+    key: 'productDescription',
+    value: '',
+    name: '水果描述',
+  }, {
+    key: 'productPrice',
+    value: '',
+    name: '售价'
+  }, {
+    key: 'marketDate',
+    value: '',
+    name: '上架日期',
+    type: 'date'
+  }, {
+    key: 'productAvaliable',
+    value: '',
+    name: '库存'
+  }, {
+    key: 'productMeasure',
+    value: '',
+    name: '规格'
+  }, {
+    key: 'feeRate',
+    value: '',
+    name: '佣金率'
+  }, {
+    key: 'eguardProfitRate',
+    value: '',
+    name: '管家抽成'
+  }, {
+    key: 'shopId',
+    value: '',
+    name: '商家名称',
+    type: 'typeahead',
+    value: '',
+    API: API.fruitShopName
+  }, {
+    key: 'classifyId',
+    value: '',
+    name: '水果分类',
+    type: 'select',
+    value: '',
+    API: API.fruitClass
+  }, {
+    key: 'statusId',
+    value: '',
+    name: '状态',
+    type: 'select',
+    API: API.fruitFilterStatus
+  }, {
+    key: 'hotId',
+    value: '',
+    name: '是否爆品',
+    type: 'select',
+    API: API.fruitFilterHot
+  }, {
+    key: 'onSaleId',
+    value: '',
+    name: '是否热卖',
+    type: 'select',
+    API: API.fruitFilterSale
+  }]
 
   formPool.wash = [{
     key: 'productName',
@@ -134,6 +201,14 @@ angular.module('erp.controllers')
         }
       })
     })
+  } else {
+    $scope.forms.forEach((value) => {
+      if (value.type === 'select') {
+        value.API.get({}, function(data) {
+          value.options = data.data
+        })
+      }
+    })
   }
 
   $scope.typeaheadOptions = []
@@ -165,13 +240,23 @@ angular.module('erp.controllers')
         case 'date':
           submitObject[$scope.forms[i].key] = moment($scope.forms[i].value).unix();
           break;
-        case 'typeahead':
-          submitObject[$scope.forms[i].key] = $scope.forms[i].value.id
-          break;
+          // case 'typeahead':
+          //   submitObject[$scope.forms[i].key] = $scope.forms[i].value.id
+          //   break;
         default:
           submitObject[$scope.forms[i].key] = $scope.forms[i].value
           break;
       }
+    }
+    let type1Max1 = 0,
+      type3Max1 = 0;
+    $scope.good.productImgsList.forEach((value) => {
+      if (value.type === 1) type1Max1++;
+      if (value.type === 3) type3Max1++;
+    })
+    if (type1Max1 > 1 || type3Max1 > 1) {
+      alert('图标和主图都只能有一张');
+      return
     }
     submitObject.productImgsList = $scope.good.productImgsList
     submitObject.productId = $scope.good.productId
@@ -193,8 +278,9 @@ angular.module('erp.controllers')
     });
   }
   $scope.removePic = function(pic) {
-    let index = pic.indexOf($scope.good.productImgsList)
-    $scope.good.productImgsList.splice(index, 1)
+    $scope.good.productImgsList = $scope.good.productImgsList.filter(value => value !== pic)
+      // let index = pic.indexOf($scope.good.productImgsList)
+      // $scope.good.productImgsList.splice(index, 1)
   }
 
   function uploadFile(file) {
