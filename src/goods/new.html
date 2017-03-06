@@ -1,5 +1,5 @@
 <div class="form-wrap"
-  ng-controller="addWashCtrl">
+  ng-controller="addCtrl">
   <div class="go-back"
     ng-click="goBack()">
     <i class="glyphicon glyphicon-chevron-left"></i>
@@ -27,19 +27,10 @@
         ng-if="form.type === 'select'">
         <select ng-model="form.value"
           ng-options="option.id as option.name for option in form.options">
-          <!-- <option ng-init="initDefaultValue(form.value)"
-            ng-repeat="option.id as option.name for option in form.options">{{option.name}}</option> -->
         </select>
       </div>
       <div class="form-repeat-wrap"
         ng-if="form.type === 'typeahead'">
-        <!-- <input type="text"
-          ng-model="form.value"
-          placeholder="{{form.text}}"
-          uib-typeahead="state as state.name for state in getOptions($viewValue)"
-          typeahead-loading="loadingLocations"
-          typeahead-no-results="noResults"
-          class="form-control"> -->
         <input type="text"
           ng-model="form.value"
           placeholder="{{form.text}}"
@@ -72,13 +63,16 @@
             <input type="radio"
               ng-name="{{pic.url}}"
               ng-value=1
-              ng-model="pic.type">图标</label>
-          <label style="width: auto">
+              ng-model="pic.type"
+              selected>图标</label>
+          <label style="width: auto"
+            ng-hide="type === 'wash' ">
             <input type="radio"
               ng-name="{{pic.url}}"
               ng-value=3
               ng-model="pic.type">主图</label>
-          <label style="width: auto">
+          <label style="width: auto"
+            ng-hide="type === 'wash' ">
             <input type="radio"
               ng-name="{{pic.url}}"
               ng-value=0

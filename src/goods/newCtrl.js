@@ -1,23 +1,26 @@
 ;
 angular.module('erp.controllers')
 
-.controller('addWashCtrl', function($scope, $timeout, $state, $http, Upload, API, $filter, $stateParams) {
+.controller('addCtrl', function($scope, $timeout, $state, $http, Upload, API, $stateParams) {
+  let _switch = $scope.type = $stateParams.type
   $scope.good = {
-    'productName': '', // 衣服名称
-    'productUnitId': '', // 洗衣单位
-    'marketDate': '', // 上架日期
-    'productPrice': '', // 售价
-    'feeRate': '', // 佣金率
-    'eguardProfitRate': '', // 管家抽成
-    'shopId': '', // 商家ID
-    'classifyId': '', // 产品分类ID
-    'statusId': '', // 状态ID
-    'hotId': '', // 是否爆品 1001->是，1002->否
-    'onSaleId': '', // 是否热卖 1001->是，1002->否
-    'productImgsList': []
+    // 'productName': '', // 衣服名称
+    // 'productUnitId': '', // 洗衣单位
+    // 'marketDate': '', // 上架日期
+    // 'productPrice': '', // 售价
+    // 'feeRate': '', // 佣金率
+    // 'eguardProfitRate': '', // 管家抽成
+    // 'shopId': '', // 商家ID
+    // 'classifyId': '', // 产品分类ID
+    // 'statusId': '', // 状态ID
+    // 'hotId': '', // 是否爆品 1001->是，1002->否
+    // 'onSaleId': '', // 是否热卖 1001->是，1002->否
+    // 'productImgsList': []
   }
 
-  $scope.forms = [{
+  let formPool = {}
+
+  formPool.wash = [{
     key: 'productName',
     value: '',
     name: '衣服名称'
@@ -78,12 +81,34 @@ angular.module('erp.controllers')
     API: API.washFilterSale
   }]
 
-  $scope.goBack = function() {
-    $state.go('app.list', { type: 'wash' })
+  let methodPoll = {
+    wash: {
+      detail: API.washDetail,
+      edit: API.washEdit,
+      add: API.washAdd,
+      shopName: API.washShopName,
+    },
+    fruit: {
+      detail: API.fruitDetail,
+      edit: API.fruitEdit,
+      add: API.fruitAdd,
+      shopName: API.fruitShopName,
+    }
   }
 
+  $scope.goBack = function() {
+    $state.go('app.list', { type: _switch })
+  }
+
+  $scope.forms = formPool[
+    _switch];
+
+  let method = methodPoll[
+    _switch]
+
   if ($stateParams.id) {
-    API.washDetail.get({
+    // API.washDetail.get({
+    method.detail.get({
       productId: $stateParams.id
     }, function(data) {
       $scope.good = data.data
@@ -123,7 +148,8 @@ angular.module('erp.controllers')
     }
   };
   $scope.getOptions = function(searchVal) {
-    return API.washShopName.get({ name: searchVal }).$promise.then(function(data) {
+    // return API.washShopName.get({ name: searchVal }).$promise.then(function(data) {
+    return method.shopName.get({ name: searchVal }).$promise.then(function(data) {
       $scope.typeaheadOptions = data.data
       return data.data
     })
@@ -148,7 +174,10 @@ angular.module('erp.controllers')
       }
     }
     submitObject.productImgsList = $scope.good.productImgsList
-    API.washAdd.save(submitObject, function(data) {
+    submitObject.productId = $scope.good.productId
+      // let methodEOA = submitObject.productId ? API.washEdit : API.washAdd
+    let methodEOA = submitObject.productId ? method.edit : method.add
+    methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {
         alert('操作成功！')
       }
@@ -175,62 +204,4 @@ angular.module('erp.controllers')
     });
   }
 
-
-
-})
-
-.controller('classWashCtrl', function($scope) {
-  function findSelected(fruitClass) {
-    let selected = fruitClass.filter(function(value) {
-      return value.isSelected;
-    })
-    if (selected.length !== 1) {
-      return false
-    } else {
-      return selected
-    }
-  }
-  $scope.newClass = function() {
-    $scope.fruit.class.push({
-      value: $scope.fruit.newClass,
-      isSelected: false
-    })
-    $scope.fruit.newClass = ''
-  }
-  $scope.editClass = function() {
-    let selected = findSelected($scope.fruit.class)
-    if (!selected) {
-      alert('选择项目的数目有误！');
-      return
-    } else {
-      123;
-    }
-  }
-  $scope.disableClass = function() {
-    let selected = findSelected($scope.fruit.class)
-    selected.forEach(function(value) {
-      123;
-    })
-  }
-  $scope.fruit = {
-    class: [{
-      value: 1,
-      isSelected: false
-    }, {
-      value: 2,
-      isSelected: false
-    }, {
-      value: 3,
-      isSelected: false
-    }, {
-      value: 3,
-      isSelected: false
-    }, {
-      value: 3,
-      isSelected: false
-    }, {
-      value: 4,
-      isSelected: false
-    }]
-  }
 })

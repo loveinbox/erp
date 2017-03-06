@@ -68,15 +68,18 @@ angular.module('erp.services')
   this.query = API.wash
   this.export = API.washExport
   this.new = function() {
-    $state.go('app.goods-wash-new')
+    $state.go('app.good-new', { type: 'wash' })
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.goods-wash-new', { id: rowData.productId })
+      $state.go('app.good-new', { type: 'wash', id: rowData.productId })
     },
     'disable': function(rowData) {
-      confirm('确定要废弃么？')
-      console.log(a)
+      if (confirm('确定要废弃么？')) {
+        API.washRemove(rowData, function() {
+          $state.go('app.lsit', { type: 'wash' })
+        })
+      }
     }
   }
   this.filters = [{

@@ -1,0 +1,58 @@
+<div class="form-wrap"
+  ng-controller="classCtrl">
+  <form class="form-inline">
+    <div class="row">
+      <div class="form-group">
+        <label ng-repeat="class in classes"
+          class="tc label label-primary class-tag">
+          <p>
+            <span> {{class.name}}</span>
+            <span class="label label-info">{{class.pos}}</span>
+          </p>
+          <input type="checkbox"
+            ng-model="class.isSelected">
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="row btn-row">
+    <div class="col-sm-3 tc">
+      <input type="text"
+        name=""
+        class="class-input"
+        ng-model="inputClass.name"
+        placeholder="分类名称">
+      <input type="text"
+        name=""
+        class="class-input class-pos-input"
+        ng-model="inputClass.pos"
+        placeholder="分类位置">
+      <p>值越大，分类越靠后</p>
+    </div>
+    <div class="col-sm-2">
+      <button type="submit"
+        class="btn btn-primary"
+        ng-click="newClass()">添加</button>
+    </div>
+    <div class="col-sm-2"
+      ng-if="!isEditing">
+      <button type="submit"
+        class="btn btn-primary"
+        ng-click="preEditClass()">修改</button>
+    </div>
+    <div class="col-sm-2"
+      ng-if="isEditing">
+      <button type="submit"
+        class="btn btn-primary"
+        ng-click="editClass()">确认修改</button>
+      <button type="submit"
+        class="btn btn-primary"
+        ng-click="cancelEditClass()">取消修改</button>
+    </div>
+    <div class="col-sm-2">
+      <button type="submit"
+        class="btn btn-primary"
+        ng-click="disableClass()">废弃</button>
+    </div>
+  </div>
+</div>
