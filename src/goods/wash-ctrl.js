@@ -48,7 +48,7 @@ angular.module('erp.controllers')
     key: 'shopId',
     value: '',
     name: '商家名称',
-    type: 'ahead',
+    type: 'typeahead',
     value: '',
     API: API.washShopName
   }, {
@@ -92,17 +92,24 @@ angular.module('erp.controllers')
     }, function(data) {
       $scope.good = data.data
       $scope.forms.forEach((value) => {
-        if (value.type === 'date') {
-          value.value = new Date($scope.good[value.key] * 1000)
-        } else {
-          value.value = $scope.good[value.key] + ''
-        }
-      })
-      $scope.forms.forEach((value) => {
-        if (value.type === 'select') {
-          value.API.get({}, function(data) {
-            value.options = data.data
-          })
+        switch (value.type) {
+          case 'date':
+            value.value = new Date($scope.good[value.key] * 1000);
+            break;
+          case 'select':
+            value.value = $scope.good[value.key] + ''
+            value.API.get({}, function(data) {
+              value.options = data.data
+            })
+            break;
+          case 'typeahead':
+            value.value = {
+              id: $scope.good.shopId,
+              name: $scope.good.shopName
+            }
+            break;
+          default:
+            value.value = $scope.good[value.key] + ''
         }
       })
     })
@@ -114,6 +121,9 @@ angular.module('erp.controllers')
 
   $scope.typeaheadOptions = []
   $scope.formatLabel = function(model) {
+    if (typeof model === 'object') {
+      return model.name
+    }
     for (var i = 0; i < $scope.typeaheadOptions.length; i++) {
       if (model === $scope.typeaheadOptions[i].id) {
         return $scope.typeaheadOptions[i].name;
