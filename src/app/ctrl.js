@@ -12,11 +12,14 @@ angular.module('erp.controllers')
   }
 
   $timeout(function() {
+    let html = localStorage.getItem('list')
+    $('.main-nav li:contains("' + html + '")').addClass('active')
     $('.main-nav li').click(function() {
       $('.main-nav li').removeClass('active')
       $(this).addClass('active')
+      localStorage.setItem('list', $(this).html())
     })
-  }, 1000)
+  }, 100)
 
   $scope.logout = function() {
     API['logout'].get({

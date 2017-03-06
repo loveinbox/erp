@@ -78,13 +78,13 @@ angular.module('erp.controllers')
     API: API.washFilterSale
   }]
 
-  $scope.forms.forEach((value) => {
-    if (value.type === 'select') {
-      value.API.get({}, function(data) {
-        value.options = data.data
-      })
-    }
-  })
+  // $scope.forms.forEach((value) => {
+  //   if (value.type === 'select') {
+  //     value.API.get({}, function(data) {
+  //       value.options = data.data
+  //     })
+  //   }
+  // })
 
   if ($stateParams.id) {
     API.washDetail.get({
@@ -93,16 +93,23 @@ angular.module('erp.controllers')
       $scope.good = data.data
       $scope.forms.forEach((value) => {
         if (value.type === 'date') {
-          value.value =
-            // new Date(2015, 10, 22)
-            // "2014-09-30"
-            //$filter("date")($scope.good[value.key] * 1000, 'yyyy-MM-dd');
-            new Date($scope.good[value.key] * 1000)
+          value.value = new Date($scope.good[value.key] * 1000)
         } else {
-          value.value = $scope.good[value.key]
+          value.value = $scope.good[value.key] + ''
+        }
+      })
+      $scope.forms.forEach((value) => {
+        if (value.type === 'select') {
+          value.API.get({}, function(data) {
+            value.options = data.data
+          })
         }
       })
     })
+  }
+
+  $scope.initDefaultValue = function(data) {
+    console.log(data);
   }
 
   $scope.typeaheadOptions = []
