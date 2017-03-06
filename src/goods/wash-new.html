@@ -1,5 +1,10 @@
 <div class="form-wrap"
   ng-controller="addWashCtrl">
+  <div class="go-back"
+    ng-click="goBack()">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    <span>返回</span>
+  </div>
   <form class="form-inline">
     <div class="form-group col-md-5"
       ng-class="{'col-md-offset-2': $index%2===0}"

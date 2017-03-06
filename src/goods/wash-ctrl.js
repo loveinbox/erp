@@ -1,7 +1,7 @@
 ;
 angular.module('erp.controllers')
 
-.controller('addWashCtrl', function($scope, $timeout, $http, Upload, API, $filter, $stateParams) {
+.controller('addWashCtrl', function($scope, $timeout, $state, $http, Upload, API, $filter, $stateParams) {
   $scope.good = {
     'productName': '', // 衣服名称
     'productUnitId': '', // 洗衣单位
@@ -78,13 +78,9 @@ angular.module('erp.controllers')
     API: API.washFilterSale
   }]
 
-  // $scope.forms.forEach((value) => {
-  //   if (value.type === 'select') {
-  //     value.API.get({}, function(data) {
-  //       value.options = data.data
-  //     })
-  //   }
-  // })
+  $scope.goBack = function() {
+    $state.go('app.list', { type: 'wash' })
+  }
 
   if ($stateParams.id) {
     API.washDetail.get({
@@ -115,10 +111,6 @@ angular.module('erp.controllers')
     })
   }
 
-  $scope.initDefaultValue = function(data) {
-    console.log(data);
-  }
-
   $scope.typeaheadOptions = []
   $scope.formatLabel = function(model) {
     if (typeof model === 'object') {
@@ -143,10 +135,16 @@ angular.module('erp.controllers')
         alert('所有字段必填')
         return
       }
-      if ($scope.forms[i].type === 'date') {
-        submitObject[$scope.forms[i].key] = moment($scope.forms[i].value).unix()
-      } else {
-        submitObject[$scope.forms[i].key] = $scope.forms[i].value
+      switch ($scope.forms[i].type) {
+        case 'date':
+          submitObject[$scope.forms[i].key] = moment($scope.forms[i].value).unix();
+          break;
+        case 'typeahead':
+          submitObject[$scope.forms[i].key] = $scope.forms[i].value.id
+          break;
+        default:
+          submitObject[$scope.forms[i].key] = $scope.forms[i].value
+          break;
       }
     }
     submitObject.productImgsList = $scope.good.productImgsList
