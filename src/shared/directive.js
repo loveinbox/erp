@@ -61,14 +61,16 @@ function filter() {
     restrict: 'E',
     scope: {
       filter: '='
-        // key: '=',
-        // name: '=',
-        // type: '=?',
-        // value: '=?',
-        // options: '=?',
-        // method: '=?'
     },
-    templateUrl: '/shared/template/filter.html'
+    templateUrl: '/shared/template/filter.html',
+    controller: function($scope) {
+      $scope.getOptions = function(method, param) {
+        return method.get({ shopName: param }).$promise.then(function(data) {
+          $scope.typeaheadOptions = data.data
+          return data.data
+        })
+      }
+    }
   }
 }
 

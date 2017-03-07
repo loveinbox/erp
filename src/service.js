@@ -2,6 +2,7 @@ const baseUrl = 'http://www.lifeuxuan.com/index.php';
 const URL = {
   'login': '/mgr/admin/login',
   'logout': '/mgr/admin/logout',
+  'shopStatus': '/mgr/comm/shopstatus',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
@@ -38,6 +39,17 @@ const URL = {
   'fruitClassAdd': '/mgr/classify/fruit/add',
   'fruitClassEdit': '/mgr/classify/fruit/edit',
   'fruitClassRemove': '/mgr/classify/fruit/disable',
+  /*Shop  ------------------------------*/
+  'washShop': '/mgr/washshop/query',
+  'washShopExport': '/mgr/washshop/export',
+  'washShopDisable': '/mgr/washshop/disable',
+  'washShopDetail': '/mgr/washshop/editprequery',
+  'washShopEdit': '/mgr/washshop/edit',
+  'fruitShop': '/mgr/fruitshop/query',
+  'fruitShopExport': '/mgr/fruitshop/export',
+  'fruitShopDisable': '/mgr/fruitshop/disable',
+  'fruitShopDetail': '/mgr/fruitshop/editprequery',
+  'fruitShopEdit': '/mgr/fruitshop/edit',
 }
 
 angular.module('erp.services')
