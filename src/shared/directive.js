@@ -37,6 +37,7 @@ function tableData() {
           default:
             $scope.page.current = page
         }
+        $scope.$emit('query')
       }
       $scope.rowActionHandler = function(action, rowData) {
         $scope.$emit('rowAction', action.type, rowData)

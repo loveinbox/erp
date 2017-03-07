@@ -265,6 +265,7 @@ angular.module('erp.controllers')
     methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {
         alert('操作成功！')
+        $state.go('app.list', { type: _switch })
       }
     })
   }
