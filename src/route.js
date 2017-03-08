@@ -25,9 +25,9 @@ angular.module('erp')
     templateUrl: '/shared/template/list.html',
   })
 
-  .state('app.good-new', {
+  .state('app.new', {
     url: '/goods/new/:type/:id',
-    templateUrl: '/goods/new.html',
+    templateUrl: '/shared/template/new.html',
   })
 
   .state('app.goods-class', {

@@ -23,7 +23,8 @@
     <table class="table table-bordered">
       <thead>
         <th>序号</th>
-        <th ng-repeat="th in header">{{th.text}}</th>
+        <th ng-repeat="th in header"
+          ng-if="!isHideInTable">{{th.text}}</th>
         <th>操作</th>
       </thead>
       <tbody>
@@ -90,4 +91,3 @@
     </ul>
   </nav>
 </div>
-

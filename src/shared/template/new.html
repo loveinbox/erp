@@ -8,8 +8,9 @@
   <form class="form-inline">
     <div class="form-group col-md-5"
       ng-class="{'col-md-offset-2': $index%2===0}"
-      ng-repeat="form in forms">
-      <label for="name">{{form.name}}</label>
+      ng-repeat="form in forms"
+      ng-if="!form.isHideInForm">
+      <label for="name">{{form.text}}</label>
       <div class="form-repeat-wrap"
         ng-if="form.type === undefined || form.type ==='text'">
         <input type="text"
@@ -40,43 +41,44 @@
           typeahead-input-formatter="formatLabel($model)"
           class="form-control">
       </div>
-    </div>
-    <div class="form-group col-md-10 col-md-offset-2">
-      <label for="password">图片</label>
-      <input type="file"
-        name="file"
-        accept="image/*"
-        ngf-max-size="2MB"
-        ngf-select="uploadFile($file)"
-        class="form-control">
-    </div>
-    <div class="form-group col-md-8 col-md-offset-3">
-      <div class="img-wrap"
-        ng-repeat="pic in good.productImgsList">
-        <img class="img-thumb"
-          ng-src="http://www.lifeuxuan.com/{{pic.url}}">
-        <p class="img-remove"
-          ng-click="removePic(pic)"><i class="glyphicon glyphicon-remove"></i>
-        </p>
-        <div>
-          <label style="width: auto">
-            <input type="radio"
-              ng-name="{{pic.url}}"
-              ng-value=1
-              ng-model="pic.type"
-              selected>图标</label>
-          <label style="width: auto"
-            ng-hide="type === 'wash' ">
-            <input type="radio"
-              ng-name="{{pic.url}}"
-              ng-value=3
-              ng-model="pic.type">主图</label>
-          <label style="width: auto"
-            ng-hide="type === 'wash' ">
-            <input type="radio"
-              ng-name="{{pic.url}}"
-              ng-value=0
-              ng-model="pic.type">详情图</label>
+      <div class="col-md-10 col-md-offset-2"
+        ng-if="form.type === 'imgUpload'">
+        <input type="file"
+          name="file"
+          accept="image/*"
+          ngf-max-size="2MB"
+          ngf-select="uploadFile($file, form)"
+          class="form-control">
+      </div>
+      <div class="col-md-8 col-md-offset-3"
+        ng-if="form.type === 'imgUpload'">
+        <div class="img-wrap"
+          ng-repeat="pic in form.productImgsList">
+          <img class="img-thumb"
+            ng-src="http://www.lifeuxuan.com/{{pic.url}}">
+          <p class="img-remove"
+            ng-click="removePic(pic, form)"><i class="glyphicon glyphicon-remove"></i>
+          </p>
+          <div>
+            <label style="width: auto">
+              <input type="radio"
+                ng-name="{{pic.url}}"
+                ng-value=1
+                ng-model="pic.type"
+                selected>图标</label>
+            <label style="width: auto"
+              ng-hide="type === 'wash' ">
+              <input type="radio"
+                ng-name="{{pic.url}}"
+                ng-value=3
+                ng-model="pic.type">主图</label>
+            <label style="width: auto"
+              ng-hide="type === 'wash' ">
+              <input type="radio"
+                ng-name="{{pic.url}}"
+                ng-value=0
+                ng-model="pic.type">详情图</label>
+          </div>
         </div>
       </div>
     </div>

@@ -1,15 +1,15 @@
 angular.module('erp.services')
 
-.service('FruitShop', function($resource, API) {
+.service('FruitShop', function($resource, $state, API) {
   this.name = 'FruitShop'
   this.query = API.fruitShop
   this.export = API.fruitShopExport
   this.new = function() {
-    $state.go('app.shop-new', { type: 'fruitShop' })
+    $state.go('app.new', { type: 'fruitShop' })
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.shop-new', { type: 'fruitShop', id: rowData.shopId })
+      $state.go('app.new', { type: 'fruitShop', id: rowData.shopId })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
@@ -51,7 +51,8 @@ angular.module('erp.services')
       apiName: 'shopPhoneNumber'
     }, {
       text: '营业时间',
-      apiName: 'openTime'
+      apiName: 'openTime',
+      isHideInForm: true
     }, {
       text: '商家地址',
       apiName: 'shopAddress'
@@ -89,23 +90,22 @@ angular.module('erp.services')
     }],
     button: {
       query: true,
-      new: true,
       export: true
     }
   }
 
 })
 
-.service('WashShop', function($resource, API) {
+.service('WashShop', function($resource, $state, API) {
   this.name = 'WashShop'
   this.query = API.washShop
   this.export = API.washShopExport
   this.new = function() {
-    $state.go('app.shop-new', { type: 'washShop' })
+    $state.go('app.new', { type: 'washShop' })
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.shop-new', { type: 'washShop', id: rowData.shopId })
+      $state.go('app.new', { type: 'washShop', id: rowData.shopId })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {

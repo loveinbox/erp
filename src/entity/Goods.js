@@ -5,11 +5,11 @@ angular.module('erp.services')
   this.query = API.fruit
   this.export = API.fruitExport
   this.new = function() {
-    $state.go('app.good-new', { type: 'fruit' })
+    $state.go('app.new', { type: 'fruit' })
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.good-new', { type: 'fruit', id: rowData.productId })
+      $state.go('app.new', { type: 'fruit', id: rowData.productId })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
@@ -58,8 +58,12 @@ angular.module('erp.services')
   }];
   this.meta = {
     header: [{
-      text: '商品名称',
+      text: '水果名称',
       apiName: 'productName'
+    }, {
+      text: '水果描述',
+      formKey: 'productDescription',
+      isHideInTable: true
     }, {
       text: '售价',
       apiName: 'productPrice'
@@ -77,25 +81,47 @@ angular.module('erp.services')
       apiName: 'productMeasure'
     }, {
       text: '水果分类',
-      apiName: 'classifyName'
+      apiName: 'classifyName',
+      formKey: 'classifyId',
+      type: 'select',
+      API: API.fruitClass
     }, {
       text: '商家名称',
-      apiName: 'shopName'
+      apiName: 'shopName',
+      formKey: 'shopId',
+      type: 'typeahead',
+      API: API.fruitShopName
     }, {
       text: '状态',
-      apiName: 'statusName'
+      apiName: 'statusName',
+      formKey: 'statusId',
+      type: 'select',
+      API: API.fruitFilterStatus
     }, {
       text: '上架日期',
-      apiName: 'marketDate'
+      apiName: 'marketDate',
+      type: 'date'
     }, {
       text: '热卖',
-      apiName: 'onSaleName'
+      apiName: 'onSaleName',
+      formKey: 'onSaleId',
+      type: 'select',
+      API: API.fruitFilterSale
     }, {
       text: '爆款',
-      apiName: 'hotName'
+      apiName: 'hotName',
+      formKey: 'hotId',
+      type: 'select',
+      API: API.fruitFilterHot
     }, {
       text: '总销量',
-      apiName: 'totalSaleVolume'
+      apiName: 'totalSaleVolume',
+      isHideInForm: true
+    }, {
+      text: '图片',
+      formKey: 'productImgsList',
+      type: 'imgUpload',
+      isHideInTable: true
     }],
     actions: [{
       text: '修改',
@@ -118,11 +144,11 @@ angular.module('erp.services')
   this.query = API.wash
   this.export = API.washExport
   this.new = function() {
-    $state.go('app.good-new', { type: 'wash' })
+    $state.go('app.new', { type: 'wash' })
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.good-new', { type: 'wash', id: rowData.productId })
+      $state.go('app.new', { type: 'wash', id: rowData.productId })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
@@ -175,16 +201,28 @@ angular.module('erp.services')
       apiName: 'productName'
     }, {
       text: '衣服分类',
-      apiName: 'classifyName'
+      apiName: 'classifyName',
+      formKey: 'classifyId',
+      type: 'select',
+      API: API.washClass
     }, {
       text: '清洗单位',
-      apiName: 'productUnit'
+      apiName: 'productUnit',
+      formKey: 'productUnitId',
+      type: 'select',
+      API: API.washUnit
     }, {
       text: '商家名称',
-      apiName: 'shopName'
+      apiName: 'shopName',
+      formKey: 'shopId',
+      type: 'typeahead',
+      API: API.washShopName
     }, {
       text: '状态',
-      apiName: 'statusName'
+      apiName: 'statusName',
+      formKey: 'statusId',
+      type: 'select',
+      API: API.washFilterStatus
     }, {
       text: '佣金率',
       apiName: 'feeRate'
@@ -196,16 +234,29 @@ angular.module('erp.services')
       apiName: 'productPrice'
     }, {
       text: '热卖',
-      apiName: 'onSaleName'
+      apiName: 'onSaleName',
+      formKey: 'onSaleId',
+      type: 'select',
+      API: API.washFilterSale
     }, {
       text: '爆款',
-      apiName: 'hotName'
+      apiName: 'hotName',
+      formKey: 'hotId',
+      type: 'select',
+      API: API.washFilterHot
     }, {
       text: '上架日期',
-      apiName: 'marketDate'
+      apiName: 'marketDate',
+      type: 'date'
     }, {
       text: '总销量',
-      apiName: 'totalSaleVolume'
+      apiName: 'totalSaleVolume',
+      isHideInForm: true
+    }, {
+      text: '图片',
+      formKey: 'productImgsList',
+      type: 'imgUpload',
+      isHideInTable: true
     }],
     actions: [{
       text: '修改',
