@@ -70,7 +70,7 @@ angular.module('erp.services')
       apiName: 'longitude',
       isHideInTable: true
     }, {
-      text: '维度',
+      text: '纬度',
       apiName: 'latitude',
       isHideInTable: true
     }, {
@@ -88,9 +88,6 @@ angular.module('erp.services')
     }, {
       text: '管家抽成',
       apiName: 'eguardDeliveryFeeRate'
-    }, {
-      text: '免配送费金额',
-      apiName: 'freeDeliveryMoney'
     }, {
       text: '起送金额',
       apiName: 'startDeliveryMoney'
@@ -211,7 +208,7 @@ angular.module('erp.services')
       apiName: 'longitude',
       isHideInTable: true
     }, {
-      text: '维度',
+      text: '纬度',
       apiName: 'latitude',
       isHideInTable: true
     }, {
