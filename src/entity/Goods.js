@@ -35,7 +35,7 @@ angular.module('erp.services')
     options: [],
     API: API.fruitFilterClass
   }, {
-    key: 'status',
+    key: 'statusId',
     value: '',
     name: '状态',
     type: 'select',
@@ -175,7 +175,7 @@ angular.module('erp.services')
     options: [],
     API: API.washFilterClass
   }, {
-    key: 'status',
+    key: 'statusId',
     value: '',
     name: '状态',
     type: 'select',
