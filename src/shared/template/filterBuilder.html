@@ -21,3 +21,11 @@
     typeahead-no-results="noResults"
     class="form-control">
 </label>
+<label ng-if="filter.type === 'dateInputRange'">
+  <span>{{filter.name}}：</span>
+  <input type="date"
+    ng-model="filter.value">
+  <span>---</span>
+  <input type="date"
+    ng-model="filter.value2">
+</label>

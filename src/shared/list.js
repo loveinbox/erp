@@ -83,9 +83,18 @@ angular.module('erp.controllers')
     let param = { page: $scope.data.page.current }
     for (var p in $scope.filters) {
       let value = $scope.filters[p]
-      if (value.value)
+      if (value.value) {
         param[value.key] = value.value
+      }
+      if (value.type === 'dateInputRange') {
+        let temp = value.key + '[]'
+        param[temp] = [
+          value.value ? new Date(value.value).getTime() : '',
+          value.value2 ? new Date(value.value2).getTime() : ''
+        ]
+      }
     }
+    console.log(param)
     return param
   }
 

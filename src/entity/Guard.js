@@ -43,7 +43,7 @@ angular.module('erp.services')
   }, {
     key: 'hireTime',
     name: '日期',
-    type: 'dateInputRange',
+    type: 'dateInputRange'
   }, {
     key: 'eguardPhoneNumber',
     name: '手机号',
