@@ -21,13 +21,11 @@ angular.module('erp.services')
   }
   this.filters = [{
     key: 'shopName',
-    value: '',
     name: '商家名称',
     type: 'typeahead',
     API: API.fruitShopName
   }, {
     key: 'statusId',
-    value: '',
     name: '状态',
     type: 'select',
     options: [],
@@ -36,13 +34,15 @@ angular.module('erp.services')
   this.meta = {
     header: [{
       text: '商家编号',
-      apiName: 'shopId'
+      apiName: 'shopId',
+      isHideInForm: true
     }, {
       text: '商家名称',
       apiName: 'shopName'
     }, {
       text: '合同号',
-      apiName: 'contractId'
+      apiName: 'contractId',
+      isHideInForm: true
     }, {
       text: '店主姓名',
       apiName: 'hostName'
@@ -52,16 +52,36 @@ angular.module('erp.services')
     }, {
       text: '营业时间',
       apiName: 'openTime',
-      isHideInForm: true
+      formKey: 'openTimeId',
+      formKey2: 'closeTimeId',
+      type: 'dateRange',
+      API: API.timeUnit
     }, {
       text: '商家地址',
-      apiName: 'shopAddress'
-    }, {
-      text: '合作时间',
-      apiName: 'hireTime'
+      apiName: 'shopAddress',
     }, {
       text: '区域',
-      apiName: 'regionName'
+      apiName: 'regionName',
+      formKey: 'regionId',
+      type: 'select',
+      API: API.region
+    }, {
+      text: '经度',
+      apiName: 'longitude',
+      isHideInTable: true
+    }, {
+      text: '维度',
+      apiName: 'latitude',
+      isHideInTable: true
+    }, {
+      text: '合作时间',
+      apiName: 'hireTime',
+      type: 'date'
+    }, {
+      text: '状态',
+      apiName: 'statusId',
+      type: 'select',
+      API: API.shopStatus
     }, {
       text: '配送费',
       apiName: 'deliveryFee'
@@ -72,14 +92,39 @@ angular.module('erp.services')
       text: '免配送费金额',
       apiName: 'freeDeliveryMoney'
     }, {
+      text: '起送金额',
+      apiName: 'startDeliveryMoney'
+    }, {
       text: '佣金率',
       apiName: 'feeRate'
     }, {
       text: '累计单量',
-      apiName: 'totalSaleVolume'
+      apiName: 'totalSaleVolume',
+      isHideInForm: true
     }, {
       text: '平均月单量',
-      apiName: 'avgMonthSaleVolume'
+      apiName: 'avgMonthSaleVolume',
+      isHideInForm: true
+    }, {
+      text: '账号',
+      apiName: 'account',
+      isHideInTable: true
+    }, {
+      text: '密码',
+      apiName: 'password',
+      isHideInTable: true
+    }, {
+      text: '绑定微信',
+      apiName: 'employeesList',
+      type: 'list',
+      colSpan: true,
+      isHideInTable: true
+    }, {
+      text: '商家LOGO',
+      apiName: 'shopImgsList',
+      type: 'imgUpload',
+      colSpan: true,
+      isHideInTable: true
     }],
     actions: [{
       text: '修改',
@@ -117,13 +162,11 @@ angular.module('erp.services')
   }
   this.filters = [{
     key: 'shopName',
-    value: '',
     name: '商家名称',
     type: 'typeahead',
     API: API.washShopName
   }, {
     key: 'statusId',
-    value: '',
     name: '状态',
     type: 'select',
     options: [],
@@ -132,13 +175,15 @@ angular.module('erp.services')
   this.meta = {
     header: [{
       text: '商家编号',
-      apiName: 'shopId'
+      apiName: 'shopId',
+      isHideInForm: true
     }, {
       text: '商家名称',
       apiName: 'shopName'
     }, {
       text: '合同号',
-      apiName: 'contractId'
+      apiName: 'contractId',
+      isHideInForm: true
     }, {
       text: '店主姓名',
       apiName: 'hostName'
@@ -147,16 +192,37 @@ angular.module('erp.services')
       apiName: 'shopPhoneNumber'
     }, {
       text: '营业时间',
-      apiName: 'openTime'
+      apiName: 'openTime',
+      formKey: 'openTimeId',
+      formKey2: 'closeTimeId',
+      type: 'dateRange',
+      API: API.timeUnit
     }, {
       text: '商家地址',
       apiName: 'shopAddress'
     }, {
-      text: '合作时间',
-      apiName: 'hireTime'
-    }, {
       text: '区域',
-      apiName: 'regionName'
+      apiName: 'regionName',
+      formKey: 'regionId',
+      type: 'select',
+      API: API.region
+    }, {
+      text: '经度',
+      apiName: 'longitude',
+      isHideInTable: true
+    }, {
+      text: '维度',
+      apiName: 'latitude',
+      isHideInTable: true
+    }, {
+      text: '合作时间',
+      apiName: 'hireTime',
+      type: 'date'
+    }, {
+      text: '状态',
+      apiName: 'statusId',
+      type: 'select',
+      API: API.shopStatus
     }, {
       text: '配送费',
       apiName: 'deliveryFee'
@@ -171,10 +237,32 @@ angular.module('erp.services')
       apiName: 'feeRate'
     }, {
       text: '累计单量',
-      apiName: 'totalSaleVolume'
+      apiName: 'totalSaleVolume',
+      isHideInForm: true
     }, {
       text: '平均月单量',
-      apiName: 'avgMonthSaleVolume'
+      apiName: 'avgMonthSaleVolume',
+      isHideInForm: true
+    }, {
+      text: '账号',
+      apiName: 'account',
+      isHideInTable: true
+    }, {
+      text: '密码',
+      apiName: 'password',
+      isHideInTable: true
+    }, {
+      text: '绑定微信',
+      apiName: 'employeesList',
+      type: 'list',
+      colSpan: true,
+      isHideInTable: true
+    }, {
+      text: '商家LOGO',
+      apiName: 'shopImgsList',
+      type: 'imgUpload',
+      colSpan: true,
+      isHideInTable: true
     }],
     actions: [{
       text: '修改',

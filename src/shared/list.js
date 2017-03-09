@@ -71,7 +71,7 @@ angular.module('erp.controllers')
 
   function getFilters() {
     Entity.filters.forEach((value) => {
-      if (value.API) {
+      if (value.API && value.type === 'select') {
         value.API.get({}, function(data) {
           value.options = data.data
         })

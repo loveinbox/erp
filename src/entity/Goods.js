@@ -121,6 +121,7 @@ angular.module('erp.services')
       text: '图片',
       formKey: 'productImgsList',
       type: 'imgUpload',
+      colSpan: true,
       isHideInTable: true
     }],
     actions: [{
@@ -256,6 +257,7 @@ angular.module('erp.services')
       text: '图片',
       formKey: 'productImgsList',
       type: 'imgUpload',
+      colSpan: true,
       isHideInTable: true
     }],
     actions: [{

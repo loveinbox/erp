@@ -62,9 +62,10 @@ function filter() {
     scope: {
       filter: '='
     },
-    templateUrl: '/shared/template/filter.html',
+    templateUrl: '/shared/template/filterBuilder.html',
     controller: function($scope) {
       $scope.getOptions = function(method, param) {
+        console.log(123)
         return method.get({ shopName: param }).$promise.then(function(data) {
           $scope.typeaheadOptions = data.data
           return data.data

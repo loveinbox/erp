@@ -6,8 +6,8 @@
     <span>返回</span>
   </div>
   <form class="form-inline">
-    <div class="form-group col-md-5"
-      ng-class="{'col-md-offset-2': $index%2===0}"
+    <div class="form-group"
+      ng-class="{'col-md-10': form.colSpan, 'col-md-5': !form.colSpan}"
       ng-repeat="form in forms"
       ng-if="!form.isHideInForm">
       <label for="name">{{form.text}}</label>
@@ -41,23 +41,39 @@
           typeahead-input-formatter="formatLabel($model)"
           class="form-control">
       </div>
-      <div class="col-md-10 col-md-offset-2"
+      <div class="form-repeat-wrap"
         ng-if="form.type === 'imgUpload'">
         <input type="file"
           name="file"
           accept="image/*"
-          ngf-max-size="2MB"
+          ngf-max-size="5MB"
           ngf-select="uploadFile($file, form)"
           class="form-control">
       </div>
-      <div class="col-md-8 col-md-offset-3"
-        ng-if="form.type === 'imgUpload'">
+      <div class="form-repeat-wrap"
+        ng-if="form.type === 'dateRange'">
+        <select ng-model="form.value"
+          ng-options="option.id as option.name for option in form.options">
+        </select>
+        <select ng-model="form.value2"
+          ng-options="option.id as option.name for option in form.options">
+        </select>
+      </div>
+      <div ng-if="form.type === 'list'">
+        <div class="img-wrap list-item-wrap"
+          ng-repeat="item in form.value">
+          <span>{{item.employeeName}}</span>
+          <p class="img-remove"
+            ng-click="removeItem(item, form, 'value' ,'id')"><i class="glyphicon glyphicon-remove"></i>
+        </div>
+      </div>
+      <div ng-if="form.type === 'imgUpload'">
         <div class="img-wrap"
-          ng-repeat="pic in form.productImgsList">
+          ng-repeat="pic in form.imgList">
           <img class="img-thumb"
             ng-src="http://www.lifeuxuan.com/{{pic.url}}">
           <p class="img-remove"
-            ng-click="removePic(pic, form)"><i class="glyphicon glyphicon-remove"></i>
+            ng-click="removeItem(pic, form, 'imgList' ,'url')"><i class="glyphicon glyphicon-remove"></i>
           </p>
           <div>
             <label style="width: auto">
@@ -67,13 +83,13 @@
                 ng-model="pic.type"
                 selected>图标</label>
             <label style="width: auto"
-              ng-hide="type === 'wash' ">
+              ng-hide="type === 'wash' || type === 'washShop' || type === 'fruitShop' ">
               <input type="radio"
                 ng-name="{{pic.url}}"
                 ng-value=3
                 ng-model="pic.type">主图</label>
             <label style="width: auto"
-              ng-hide="type === 'wash' ">
+              ng-hide="type === 'wash' || type === 'washShop' || type === 'fruitShop' ">
               <input type="radio"
                 ng-name="{{pic.url}}"
                 ng-value=0

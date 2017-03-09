@@ -3,6 +3,8 @@ const URL = {
   'login': '/mgr/admin/login',
   'logout': '/mgr/admin/logout',
   'shopStatus': '/mgr/comm/shopstatus',
+  'timeUnit': '/mgr/comm/timeunit',
+  'region': '/mgr/comm/region',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',

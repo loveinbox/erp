@@ -30,7 +30,8 @@
       <p>值越大，分类越靠后</p>
     </div>
     <div class="col-sm-2">
-      <button type="submit"
+      <button ng-if="!isEditing"
+        type="submit"
         class="btn btn-primary"
         ng-click="newClass()">添加</button>
     </div>
@@ -49,7 +50,8 @@
         class="btn btn-primary"
         ng-click="cancelEditClass()">取消修改</button>
     </div>
-    <div class="col-sm-2">
+    <div ng-if="!isEditing"
+      class="col-sm-2">
       <button type="submit"
         class="btn btn-primary"
         ng-click="disableClass()">废弃</button>
