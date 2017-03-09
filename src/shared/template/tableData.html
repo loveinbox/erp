@@ -31,8 +31,8 @@
         <tr ng-repeat="tr in body">
           <td>{{$index + 1}}</td>
           <td ng-repeat="td in header">
-            <span ng-if="td.apiName === 'marketDate'">{{tr[td.apiName] | time}}</span>
-            <span ng-if="td.apiName !== 'marketDate'">{{tr[td.apiName]}}</span>
+            <span ng-if="td.type === 'date'">{{tr[td.apiName] | time}}</span>
+            <span ng-if="td.type !== 'date'">{{tr[td.apiName]}}</span>
           </td>
           <td>
             <p class="action"
