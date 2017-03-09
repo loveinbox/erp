@@ -75,7 +75,7 @@ angular.module('erp.services')
       apiName: 'eguardProfitRate'
     }, {
       text: '库存',
-      apiName: 'totalSaleVolume'
+      apiName: 'productAvaliable'
     }, {
       text: '规格',
       apiName: 'productMeasure'
