@@ -4,7 +4,7 @@
       ng-repeat="(key, item) in filters"
       filter="item"></filter>
   </section>
-  <div class="btn-group fr"
+  <div class="btn-group fl"
     role="group">
     <button type="button"
       class="btn btn-primary"
@@ -18,19 +18,64 @@
       class="btn btn-default"
       ng-if="button.export"
       ng-click="buttonAction('export')">导出表格</button>
+    <nav aria-label="Page navigation"
+      class="fl">
+      <ul class="pagination">
+        <!-- <li>
+        <a href="#"
+          aria-label="Previous"
+          ng-click="gotoPage('begin')">
+          <span aria-hidden="true">共{{page.totalPage}}条</span>
+        </a>
+      </li> -->
+        <li>
+          <a href="#"
+            aria-label="Previous"
+            ng-click="gotoPage('begin')">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            aria-label="Next"
+            ng-click="gotoPage('pre')">
+            <span aria-hidden="true">&lt;</span>
+          </a>
+        </li>
+        <li ng-repeat="i in getNumber(page.show) track by $index"
+          class="pagination-li"
+          ng-class="{'active': page.current - page.adjust + $index == page.current}"
+          ng-click="gotoPage(page.current - page.adjust + $index)"><a href="#">{{page.current - page.adjust + $index}}</a></li>
+        <li>
+          <a href="#"
+            aria-label="Previous"
+            ng-click="gotoPage('next')">
+            <span aria-hidden="true">&gt;</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            aria-label="Next"
+            ng-click="gotoPage('end')">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
   <section class="table">
     <table class="table table-bordered">
       <thead>
-        <th>序号</th>
+        <th style="width: 10px;min-width: 10px">序号</th>
         <th ng-repeat="th in header"
-          ng-if="!isHideInTable">{{th.text}}</th>
+          ng-if="!th.isHideInTable">{{th.text}}</th>
         <th>操作</th>
       </thead>
       <tbody>
         <tr ng-repeat="tr in body">
           <td>{{$index + 1}}</td>
-          <td ng-repeat="td in header">
+          <td ng-repeat="td in header"
+            ng-if="!td.isHideInTable">
             <span ng-if="td.type === 'date'">{{tr[td.apiName] | time}}</span>
             <span ng-if="td.type !== 'date'">{{tr[td.apiName]}}</span>
           </td>
@@ -47,7 +92,7 @@
     </table>
   </section>
   <nav aria-label="Page navigation"
-    class="fr">
+    class="fl">
     <ul class="pagination">
       <!-- <li>
         <a href="#"

@@ -16,7 +16,7 @@
   <input type="text"
     ng-model="filter.value"
     placeholder="{{filter.text}}"
-    uib-typeahead="state.name as state.name for state in getOptions(filter.API, $viewValue)"
+    uib-typeahead="state.name as state.name for state in getOptions(filter.API, filter.key, $viewValue)"
     typeahead-loading="loadingLocations"
     typeahead-no-results="noResults"
     class="form-control">

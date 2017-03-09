@@ -4,7 +4,7 @@ angular.module('erp.controllers')
 .controller('addCtrl', function($scope, $timeout,
   $state, Upload, API, $stateParams,
   User, Fruit, Wash, Orders, OrderTime, OrderGoods,
-  Guard, GuardOrder, FruitShop, WashShop, GuardWage,
+  Guard, GuardOrders, FruitShop, WashShop, GuardWage,
   ShopWage, Banner) {
   const typeMap = {
     'user': { Entity: User, mainId: 'userId' },
@@ -13,8 +13,8 @@ angular.module('erp.controllers')
     'orders': { Entity: Orders, mainId: '' },
     'orderTime': { Entity: OrderTime, mainId: '' },
     'orderGoods': { Entity: OrderGoods, mainId: '' },
-    'guard': { Entity: Guard, mainId: '' },
-    'guardOrder': { Entity: GuardOrder, mainId: '' },
+    'guard': { Entity: Guard, mainId: 'eguardId' },
+    'guardOrder': { Entity: GuardOrders, mainId: '' },
     'fruitShop': { Entity: FruitShop, mainId: 'shopId' },
     'washShop': { Entity: WashShop, mainId: 'shopId' },
     'guardWage': { Entity: GuardWage, mainId: '' },
@@ -108,6 +108,7 @@ angular.module('erp.controllers')
     })
   };
   $scope.submit = function() {
+    debugger
     let submitObject = {}
     for (var i = $scope.forms.length - 1; i >= 0; i--) {
       if ($scope.forms[i].isHideInForm) {

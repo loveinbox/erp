@@ -77,24 +77,21 @@
             ng-click="removeItem(pic, form, 'imgList' ,'url')"><i class="glyphicon glyphicon-remove"></i>
           </p>
           <div>
-            <label style="width: auto">
-              <input type="radio"
-                ng-name="{{pic.url}}"
-                ng-value=1
-                ng-model="pic.type"
-                selected>图标</label>
             <label style="width: auto"
-              ng-hide="type === 'wash' || type === 'washShop' || type === 'fruitShop' ">
-              <input type="radio"
-                ng-name="{{pic.url}}"
-                ng-value=3
-                ng-model="pic.type">主图</label>
-            <label style="width: auto"
-              ng-hide="type === 'wash' || type === 'washShop' || type === 'fruitShop' ">
-              <input type="radio"
-                ng-name="{{pic.url}}"
-                ng-value=0
-                ng-model="pic.type">详情图</label>
+              ng-repeat="box in form.boxes">
+              <input ng-if="form.union === undefined"
+                type="radio"
+                ng-name="name{{$index}}"
+                ng-value="box.value"
+                ng-model="pic.type">
+              <span ng-if="form.union === undefined">{{box.text}}</span>
+              <input ng-if="form.union === true"
+                type="radio"
+                name="name"
+                ng-value="box.value"
+                ng-model="pic.type">
+              <span ng-if="form.union">{{box.text}}</span>
+            </label>
           </div>
         </div>
       </div>

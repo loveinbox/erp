@@ -5,6 +5,10 @@ const URL = {
   'shopStatus': '/mgr/comm/shopstatus',
   'timeUnit': '/mgr/comm/timeunit',
   'region': '/mgr/comm/region',
+  'guardName': '/mgr/fquery/eguardname',
+  'guardNickName': '/mgr/fquery/eguardnickname',
+  'guardStatus': '/mgr/comm/eguardstatus',
+  'accountStatus': '/mgr/comm/accountstatus',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
@@ -52,6 +56,12 @@ const URL = {
   'fruitShopDisable': '/mgr/fruitshop/disable',
   'fruitShopDetail': '/mgr/fruitshop/editprequery',
   'fruitShopEdit': '/mgr/fruitshop/edit',
+  /*Guard  ------------------------------*/
+  'guard': '/mgr/eguard/query',
+  'guardExport': '/mgr/eguard/export',
+  'guardDisable': '/mgr/eguard/disable',
+  'guardDetail': '/mgr/eguard/editprequery',
+  'guardEdit': '/mgr/eguard/edit',
 }
 
 angular.module('erp.services')

@@ -3,7 +3,7 @@ angular.module('erp.controllers')
 
 .controller('listCtrl', function($scope, $state, $stateParams,
   User, Fruit, Wash, Orders, OrderTime, OrderGoods,
-  Guard, GuardOrder, FruitShop, WashShop, GuardWage, ShopWage, Banner) {
+  Guard, GuardOrders, FruitShop, WashShop, GuardWage, ShopWage, Banner) {
   const typeMap = {
     'user': User,
     'fruit': Fruit,
@@ -12,7 +12,7 @@ angular.module('erp.controllers')
     'orderTime': OrderTime,
     'orderGoods': OrderGoods,
     'guard': Guard,
-    'guardOrder': GuardOrder,
+    'guardOrders': GuardOrders,
     'fruitShop': FruitShop,
     'washShop': WashShop,
     'guardWage': GuardWage,
