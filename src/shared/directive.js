@@ -76,7 +76,7 @@ function filter() {
   }
 }
 
-function spanModal() {
+function spanModal($document) {
   return {
     restrict: 'E',
     transclude: true,
@@ -110,6 +110,24 @@ function spanModal() {
           ng-click="submit()">确认</button>
       </div>
     </span>`,
+    link: function($scope, element, attr) {
+      var onClick = function(event) {
+        var isChild = $(element).has(event.target).length > 0;
+        var isSelf = element[0] == event.target;
+        var isInside = isChild || isSelf;
+        if (!isInside) {
+          $scope.isShowModal = false
+          $scope.$apply($scope.isShowModal)
+        }
+      }
+      $scope.$watch('isShowModal', function(newValue, oldValue) {
+        if (newValue !== oldValue && newValue == true) {
+          $document.bind('click', onClick);
+        } else if (newValue !== oldValue && newValue == false) {
+          $document.unbind('click', onClick);
+        }
+      });
+    },
     controller: function($scope) {
       $scope.isShowModal = false
       $scope.guardId = 0
