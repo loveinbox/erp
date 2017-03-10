@@ -1,63 +1,85 @@
 angular.module('erp.services')
 
-.service('User', function($resource) {
+.service('User', function($resource, $state, API) {
   this.name = 'User'
+  this.query = API.guard
+  this.export = API.guardExport
+  this.new = function() {
+    $state.go('app.new', { type: 'guard' })
+  }
+  this.rowActionHandler = {
+    'edit': function(rowData) {
+      debugger
+      $state.go('app.new', { type: 'guard', id: rowData.eguardId })
+    },
+    'disable': function(rowData) {
+      if (confirm('确定要废弃么？')) {
+        API.guardRemove(rowData, function() {
+          $state.go('app.lsit', { type: 'guard' })
+        })
+      }
+    }
+  }
+  this.filters = [{
+    key: 'eguardName',
+    name: '微信昵称',
+    type: 'typeahead',
+    API: API.guardName
+  }, {
+    key: 'eguardNickName',
+    name: '手机号',
+    type: 'typeahead',
+    API: API.guardNickName
+  }, {
+    key: 'hireTime',
+    name: '日期',
+    type: 'dateInputRange'
+  }, {
+    key: 'statusId',
+    name: '是否认证',
+    type: 'select',
+    API: API.guardStatus
+  }];
   this.meta = {
     header: [{
-      text: '订单分类',
-      apiName: 'a'
+      text: '用户ID',
+      apiName: 'eguardName',
     }, {
-      text: '订单号',
-      apiName: ''
+      text: '微信昵称',
+      apiName: 'eguardId',
     }, {
-      text: '注册手机',
-      apiName: 'c'
+      text: '手机号',
+      apiName: 'eguardName',
+      formKey: 'eguardName',
     }, {
-      text: '收货人',
-      apiName: ''
+      text: '认证',
+      apiName: 'eguardNickName'
     }, {
-      text: '收货地址',
-      apiName: ''
+      text: '最近登录时间',
+      apiName: 'accountStatusName',
     }, {
-      text: '商家名称',
-      apiName: ''
+      text: '最近购买时间',
+      apiName: 'eguardAddress'
     }, {
-      text: '取货管家',
-      apiName: ''
+      text: '登录次数',
+      apiName: 'longitude'
     }, {
-      text: '送回官家',
-      apiName: ''
+      text: '购买次数',
+      apiName: 'latitude'
     }, {
-      text: '订单金额',
-      apiName: ''
+      text: '关注时间',
+      apiName: 'hireTime',
+      type: 'date',
+      isHideInForm: true
     }, {
-      text: '订单状态',
-      apiName: ''
+      text: '首次购买时间',
+      apiName: 'eguardPhoneNumber',
     }, {
-      text: '下单时间',
-      apiName: ''
-    }],
-    filters: [{
-      name: 'test',
-      type: 'text'
-    }, {
-      name: 'test2',
-      type: 'text'
-    }],
-    filtersValue: {
-      'test': '123',
-      'test2': '456'
-    },
-    actions: [{
-      text: '改派取件',
-      event: 'change-fetch'
-    }, {
-      text: '送回管家',
-      event: 'change-send'
+      text: '消费总额',
+      apiName: 'identifiedCardNo',
     }],
     button: {
       query: true,
-      new: true,
       export: true
     }
   }

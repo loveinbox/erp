@@ -65,7 +65,6 @@ function filter() {
     templateUrl: '/shared/template/filterBuilder.html',
     controller: function($scope) {
       $scope.getOptions = function(method, key, param) {
-        console.log(123)
         return method.get({
           [key]: param
         }).$promise.then(function(data) {
@@ -81,11 +80,16 @@ function spanModal() {
   return {
     restrict: 'E',
     transclude: true,
-    scope: {},
+    scope: {
+      getApi: '=',
+      goApi: '=',
+      rowData: '=',
+      actionKey: '='
+    },
     template: `<span>
     <ng-transclude ng-click="show()"></ng-transclude>
     <div id="modal" ng-show="isShowModal" style="position: absolute;
-      top: -50px;
+      top: -20px;
       right: 0px;
       width: 285px;
       height: 50px;
@@ -94,9 +98,9 @@ function spanModal() {
       border-radius: 10px;
       z-index: 200">
       <input type="text"
-          ng-model="form.value"
+          ng-model="guardId"
           placeholder="请输入管家"
-          uib-typeahead="state.id as state.name for state in typeaheadOptions"
+          uib-typeahead="state.id as state.name for state in getOptions($viewValue)"
           typeahead-loading="loadingLocations"
           typeahead-no-results="noResults"
           typeahead-input-formatter="formatLabel($model)"
@@ -108,12 +112,27 @@ function spanModal() {
     </span>`,
     controller: function($scope) {
       $scope.isShowModal = false
-      $scope.typeaheadOptions = ['123', '12333', '234']
+      $scope.guardId = 0
       $scope.show = function() {
         $scope.isShowModal = true
       }
       $scope.submit = function() {
         $scope.isShowModal = false
+        $scope.goApi.save({
+          'orderId': $scope.data.orderId,
+          'orderTypeId': $scope.data.orderTypeId,
+          'eguardId': $scope.guardId
+        }, function() {
+          alert('改派成功')
+        })
+      }
+      $scope.getOptions = function(keyword) {
+        return $scope.getApi.get({
+          currentEguardId: $scope.rowData[$scope.actionKey]
+        }).$promise.then(function(data) {
+          $scope.typeaheadOptions = data.data
+          return data.data
+        })
       }
     }
   }

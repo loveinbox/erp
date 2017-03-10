@@ -1,10 +1,10 @@
 <label ng-if="filter.type === undefined || filter.type === 'text'">
-  <span>{{filter.name}}：</span>
+  <span class="name">{{filter.name}}：</span>
   <input class="form-control"
     ng-model="filter.value">
 </label>
 <label ng-if="filter.type === 'select'">
-  <span>{{filter.name}}：</span>
+  <span class="name">{{filter.name}}：</span>
   <select ng-model="filter.value">
     <option value=''>全部</option>
     <option ng-repeat="option in filter.options"
@@ -12,7 +12,7 @@
   </select>
 </label>
 <label ng-if="filter.type === 'typeahead'">
-  <span>{{filter.name}}：</span>
+  <span class="name">{{filter.name}}：</span>
   <input type="text"
     ng-model="filter.value"
     placeholder="{{filter.text}}"
@@ -22,10 +22,12 @@
     class="form-control">
 </label>
 <label ng-if="filter.type === 'dateInputRange'">
-  <span>{{filter.name}}：</span>
+  <span class="name">{{filter.name}}：</span>
   <input type="date"
+    class="form-control"
     ng-model="filter.value">
   <span>---</span>
   <input type="date"
+    class="form-control"
     ng-model="filter.value2">
 </label>

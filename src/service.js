@@ -9,6 +9,8 @@ const URL = {
   'guardNickName': '/mgr/fquery/eguardnickname',
   'guardStatus': '/mgr/comm/eguardstatus',
   'accountStatus': '/mgr/comm/accountstatus',
+  'orderType': '/mgr/comm/ordertype',
+  'orderstatus': '/mgr/comm/orderstatus',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
@@ -17,7 +19,7 @@ const URL = {
   'washExport': '/mgr/wash/export',
   'washShopName': '/mgr/fquery/washshopname',
   'washUnit': '/mgr/comm/washunit',
-  /*Fruit meat---------------------------*/
+  /*Fruit meta---------------------------*/
   'fruitFilterStatus': '/mgr/comm/fruitstatus',
   'fruitFilterHot': '/mgr/comm/fruithot',
   'fruitFilterSale': '/mgr/comm/fruitonsale',
@@ -25,7 +27,7 @@ const URL = {
   'fruitExport': '/mgr/fruit/export',
   'fruitShopName': '/mgr/fquery/fruitshopname',
   'fruitUnit': '/mgr/comm/fruitunit',
-  //-----CRUD-----
+  /*Wash  ---------------------------*/
   'wash': '/mgr/wash/query',
   'washAdd': '/mgr/wash/add',
   'washRemove': '/mgr/wash/disable',
@@ -62,6 +64,13 @@ const URL = {
   'guardDisable': '/mgr/eguard/disable',
   'guardDetail': '/mgr/eguard/editprequery',
   'guardEdit': '/mgr/eguard/edit',
+  /*Order  ------------------------------*/
+  'order': '/mgr/order/query',
+  'orderExport': '/mgr/order/export',
+  'guardFetch': '/mgr/order/fetcheguard',
+  'guardSend': '/mgr/order/sendeguard',
+  'reFetch': '/mgr/order/fetcheguard/dispatch',
+  'reSend': '/mgr/order/sendeguard/dispatch',
 }
 
 angular.module('erp.services')

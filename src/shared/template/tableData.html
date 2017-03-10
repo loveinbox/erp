@@ -69,7 +69,7 @@
         <th style="width: 10px;min-width: 10px">序号</th>
         <th ng-repeat="th in header"
           ng-if="!th.isHideInTable">{{th.text}}</th>
-        <th>操作</th>
+        <th ng-if="actions">操作</th>
       </thead>
       <tbody>
         <tr ng-repeat="tr in body">
@@ -84,7 +84,11 @@
               ng-repeat="action in actions">
               <span ng-if="action.directive === undefined"
                 ng-click="rowActionHandler(action, tr, $event)">{{action.text}}</span>
-              <span-modal ng-if="action.directive === 'modal'">{{action.text}}</span-modal>
+              <span-modal ng-if="action.directive === 'modal'"
+                get-api="action.getAPI"
+                go-api="action.goAPI"
+                action-key="action.key"
+                row-data="tr">{{action.text}}</span-modal>
             </p>
           </td>
         </tr>
