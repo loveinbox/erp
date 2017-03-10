@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>成为U选商家</title>
+  <link rel="stylesheet"
+    type="text/css"
+    href="./bootstrap.min.css">
+  <style>
+    body{
+      font-size: 16px;
+    }
+    .tr{
+      text-align: right;
+      line-height: 45px;
+    }
+    .row{
+      width: 100%;
+      height: 45px;
+      border-bottom: 1px solid #333;
+    }
+    input{
+      height: 43px;
+      width: 100%;
+      border:none;
+    }
+    .btn{
+      display: block;
+      width: 60%;
+      margin: 20px auto;
+    }
+    h1{
+      color: #3399FF;
+      background:#003333;    
+      margin: 0;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>绑定账号</h1>
+  <div class="row">
+    <div class="col-xs-4 tr">姓名</div>
+    <div class="col-xs-8">
+      <input id="username"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">商家名称</div>
+    <div class="col-xs-8">
+      <input id="shop"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">合同号</div>
+    <div class="col-xs-8">
+      <input id="constract"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">手机号</div>
+    <div class="col-xs-8">
+      <input id="mobile"
+        type="number">
+    </div>
+  </div>
+  <button type="button"
+    class="btn btn-primary btn-lg">保存</button>
+</body>
+<script src="./jquery.min.js"></script>
+<script>
+$('.btn').click(function() {
+  var data = {
+    'username': username.value,
+    'shop': shop.value,
+    'constract': constract.value,
+    'mobile': mobile.value
+  }
+  $.post({
+    url: '123',
+    data: data
+  }).done(function(data) {
+    alert("Data Loaded: " + data);
+  });
+})
+</script>
+
+</html>

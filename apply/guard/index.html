@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>个人资料</title>
+  <link rel="stylesheet"
+    type="text/css"
+    href="./bootstrap.min.css">
+  <style>
+    body{
+      font-size: 16px;
+    }
+    .row.tc{
+      line-height: 45px;
+      text-align: center;
+      border-bottom: none;
+    }
+    .tr{
+      text-align: right;
+      line-height: 45px;
+    }
+    .row{
+      width: 100%;
+      height: 45px;
+      border-bottom: 1px solid #333;
+    }
+    input.mobile{
+      height: 43px;
+      width: 100%;
+      border:none;
+    }
+    .btn{
+      display: block;
+      width: 60%;
+      margin: 20px auto;
+    }
+    h1{
+      color: #3399FF;
+      background:#003333;    
+      margin: 0;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>个人资料</h1>
+  <div class="row">
+    <div class="col-xs-4 tr">姓名</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="username"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">电话</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="shop"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">身份证</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="constract"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">住址</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="constract"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">银行卡号</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="constract"
+        type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">开户行</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="mobile"
+        type="number">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 tr">开户支行</div>
+    <div class="col-xs-8">
+      <input class="mobile"
+        id="mobile"
+        type="number">
+    </div>
+  </div>
+  <div class="row tc"
+    id="buttonAvaiable">
+    <div class="col-xs">
+      《
+      <input id="avaiable"
+        type="checkbox">
+      <label for="avaiable">本人同意管家合作协议</label>
+      》
+    </div>
+  </div>
+  <button type="button"
+    class="btn btn-primary btn-lg"
+    disabled>保存</button>
+</body>
+<script src="./jquery.min.js"></script>
+<script>
+let flag = true
+$("label").click(function(event) {
+  if (flag) {
+    $('.btn').attr('disabled', false)
+  } else {
+    $('.btn').attr('disabled', 'disabled')
+  }
+  flag = !flag
+});
+
+$('.btn').click(function() {
+  var data = {
+    'username': username.value,
+    'shop': shop.value,
+    'constract': constract.value,
+    'mobile': mobile.value
+  }
+  $.post({
+    url: '123',
+    data: data
+  }).done(function(data) {
+    alert("Data Loaded: " + data);
+  });
+})
+</script>
+
+</html>
