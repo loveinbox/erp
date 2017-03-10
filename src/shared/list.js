@@ -3,7 +3,8 @@ angular.module('erp.controllers')
 
 .controller('listCtrl', function($scope, $state, $stateParams,
   User, Fruit, Wash, Orders, OrderTime, OrderGoods,
-  Guard, GuardOrders, FruitShop, WashShop, GuardWage, ShopWage, Banner) {
+  Guard, GuardOrders, FruitShop, WashShop, GuardWage,
+  ShopWage, Banner, GuardApply, ShopApply) {
   const typeMap = {
     'user': User,
     'fruit': Fruit,
@@ -18,6 +19,8 @@ angular.module('erp.controllers')
     'guardWage': GuardWage,
     'shopWage': ShopWage,
     'banner': Banner,
+    'guardApply': GuardApply,
+    'shopApply': ShopApply
   }
   let type = $stateParams.type;
   let Entity = typeMap[type];
