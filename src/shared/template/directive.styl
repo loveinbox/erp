@@ -3,7 +3,9 @@
 	.table
 		width auto !important
 		th
-			min-width 65px
+			min-width 75px
+		&.action-th
+			width 200px
 	.filter
 		display inline-block
 		margin-right 20px
@@ -16,9 +18,10 @@
 			height 30px
 			padding 3px
 	.action
+		display inline-block
 		color $click
 		cursor pointer
-		&:not(:last-child):after
+		&:not(:first-child):before
 			content '/'
 			padding 0 5px
 			color #000

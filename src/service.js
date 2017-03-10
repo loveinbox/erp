@@ -71,6 +71,12 @@ const URL = {
   'guardSend': '/mgr/order/sendeguard',
   'reFetch': '/mgr/order/fetcheguard/dispatch',
   'reSend': '/mgr/order/sendeguard/dispatch',
+  /*OrderTime  ------------------------------*/
+  'orderTime': '/mgr/order/query',
+  'orderTimeExport': '/mgr/order/export',
+  /*Order  ------------------------------*/
+  'orderGoods': '/mgr/order/query',
+  'orderGoodsExport': '/mgr/order/export',
 }
 
 angular.module('erp.services')

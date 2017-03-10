@@ -1,127 +1,125 @@
 angular.module('erp.services')
 
-.service('GuardWage', function($resource) {
+.service('GuardWage', function($resource, $state, API) {
   this.name = 'GuardWage'
+  this.query = API.order
+  this.export = API.orderExport
+  this.filters = [{
+    key: 'shopName',
+    name: '管家姓名',
+    type: 'typeahead',
+  }, {
+    key: 'shopName',
+    name: '管家昵称',
+    type: 'typeahead',
+  }, {
+    key: 'shopName',
+    name: '手机号',
+    type: 'typeahead',
+    API: API.washShopName
+  }, {
+    key: 'date',
+    name: '日期',
+    type: 'dateInputRange'
+  }];
   this.meta = {
     header: [{
-      text: '订单分类',
-      apiName: ''
+      text: '管家姓名',
+      apiName: 'shopId',
     }, {
-      text: '订单号',
-      apiName: ''
+      text: '管家昵称',
+      apiName: 'shopName'
     }, {
-      text: '注册手机',
-      apiName: ''
+      text: '手机号',
+      apiName: 'contractId',
     }, {
-      text: '收货人',
-      apiName: ''
+      text: '水果总订单',
+      apiName: 'hostName'
     }, {
-      text: '收货地址',
-      apiName: ''
+      text: '水果总收入',
+      apiName: 'shopPhoneNumber'
     }, {
-      text: '商家名称',
-      apiName: ''
+      text: '洗衣总订单',
+      apiName: 'openTime',
     }, {
-      text: '取货管家',
-      apiName: ''
+      text: '洗衣总收入',
+      apiName: 'shopAddress'
     }, {
-      text: '送回官家',
-      apiName: ''
+      text: '订单总数',
+      apiName: 'openTime',
     }, {
-      text: '订单金额',
-      apiName: ''
+      text: '总收入',
+      apiName: 'shopAddress'
     }, {
-      text: '订单状态',
-      apiName: ''
+      text: '服务订单总金额',
+      apiName: 'openTime',
     }, {
-      text: '下单时间',
-      apiName: ''
-    }],
-    filters: [{
-      name: 'test',
-      type: 'text'
-    }, {
-      name: 'test2',
-      type: 'text'
-    }],
-    filtersValue: {
-      'test': '123',
-      'test2': '456'
-    },
-    actions: [{
-      text: '改派取件',
-      event: 'change-fetch'
-    }, {
-      text: '送回管家',
-      event: 'change-send'
+      text: '单均收入',
+      apiName: 'shopAddress'
     }],
     button: {
       query: true,
-      new: true,
       export: true
     }
   }
 
 })
 
-.service('ShopWage', function($resource) {
+
+.service('ShopWage', function($resource, $state, API) {
   this.name = 'ShopWage'
+  this.query = API.order
+  this.export = API.orderExport
+  this.rowActionHandler = {
+    'edit': function(rowData) {
+      $state.go('app.new', { type: 'order', id: rowData.shopId })
+    },
+    'disable': function(rowData) {
+      if (confirm('确定要废弃么？')) {
+        API.washRemove(rowData, function() {
+          $state.go('app.lsit', { type: 'order' })
+        })
+      }
+    }
+  }
+  this.filters = [{
+    key: 'shopName',
+    name: '商家名称',
+    type: 'typeahead',
+  }, {
+    key: 'shopName',
+    name: '商家分类',
+    type: 'typeahead',
+  }, {
+    key: 'date',
+    name: '日期',
+    type: 'dateInputRange'
+  }];
   this.meta = {
     header: [{
-      text: '订单分类',
-      apiName: ''
-    }, {
-      text: '订单号',
-      apiName: ''
-    }, {
-      text: '注册手机',
-      apiName: ''
-    }, {
-      text: '收货人',
-      apiName: ''
-    }, {
-      text: '收货地址',
-      apiName: ''
+      text: '商家分类',
+      apiName: 'shopId',
     }, {
       text: '商家名称',
-      apiName: ''
+      apiName: 'shopName'
     }, {
-      text: '取货管家',
-      apiName: ''
+      text: '地址',
+      apiName: 'contractId',
     }, {
-      text: '送回官家',
-      apiName: ''
+      text: '商家电话',
+      apiName: 'hostName'
     }, {
-      text: '订单金额',
-      apiName: ''
+      text: '总收入',
+      apiName: 'shopPhoneNumber'
     }, {
-      text: '订单状态',
-      apiName: ''
+      text: '总订单数',
+      apiName: 'openTime',
     }, {
-      text: '下单时间',
-      apiName: ''
-    }],
-    filters: [{
-      name: 'test',
-      type: 'text'
-    }, {
-      name: 'test2',
-      type: 'text'
-    }],
-    filtersValue: {
-      'test': '123',
-      'test2': '456'
-    },
-    actions: [{
-      text: '改派取件',
-      event: 'change-fetch'
-    }, {
-      text: '送回管家',
-      event: 'change-send'
+      text: '单均收入',
+      apiName: 'shopAddress'
     }],
     button: {
       query: true,
-      new: true,
       export: true
     }
   }

@@ -66,10 +66,11 @@
   <section class="table">
     <table class="table table-bordered">
       <thead>
-        <th style="width: 10px;min-width: 10px">序号</th>
+        <th style="width: 10px;min-width: 10px">#</th>
         <th ng-repeat="th in header"
           ng-if="!th.isHideInTable">{{th.text}}</th>
-        <th ng-if="actions">操作</th>
+        <th ng-if="actions"
+          class="action-th">操作</th>
       </thead>
       <tbody>
         <tr ng-repeat="tr in body">
@@ -77,9 +78,12 @@
           <td ng-repeat="td in header"
             ng-if="!td.isHideInTable">
             <span ng-if="td.type === 'date'">{{tr[td.apiName] | time}}</span>
-            <span ng-if="td.type !== 'date'">{{tr[td.apiName]}}</span>
+            <span ng-if="td.type === 'imgUpload'">
+              <img style="width: 375px;height: 220px" ng-src="tr[td.apiName]">
+            </span>
+            <span ng-if="td.type === undefined">{{tr[td.apiName]}}</span>
           </td>
-          <td>
+          <td ng-if="actions">
             <p class="action"
               ng-repeat="action in actions">
               <span ng-if="action.directive === undefined"

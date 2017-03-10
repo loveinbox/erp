@@ -83,14 +83,23 @@
                 type="radio"
                 ng-name="name{{$index}}"
                 ng-value="box.value"
-                ng-model="pic.type">
+                ng-model="pic.type"
+                class="form-control">
               <span ng-if="form.union === undefined">{{box.text}}</span>
               <input ng-if="form.union === true"
                 type="radio"
                 name="name"
                 ng-value="box.value"
-                ng-model="pic.type">
+                ng-model="pic.type"
+                class="form-control">
               <span ng-if="form.union">{{box.text}}</span>
+            </label>
+            <label ng-if="form.inputKey">
+              <span>顺序</span>
+              <input type="text"
+                style="width: 50px"
+                class="form-control"
+                ng-model="pic.order">
             </label>
           </div>
         </div>
