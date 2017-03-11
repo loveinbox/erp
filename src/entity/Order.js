@@ -154,7 +154,7 @@ angular.module('erp.services')
     actions: [{
       text: '改派取货',
       type: 'reFetch',
-      key: 'fetchEguardId',
+      keys: ['orderId', 'orderTypeId'],
       directive: 'modal',
       getAPI: API.guardFetch,
       goAPI: API.reFetch,
@@ -194,21 +194,21 @@ angular.module('erp.services')
     }
   }
   this.filters = [{
-    key: 'shopName',
+    key: 'orderTypeId',
     name: '订单分类',
     type: 'select',
     options: [],
     API: API.shopStatus
   }, {
-    key: 'shopName',
+    key: 'orderId',
     name: '订单号',
   }, {
-    key: 'shopName',
+    key: 'fetchEguardName',
     name: '取货管家',
     type: 'typeahead',
     API: API.washShopName
   }, {
-    key: 'shopName',
+    key: 'sendEguardName',
     name: '送回管家',
     type: 'typeahead',
     API: API.washShopName
@@ -223,64 +223,57 @@ angular.module('erp.services')
     options: [],
     API: API.shopStatus
   }, {
-    key: 'orderTime',
+    key: 'timeoutId',
     name: '是否超时',
+    type: 'select',
+    API: API.isOrderTimeout,
   }];
   this.meta = {
     header: [{
       text: '订单分类',
-      apiName: 'shopId',
-      isHideInForm: true
+      apiName: 'orderTypeName'
     }, {
       text: '订单号',
-      apiName: 'shopName'
+      apiName: 'orderId'
     }, {
       text: '订单状态',
-      apiName: 'hostName'
+      apiName: 'statusName'
     }, {
       text: '取回管家',
-      apiName: 'shopPhoneNumber'
+      apiName: 'fetchEguardName'
     }, {
       text: '送货管家',
-      apiName: 'openTime',
+      apiName: 'sendEguardName',
     }, {
       text: '超时送达/取衣',
-      apiName: 'shopAddress'
+      apiName: 'timeoutName'
     }, {
       text: '下单时间',
-      apiName: 'regionName',
-      formKey: 'regionId',
-      type: 'select',
-      API: API.region
+      apiName: 'orderTime',
     }, {
       text: '预约时间',
-      apiName: 'longitude',
-      isHideInTable: true
+      apiName: 'preferTime',
     }, {
       text: '接单时间',
-      apiName: 'latitude',
-      isHideInTable: true
+      apiName: 'acceptTime',
     }, {
       text: '取货/衣时间',
-      apiName: 'hireTime',
-      type: 'date'
+      apiName: 'fetchTime'
     }, {
       text: '送达洗衣店时间',
-      apiName: 'statusId',
-      type: 'select',
-      API: API.shopStatus
+      apiName: 'arriveShopTime',
     }, {
       text: '开始清洗',
-      apiName: 'deliveryFee'
+      apiName: 'startWashTime'
     }, {
       text: '清洗完成时间',
-      apiName: 'eguardDeliveryFeeRate'
+      apiName: 'finishWashTime'
     }, {
       text: '洗衣店取回时间',
-      apiName: 'freeDeliveryMoney'
+      apiName: 'sendTime'
     }, {
       text: '送回完成时间',
-      apiName: 'feeRate'
+      apiName: 'finishTime'
     }],
     button: {
       query: true,

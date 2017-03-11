@@ -11,6 +11,7 @@ const URL = {
   'accountStatus': '/mgr/comm/accountstatus',
   'orderType': '/mgr/comm/ordertype',
   'orderstatus': '/mgr/comm/orderstatus',
+  'isOrderTimeout': '/mgr/comm/timeout',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
@@ -72,8 +73,8 @@ const URL = {
   'reFetch': '/mgr/order/fetcheguard/dispatch',
   'reSend': '/mgr/order/sendeguard/dispatch',
   /*OrderTime  ------------------------------*/
-  'orderTime': '/mgr/order/query',
-  'orderTimeExport': '/mgr/order/export',
+  'orderTime': '/mgr/orderfollow/query',
+  'orderTimeExport': '/mgr/orderfollow/export',
   /*Order  ------------------------------*/
   'orderGoods': '/mgr/order/query',
   'orderGoodsExport': '/mgr/order/export',

@@ -84,7 +84,7 @@ function spanModal($document) {
       getApi: '=',
       goApi: '=',
       rowData: '=',
-      actionKey: '='
+      actionKeys: '='
     },
     template: `<span>
     <ng-transclude ng-click="show()"></ng-transclude>
@@ -111,22 +111,22 @@ function spanModal($document) {
       </div>
     </span>`,
     link: function($scope, element, attr) {
-      var onClick = function(event) {
-        var isChild = $(element).has(event.target).length > 0;
-        var isSelf = element[0] == event.target;
-        var isInside = isChild || isSelf;
-        if (!isInside) {
-          $scope.isShowModal = false
-          $scope.$apply($scope.isShowModal)
-        }
-      }
-      $scope.$watch('isShowModal', function(newValue, oldValue) {
-        if (newValue !== oldValue && newValue == true) {
-          $document.bind('click', onClick);
-        } else if (newValue !== oldValue && newValue == false) {
-          $document.unbind('click', onClick);
-        }
-      });
+      // var onClick = function(event) {
+      //   var isChild = $(element).has(event.target).length > 0;
+      //   var isSelf = element[0] == event.target;
+      //   var isInside = isChild || isSelf;
+      //   if (!isInside) {
+      //     $scope.isShowModal = false
+      //     $scope.$apply($scope.isShowModal)
+      //   }
+      // }
+      // $scope.$watch('isShowModal', function(newValue, oldValue) {
+      //   if (newValue !== oldValue && newValue == true) {
+      //     $document.bind('click', onClick);
+      //   } else if (newValue !== oldValue && newValue == false) {
+      //     $document.unbind('click', onClick);
+      //   }
+      // });
     },
     controller: function($scope) {
       $scope.isShowModal = false
@@ -137,17 +137,31 @@ function spanModal($document) {
       $scope.submit = function() {
         $scope.isShowModal = false
         $scope.goApi.save({
-          'orderId': $scope.data.orderId,
-          'orderTypeId': $scope.data.orderTypeId,
+          'orderId': $scope.rowData.orderId,
+          'orderTypeId': $scope.rowData.orderTypeId,
           'eguardId': $scope.guardId
         }, function() {
           alert('改派成功')
         })
       }
+      $scope.typeaheadOptions = []
+      $scope.formatLabel = function(model) {
+        if (typeof model === 'object') {
+          return model.name
+        }
+        for (var i = 0; i < $scope.typeaheadOptions.length; i++) {
+          if (model === $scope.typeaheadOptions[i].id) {
+            return $scope.typeaheadOptions[i].name;
+          }
+        }
+      };
       $scope.getOptions = function(keyword) {
-        return $scope.getApi.get({
-          currentEguardId: $scope.rowData[$scope.actionKey]
-        }).$promise.then(function(data) {
+        let data = {}
+        $scope.actionKeys.forEach(function function_name(value) {
+          data[value] = $scope.rowData[value]
+        })
+        data.eguardName = keyword
+        return $scope.getApi.get(data).$promise.then(function(data) {
           $scope.typeaheadOptions = data.data
           return data.data
         })
