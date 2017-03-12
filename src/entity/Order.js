@@ -4,6 +4,7 @@ angular.module('erp.services')
   this.name = 'Orders'
   this.query = API.order
   this.export = API.orderExport
+
   this.filters = [{
     key: 'orderTypeId',
     name: '订单分类',

@@ -1,0 +1,32 @@
+<span>
+  <ng-transclude ng-click="show()"></ng-transclude>
+  <div id="modal" ng-show="isShowModal" style="position: absolute;
+  top: -20px;
+  right: 0px;
+  width: 285px;
+  height: 50px;
+  background: #fff;
+  box-shadow: 5px 5px 5px #eee;
+  border-radius: 10px;
+  z-index: 200">
+  <select class="form-control"
+      style='display:inline-block;width: 200px;margin: 9px;'
+      ng-model="modal.guardId">
+    <option value=''>全部</option>
+    <option ng-repeat="option in modal.options"
+      value={{option.id}}>{{option.name}}</option>
+  </select>
+  <!-- <input type="text"
+      ng-model="guardId"
+      placeholder="请输入管家"
+      uib-typeahead="state.id as state.name for state in getOptions($viewValue)"
+      typeahead-loading="loadingLocations"
+      typeahead-no-results="noResults"
+      typeahead-input-formatter="formatLabel($model)"
+      class="form-control" style='display:inline-block;width: 200px;margin: 9px;'> -->
+  <button type="submit"
+      class="btn btn-primary"
+      ng-click="submit()">确认</button>
+  </div>
+</span>
+

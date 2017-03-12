@@ -111,86 +111,71 @@ function spanModal($document) {
       rowData: '=',
       actionKeys: '='
     },
-    template: `<span>
-    <ng-transclude ng-click="show()"></ng-transclude>
-    <div id="modal" ng-show="isShowModal" style="position: absolute;
-      top: -20px;
-      right: 0px;
-      width: 285px;
-      height: 50px;
-      background: #fff;
-      box-shadow: 5px 5px 5px #eee;
-      border-radius: 10px;
-      z-index: 200">
-      <input type="text"
-          ng-model="guardId"
-          placeholder="请输入管家"
-          uib-typeahead="state.id as state.name for state in getOptions($viewValue)"
-          typeahead-loading="loadingLocations"
-          typeahead-no-results="noResults"
-          typeahead-input-formatter="formatLabel($model)"
-          class="form-control" style='display:inline-block;width: 200px;margin: 9px;'>
-      <button type="submit"
-          class="btn btn-primary"
-          ng-click="submit()">确认</button>
-      </div>
-    </span>`,
+    templateUrl: '/shared/template/spanModal.html',
     link: function($scope, element, attr) {
-      // var onClick = function(event) {
-      //   var isChild = $(element).has(event.target).length > 0;
-      //   var isSelf = element[0] == event.target;
-      //   var isInside = isChild || isSelf;
-      //   if (!isInside) {
-      //     $scope.isShowModal = false
-      //     $scope.$apply($scope.isShowModal)
-      //   }
-      // }
-      // $scope.$watch('isShowModal', function(newValue, oldValue) {
-      //   if (newValue !== oldValue && newValue == true) {
-      //     $document.bind('click', onClick);
-      //   } else if (newValue !== oldValue && newValue == false) {
-      //     $document.unbind('click', onClick);
-      //   }
-      // });
+      var onClick = function(event) {
+        var isChild = $(element).has(event.target).length > 0;
+        var isSelf = element[0] == event.target;
+        var isInside = isChild || isSelf;
+        if (!isInside) {
+          $scope.isShowModal = false
+          $scope.$apply($scope.isShowModal)
+        }
+      }
+      $scope.$watch('isShowModal', function(newValue, oldValue) {
+        if (newValue !== oldValue && newValue == true) {
+          $document.bind('click', onClick);
+        } else if (newValue !== oldValue && newValue == false) {
+          $document.unbind('click', onClick);
+        }
+      });
     },
     controller: function($scope) {
       $scope.isShowModal = false
-      $scope.guardId = 0
+      $scope.modal = {}
       $scope.show = function() {
         $scope.isShowModal = true
+        $scope.getApi.get({
+          'orderId': $scope.rowData.orderId,
+          'orderTypeId': $scope.rowData.orderTypeId
+        }, function(data) {
+          $scope.modal.options = data.data
+        })
       }
       $scope.submit = function() {
         $scope.isShowModal = false
-        $scope.goApi.save({
+        $scope.goApi.get({
           'orderId': $scope.rowData.orderId,
           'orderTypeId': $scope.rowData.orderTypeId,
-          'eguardId': $scope.guardId
+          'eguardId': $scope.modal.guardId
         }, function() {
+          $scope.$emit('query')
           alert('改派成功')
         })
       }
-      $scope.typeaheadOptions = []
-      $scope.formatLabel = function(model) {
-        if (typeof model === 'object') {
-          return model.name
-        }
-        for (var i = 0; i < $scope.typeaheadOptions.length; i++) {
-          if (model === $scope.typeaheadOptions[i].id) {
-            return $scope.typeaheadOptions[i].name;
-          }
-        }
-      };
-      $scope.getOptions = function(keyword) {
-        let data = {}
-        $scope.actionKeys.forEach(function function_name(value) {
-          data[value] = $scope.rowData[value]
-        })
-        data.eguardName = keyword
-        return $scope.getApi.get(data).$promise.then(function(data) {
-          $scope.typeaheadOptions = data.data
-          return data.data
-        })
-      }
+
+      // $scope.typeaheadOptions = []
+      // $scope.formatLabel = function(model) {
+      //   if (typeof model === 'object') {
+      //     return model.name
+      //   }
+      //   for (var i = 0; i < $scope.typeaheadOptions.length; i++) {
+      //     if (model === $scope.typeaheadOptions[i].id) {
+      //       return $scope.typeaheadOptions[i].name;
+      //     }
+      //   }
+      // };
+      // $scope.getOptions = function(keyword) {
+      //   let data = {}
+      //   $scope.actionKeys.forEach(function function_name(value) {
+      //     data[value] = $scope.rowData[value]
+      //   })
+      //   data.eguardName = keyword
+      //   return $scope.getApi.get(data).$promise.then(function(data) {
+      //     $scope.typeaheadOptions = data.data
+      //     return data.data
+      //   })
+      // }
     }
   }
 }

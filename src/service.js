@@ -70,8 +70,8 @@ const URL = {
   'orderExport': '/mgr/order/export',
   'guardFetch': '/mgr/order/fetcheguard',
   'guardSend': '/mgr/order/sendeguard',
-  'reFetch': '/mgr/order/fetcheguard/dispatch',
-  'reSend': '/mgr/order/sendeguard/dispatch',
+  'reFetch': '/mgr/order/dispatch/fetcheguard',
+  'reSend': '/mgr/order/dispatch/sendeguard',
   /*OrderTime  ------------------------------*/
   'orderTime': '/mgr/orderfollow/query',
   'orderTimeExport': '/mgr/orderfollow/export',
