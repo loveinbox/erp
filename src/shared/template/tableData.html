@@ -81,6 +81,12 @@
             <span ng-if="td.type === 'imgUpload'">
               <img style="width: 375px;height: 220px" ng-src="tr[td.apiName]">
             </span>
+            <span ng-if="td.type === 'list'">
+              <p ng-repeat="item in tr[td.apiName]">{{item.productName}}*
+              {{item.productPrice}}*
+              {{item.productVolume}}
+              </p>
+            </span>
             <span ng-if="td.type === undefined">{{tr[td.apiName]}}</span>
           </td>
           <td ng-if="actions">

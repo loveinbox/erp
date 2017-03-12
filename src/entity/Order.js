@@ -4,18 +4,6 @@ angular.module('erp.services')
   this.name = 'Orders'
   this.query = API.order
   this.export = API.orderExport
-  this.rowActionHandler = {
-    'edit': function(rowData) {
-      $state.go('app.new', { type: 'order', id: rowData.shopId })
-    },
-    'disable': function(rowData) {
-      if (confirm('确定要废弃么？')) {
-        API.washRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'order' })
-        })
-      }
-    }
-  }
   this.filters = [{
     key: 'orderTypeId',
     name: '订单分类',
@@ -54,7 +42,7 @@ angular.module('erp.services')
     key: 'shopName',
     name: '商家名称',
     type: 'typeahead',
-    API: API.washShopName
+    API: API.OrderGoodsName
   }];
   this.meta = {
     header: [{
@@ -160,11 +148,13 @@ angular.module('erp.services')
   }, {
     key: 'fetchEguardName',
     name: '取货管家',
+    typeaheadKey: 'eguardName',
     type: 'typeahead',
     API: API.guardName
   }, {
     key: 'sendEguardName',
     name: '送回管家',
+    typeaheadKey: 'eguardName',
     type: 'typeahead',
     API: API.guardName
   }, {
@@ -232,59 +222,56 @@ angular.module('erp.services')
 
 }).service('OrderGoods', function($resource, $state, API) {
   this.name = 'OrderGoods'
-  this.query = API.washShop
-  this.export = API.washShopExport
-  this.new = function() {
-    $state.go('app.new', { type: 'washShop' })
-  }
-  this.rowActionHandler = {
-    'edit': function(rowData) {
-      $state.go('app.new', { type: 'washShop', id: rowData.shopId })
-    },
-    'disable': function(rowData) {
-      if (confirm('确定要废弃么？')) {
-        API.washRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'washShop' })
-        })
-      }
-    }
-  }
+  this.query = API.orderGoods
+  this.export = API.orderGoodsExport
   this.filters = [{
-    key: 'shopName',
+    key: 'orderTypeId',
     name: '订单分类',
     type: 'select',
     options: [],
-    API: API.shopStatus
+    API: API.orderType,
   }, {
-    key: 'shopName',
+    key: 'orderId',
     name: '订单号',
   }];
   this.meta = {
     header: [{
       text: '订单分类',
-      apiName: 'shopId',
-      isHideInForm: true
+      apiName: 'orderTypeName'
     }, {
-      text: '订单号',
-      apiName: 'shopName'
+      text: '订单编号',
+      apiName: 'orderId'
     }, {
       text: '收货人',
-      apiName: 'hostName'
+      apiName: 'rcvName'
     }, {
-      text: '取回管家',
-      apiName: 'shopPhoneNumber'
+      text: '取货管家',
+      apiName: 'fetchEguardName',
     }, {
-      text: '送货管家',
-      apiName: 'openTime',
+      text: '送回管家',
+      apiName: 'sendEguardName',
     }, {
       text: '商家',
-      apiName: 'shopAddress'
+      apiName: 'shopName',
     }, {
-      text: '订单明细',
-      apiName: 'regionName',
-      formKey: 'regionId',
-      type: 'select',
-      API: API.region
+      text: '订单商品明细',
+      apiName: 'detailsList',
+      type: 'list',
+    }],
+    actions: [{
+      text: '改派取货',
+      type: 'reFetch',
+      keys: ['orderId', 'orderTypeId'],
+      directive: 'modal',
+      getAPI: API.guardFetch,
+      goAPI: API.reFetch,
+    }, {
+      text: '送回管家',
+      type: 'reSend',
+      key: 'sendEguardId',
+      directive: 'modal',
+      getAPI: API.guardSend,
+      goAPI: API.reSend,
     }],
     button: {
       query: true,

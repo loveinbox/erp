@@ -76,8 +76,8 @@ const URL = {
   'orderTime': '/mgr/orderfollow/query',
   'orderTimeExport': '/mgr/orderfollow/export',
   /*Order  ------------------------------*/
-  'orderGoods': '/mgr/order/query',
-  'orderGoodsExport': '/mgr/order/export',
+  'orderGoods': '/mgr/orderdetail/query',
+  'orderGoodsExport': '/mgr/orderdetail/export',
 }
 
 angular.module('erp.services')
