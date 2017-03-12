@@ -31,33 +31,25 @@ angular.module('erp.services')
       API: API.orderstatus
     }
   }, {
-    key: 'shopName',
+    key: 'orderId',
     name: '订单号',
   }, {
-    key: 'shopName',
+    key: 'fetchEguardName',
     name: '取货管家',
     type: 'typeahead',
-    API: API.washShopName
+    API: API.guardName
   }, {
-    key: 'shopName',
+    key: 'sendEguardName',
     name: '送回管家',
     type: 'typeahead',
-    API: API.washShopName
+    API: API.guardName
   }, {
     key: 'orderTime',
     name: '日期',
     type: 'dateInputRange'
   }, {
-    key: 'shopName',
+    key: 'verifiedPhoneNumber',
     name: '注册手机号',
-  }, {
-    key: 'shopName',
-    name: '订单状态',
-  }, {
-    key: 'shopName',
-    name: '商家名称',
-    type: 'typeahead',
-    API: API.washShopName
   }, {
     key: 'shopName',
     name: '商家名称',
@@ -66,95 +58,45 @@ angular.module('erp.services')
   }];
   this.meta = {
     header: [{
-      text: '商家编号',
-      apiName: 'shopId',
-      isHideInForm: true
+      text: '订单分类',
+      apiName: 'orderTypeName'
     }, {
-      text: '商家名称',
-      apiName: 'shopName'
+      text: '订单编号',
+      apiName: 'orderId'
     }, {
-      text: '合同号',
-      apiName: 'contractId',
-      isHideInForm: true
+      text: '注册手机号',
+      apiName: 'verifiedPhoneNumber',
     }, {
-      text: '店主姓名',
-      apiName: 'hostName'
+      text: '收货人',
+      apiName: 'rcvName'
     }, {
-      text: '商家电话',
-      apiName: 'shopPhoneNumber'
+      text: '收货人电话',
+      apiName: 'rcvPhone'
     }, {
       text: '营业时间',
-      apiName: 'openTime',
-      formKey: 'openTimeId',
-      formKey2: 'closeTimeId',
-      type: 'dateRange',
-      API: API.timeUnit
+      apiName: 'rcvAddress',
     }, {
-      text: '商家地址',
+      text: '收货地址',
       apiName: 'shopAddress'
     }, {
-      text: '区域',
-      apiName: 'regionName',
-      formKey: 'regionId',
-      type: 'select',
-      API: API.region
+      text: '商家名称',
+      apiName: 'shopName',
     }, {
-      text: '经度',
-      apiName: 'longitude',
-      isHideInTable: true
+      text: '取货管家',
+      apiName: 'fetchEguardName',
     }, {
-      text: '纬度',
-      apiName: 'latitude',
-      isHideInTable: true
+      text: '送回管家',
+      apiName: 'sendEguardName',
     }, {
-      text: '合作时间',
-      apiName: 'hireTime',
+      text: '订单金额',
+      apiName: 'money',
+    }, {
+      text: '订单状态',
+      apiName: 'statusName'
+    }, {
+      text: '下单时间',
+      apiName: 'orderTime',
       type: 'date'
-    }, {
-      text: '状态',
-      apiName: 'statusId',
-      type: 'select',
-      API: API.shopStatus
-    }, {
-      text: '配送费',
-      apiName: 'deliveryFee'
-    }, {
-      text: '管家抽成',
-      apiName: 'eguardDeliveryFeeRate'
-    }, {
-      text: '免配送费金额',
-      apiName: 'freeDeliveryMoney'
-    }, {
-      text: '佣金率',
-      apiName: 'feeRate'
-    }, {
-      text: '累计单量',
-      apiName: 'totalSaleVolume',
-      isHideInForm: true
-    }, {
-      text: '平均月单量',
-      apiName: 'avgMonthSaleVolume',
-      isHideInForm: true
-    }, {
-      text: '账号',
-      apiName: 'account',
-      isHideInTable: true
-    }, {
-      text: '密码',
-      apiName: 'password',
-      isHideInTable: true
-    }, {
-      text: '绑定微信',
-      apiName: 'employeesList',
-      type: 'list',
-      colSpan: true,
-      isHideInTable: true
-    }, {
-      text: '商家LOGO',
-      apiName: 'shopImgsList',
-      type: 'imgUpload',
-      colSpan: true,
-      isHideInTable: true
     }],
     actions: [{
       text: '改派取货',
