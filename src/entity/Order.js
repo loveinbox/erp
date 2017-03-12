@@ -17,8 +17,19 @@ angular.module('erp.services')
     }
   }
   this.filters = [{
-    key: 'shopName',
+    key: 'orderTypeId',
     name: '订单分类',
+    type: 'select',
+    options: [],
+    API: API.orderType,
+    next: {
+      key: 'statusId',
+      name: '状态',
+      type: 'select',
+      paramKey: 'orderTypeId',
+      options: [],
+      API: API.orderstatus
+    }
   }, {
     key: 'shopName',
     name: '订单号',
@@ -52,12 +63,6 @@ angular.module('erp.services')
     name: '商家名称',
     type: 'typeahead',
     API: API.washShopName
-  }, {
-    key: 'statusId',
-    name: '状态',
-    type: 'select',
-    options: [],
-    API: API.shopStatus
   }];
   this.meta = {
     header: [{
@@ -198,7 +203,15 @@ angular.module('erp.services')
     name: '订单分类',
     type: 'select',
     options: [],
-    API: API.shopStatus
+    API: API.orderType,
+    next: {
+      key: 'statusId',
+      name: '状态',
+      type: 'select',
+      paramKey: 'orderTypeId',
+      options: [],
+      API: API.orderstatus
+    }
   }, {
     key: 'orderId',
     name: '订单号',
@@ -206,22 +219,16 @@ angular.module('erp.services')
     key: 'fetchEguardName',
     name: '取货管家',
     type: 'typeahead',
-    API: API.washShopName
+    API: API.guardName
   }, {
     key: 'sendEguardName',
     name: '送回管家',
     type: 'typeahead',
-    API: API.washShopName
+    API: API.guardName
   }, {
     key: 'orderTime',
     name: '日期',
     type: 'dateInputRange'
-  }, {
-    key: 'statusId',
-    name: '状态',
-    type: 'select',
-    options: [],
-    API: API.shopStatus
   }, {
     key: 'timeoutId',
     name: '是否超时',

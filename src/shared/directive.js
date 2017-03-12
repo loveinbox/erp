@@ -60,10 +60,35 @@ function filter() {
   return {
     restrict: 'E',
     scope: {
-      filter: '='
+      filter: '=',
+      filterParam: '='
     },
     templateUrl: '/shared/template/filterBuilder.html',
     controller: function($scope) {
+      if ($scope.filter) {
+        let param = {}
+        if ($scope.filter.paramKey) {
+          param[$scope.filter.paramKey] = $scope.filterParam || ''
+        }
+        if ($scope.filter.API && $scope.filter.type === 'select') {
+          $scope.filter.API.get(param, function(data) {
+            $scope.filter.options = data.data
+          })
+        }
+      }
+      $scope.$watch('filterParam', function(ov, nv) {
+        if ($scope.filter) {
+          let param = {}
+          if ($scope.filter.paramKey) {
+            param[$scope.filter.paramKey] = $scope.filterParam || ''
+          }
+          if ($scope.filter.API && $scope.filter.type === 'select') {
+            $scope.filter.API.get(param, function(data) {
+              $scope.filter.options = data.data
+            })
+          }
+        }
+      })
       $scope.getOptions = function(method, key, param) {
         return method.get({
           [key]: param

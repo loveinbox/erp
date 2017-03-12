@@ -5,11 +5,16 @@
 </label>
 <label ng-if="filter.type === 'select'">
   <span class="name">{{filter.name}}：</span>
-  <select ng-model="filter.value">
+  <select ng-model="filter.value"
+    ng-change="loadNextFilteOptions(filter.value)">
     <option value=''>全部</option>
     <option ng-repeat="option in filter.options"
       value={{option.id}}>{{option.name}}</option>
   </select>
+  <filter ng-if="filter.next"
+    class="filter"
+    filter-param="filter.value"
+    filter="filter.next"></filter>
 </label>
 <label ng-if="filter.type === 'typeahead'">
   <span class="name">{{filter.name}}：</span>
@@ -31,3 +36,4 @@
     class="form-control"
     ng-model="filter.value2">
 </label>
+

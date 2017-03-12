@@ -36,7 +36,6 @@ angular.module('erp.controllers')
   //init
   pageInit()
   query()
-  getFilters()
 
   $scope.$on('query', function() {
     query()
@@ -69,16 +68,6 @@ angular.module('erp.controllers')
     Entity.query.get(buildParam(), function(data) {
       $scope.data.body = data.data.content
       $scope.data.page.totalPage = data.data.totalPage
-    })
-  }
-
-  function getFilters() {
-    Entity.filters && Entity.filters.forEach((value) => {
-      if (value.API && value.type === 'select') {
-        value.API.get({}, function(data) {
-          value.options = data.data
-        })
-      }
     })
   }
 
