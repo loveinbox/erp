@@ -12,6 +12,7 @@ const URL = {
   'orderType': '/mgr/comm/ordertype',
   'orderstatus': '/mgr/comm/orderstatus',
   'isOrderTimeout': '/mgr/comm/timeout',
+  'shopType': '/mgr/comm/shoptype',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
@@ -78,6 +79,11 @@ const URL = {
   /*Order  ------------------------------*/
   'orderGoods': '/mgr/orderdetail/query',
   'orderGoodsExport': '/mgr/orderdetail/export',
+  /*Profit  ------------------------------*/
+  'profitGuard': '/mgr/profit/eguard/query',
+  'profitGuardExport': '/mgr/profit/eguard/export',
+  'profitShop': '/mgr/profit/shop/query',
+  'profitShopExport': '/mgr/profit/shop/export',
 }
 
 angular.module('erp.services')
