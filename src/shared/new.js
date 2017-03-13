@@ -108,7 +108,6 @@ angular.module('erp.controllers')
     })
   };
   $scope.submit = function() {
-    debugger
     let submitObject = {}
     for (var i = $scope.forms.length - 1; i >= 0; i--) {
       if ($scope.forms[i].isHideInForm) {
@@ -151,7 +150,9 @@ angular.module('erp.controllers')
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].value
       }
     }
-    submitObject[mainId] = $stateParams.id
+    if (mainId) {
+      submitObject[mainId] = $stateParams.id
+    }
     let methodEOA = mainId ? method.edit : method.add
     methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {

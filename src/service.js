@@ -13,6 +13,8 @@ const URL = {
   'orderstatus': '/mgr/comm/orderstatus',
   'isOrderTimeout': '/mgr/comm/timeout',
   'shopType': '/mgr/comm/shoptype',
+  'bannerType': '/mgr/comm/bannertype',
+  'bannerStatus': '/mgr/comm/bannerstatus',
   /*Wash meta-------------------------*/
   'washFilterStatus': '/mgr/comm/washstatus',
   'washFilterHot': '/mgr/comm/washhot',
@@ -84,6 +86,13 @@ const URL = {
   'profitGuardExport': '/mgr/profit/eguard/export',
   'profitShop': '/mgr/profit/shop/query',
   'profitShopExport': '/mgr/profit/shop/export',
+  /*Banner  ------------------------------*/
+  'banner': '/mgr/banner/query',
+  'bannerAdd': '/mgr/banner/add',
+  'bannerExport': '/mgr/banner/export',
+  'bannerDisable': '/mgr/banner/disable',
+  'bannerDetail': '/mgr/banner/editprequery',
+  'bannerEdit': '/mgr/banner/edit',
 }
 
 angular.module('erp.services')

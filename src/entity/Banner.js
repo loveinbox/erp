@@ -2,8 +2,8 @@ angular.module('erp.services')
 
 .service('Banner', function($resource, $state, API) {
   this.name = 'Banner'
-  this.query = API.fruit
-  this.export = API.fruitExport
+  this.query = API.banner
+  this.export = API.bannerExport
   this.new = function() {
     $state.go('app.new', { type: 'banner' })
   }
@@ -22,18 +22,24 @@ angular.module('erp.services')
   this.meta = {
     header: [{
       text: '分类位置',
-      apiName: ''
+      apiName: 'typeName',
+      formKey: 'typeId',
+      type: 'select',
+      API: API.bannerType
     }, {
       text: '图片',
-      apiName: '',
+      apiName: 'headImg',
       type: 'imgUpload',
       inputKey: 'pos'
     }, {
       text: '链接',
-      apiName: ''
+      apiName: 'toUrl'
     }, {
       text: '状态',
-      apiName: ''
+      apiName: 'statusName',
+      formKey: 'statusId',
+      type: 'select',
+      API: API.bannerStatus
     }],
     actions: [{
       text: '修改',

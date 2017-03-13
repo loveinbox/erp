@@ -53,10 +53,6 @@ angular.module('erp.controllers')
     Entity.rowActionHandler[type](rowData)
   })
 
-  $scope.$on('modalConfirm', function(data) {
-    console.log(data)
-  })
-
   function pageInit() {
     $scope.data.page = {
       totalPage: 100,
