@@ -24,11 +24,13 @@ angular.module('erp.services')
     name: '订单号',
   }, {
     key: 'fetchEguardName',
+    typeaheadKey: 'eguardName',
     name: '取货管家',
     type: 'typeahead',
     API: API.guardName
   }, {
     key: 'sendEguardName',
+    typeaheadKey: 'eguardName',
     name: '送回管家',
     type: 'typeahead',
     API: API.guardName
@@ -62,11 +64,8 @@ angular.module('erp.services')
       text: '收货人电话',
       apiName: 'rcvPhone'
     }, {
-      text: '营业时间',
-      apiName: 'rcvAddress',
-    }, {
       text: '收货地址',
-      apiName: 'shopAddress'
+      apiName: 'rcvAddress'
     }, {
       text: '商家名称',
       apiName: 'shopName',

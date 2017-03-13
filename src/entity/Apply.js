@@ -22,6 +22,7 @@ angular.module('erp.services')
   }
   this.filters = [{
     key: 'eguardName',
+    typeaheadKey: 'eguardName',
     name: '管家名称',
     type: 'typeahead',
     API: API.guardName

@@ -164,28 +164,22 @@ angular.module('erp.services')
     }
   }
   this.filters = [{
-    key: 'productName',
-    name: '水果名称',
+    key: 'eguardName',
+    name: '管家名称',
+    type: 'typeahead',
+    API: API.guardName
   }, {
-    key: 'classifyId',
-    name: '商品分类',
-    type: 'select',
-    API: API.fruitFilterClass
+    key: 'eguardNickName',
+    name: '管家昵称',
+    type: 'typeahead',
+    API: API.guardNickName
   }, {
-    key: 'statusId',
-    name: '状态',
-    type: 'select',
-    API: API.fruitFilterStatus
+    key: 'hireTime',
+    name: '日期',
+    type: 'dateInputRange'
   }, {
-    key: 'hotId',
-    name: '是否爆品',
-    type: 'select',
-    API: API.fruitFilterHot
-  }, {
-    key: 'onSaleId',
-    name: '是否热卖',
-    type: 'select',
-    API: API.fruitFilterSale
+    key: 'eguardPhoneNumber',
+    name: '手机号',
   }];
   this.meta = {
     header: [{

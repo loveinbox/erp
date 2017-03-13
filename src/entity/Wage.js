@@ -6,11 +6,13 @@ angular.module('erp.services')
   this.export = API.profitGuardExport
   this.filters = [{
     key: 'eguardName',
+    typeaheadKey: 'eguardName',
     name: '管家姓名',
     type: 'typeahead',
     API: API.guardName
   }, {
     key: 'eguardNickName',
+    typeaheadKey: 'eguardNickName',
     name: '管家昵称',
     type: 'typeahead',
     API: API.guardNickName

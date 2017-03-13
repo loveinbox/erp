@@ -78,7 +78,7 @@ const URL = {
   /*OrderTime  ------------------------------*/
   'orderTime': '/mgr/orderfollow/query',
   'orderTimeExport': '/mgr/orderfollow/export',
-  /*Order  ------------------------------*/
+  /*OrderGoods  ---------------------------*/
   'orderGoods': '/mgr/orderdetail/query',
   'orderGoodsExport': '/mgr/orderdetail/export',
   /*Profit  ------------------------------*/

@@ -21,12 +21,12 @@ angular.module('erp.services')
     }
   }
   this.filters = [{
-    key: 'eguardName',
+    typeaheadKey: 'eguardName',
     name: '微信昵称',
     type: 'typeahead',
     API: API.guardName
   }, {
-    key: 'eguardNickName',
+    typeaheadKey: 'eguardNickName',
     name: '手机号',
     type: 'typeahead',
     API: API.guardNickName
