@@ -32,6 +32,9 @@ angular.module('erp.services')
       type: 'imgUpload',
       inputKey: 'pos'
     }, {
+      text: '顺序',
+      apiName: 'pos',
+    }, {
       text: '链接',
       apiName: 'toUrl'
     }, {

@@ -153,6 +153,11 @@ angular.module('erp.controllers')
     if (mainId) {
       submitObject[mainId] = $stateParams.id
     }
+    /*fbd*/
+    if (_switch === 'banner') {
+      submitObject.headImg = submitObject.headImg[0].url
+    }
+    /*fbd*/
     let methodEOA = mainId ? method.edit : method.add
     methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {
