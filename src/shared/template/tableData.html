@@ -87,7 +87,7 @@
               {{item.productVolume}}
               </p>
             </span>
-            <span ng-if="td.type === undefined || td.type === 'select'">{{tr[td.apiName]}}</span>
+            <span ng-if="td.type === undefined || td.type === 'select' || td.type === 'typeahead'">{{tr[td.apiName]}}</span>
           </td>
           <td ng-if="actions">
             <p class="action"
@@ -150,4 +150,3 @@
     </ul>
   </nav>
 </div>
-

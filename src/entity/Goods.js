@@ -13,9 +13,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.fruitRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'fruit' })
-        })
+        return API.fruitRemove.get(rowData).$promise
       }
     }
   }
@@ -123,6 +121,7 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
+      isNeedValidation: true,
       boxes: [{
         value: 1,
         text: '图标'
@@ -163,9 +162,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.washRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'wash' })
-        })
+        return API.washRemove.get(rowData).$promise
       }
     }
   }

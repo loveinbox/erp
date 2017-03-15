@@ -13,9 +13,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.fruitRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'fruitShop' })
-        })
+        return API.fruitShopRemove.get(rowData).$promise
       }
     }
   }
@@ -151,9 +149,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.washRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'washShop' })
-        })
+        return API.washRemove.get(rowData).$promise
       }
     }
   }

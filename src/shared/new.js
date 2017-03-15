@@ -121,19 +121,29 @@ angular.module('erp.controllers')
         alert('所有字段必填')
         return
       }
-      if ($scope.forms[i].imgsList) {
-        let type1Max1 = 0,
-          type3Max1 = 0;
-        if ($scope.forms[i].imgsList.length === 0) {
+      if ($scope.forms[i].isNeedValidation) {
+        let type1 = 0,
+          type2 = 0,
+          type3 = 0;
+        if (!$scope.forms[i].imgList || $scope.forms[i].imgList.length === 0) {
           alert('需要上传图片')
           return
         }
-        $scope.forms[i].imgsList.forEach((value) => {
-          if (value.type === 1) type1Max1++;
-          if (value.type === 3) type3Max1++;
+        $scope.forms[i].imgList.forEach((value) => {
+          if (value.type === 1) type1++;
+          if (value.type === 0) type2++;
+          if (value.type === 3) type3++;
         })
-        if (type1Max1 > 1 || type3Max1 > 1) {
-          alert('图标和主图都只能有一张');
+        if (type1 !== 1) {
+          alert('必须有一张图标');
+          return
+        }
+        if (type3 !== 1) {
+          alert('必须有一张主图');
+          return
+        }
+        if (type2 < 1) {
+          alert('至少有一张详情图');
           return
         }
       }
@@ -141,9 +151,9 @@ angular.module('erp.controllers')
         case 'date':
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = moment($scope.forms[i].value).unix();
           break;
-          // case 'typeahead':
-          //   submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].value.id
-          //   break;
+        case 'typeahead':
+          submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].value.id || $scope.forms[i].value
+          break;
         case 'imgUpload':
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].imgList
           break;
@@ -162,7 +172,7 @@ angular.module('erp.controllers')
       submitObject.headImg = submitObject.headImg[0].url
     }
     /*fbd*/
-    let methodEOA = mainId ? method.edit : method.add
+    let methodEOA = submitObject[mainId] ? method.edit : method.add
     methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {
         alert('操作成功！')

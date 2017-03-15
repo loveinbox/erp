@@ -3,7 +3,6 @@ angular.module('erp.services')
 .service('GuardApply', function($resource, $state, API) {
   this.name = 'GuardApply'
   this.query = API.applyGuard
-    // this.export = API.guardExport
   this.rowActionHandler = {
     'agree': function(rowData) {
       API.applyGuardAgree.get(rowData, function() {
@@ -12,9 +11,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.applyGuardRemove.get(rowData, function() {
-          $state.go('app.lsit', { type: 'guardApply' })
-        })
+        return API.applyGuardRemove.get(rowData).$promise
       }
     }
   }
@@ -89,8 +86,15 @@ angular.module('erp.services')
   this.name = 'ShopApply'
   this.query = API.applyShop
   this.rowActionHandler = {
-    'agreeHost': function(rowData) {
-      API.applyShopAgreeHost.get(rowData, function() {
+    'agreeFruitHost': function(rowData) {
+      let data = Object.assign({}, rowData, { shopTypeId: 17001 })
+      API.applyShopAgreeHost.get(data, function() {
+        $state.go('app.lsit', { type: 'shopApply' })
+      })
+    },
+    'agreeWashHost': function(rowData) {
+      let data = Object.assign({}, rowData, { shopTypeId: 17002 })
+      API.applyShopAgreeHost.get(data, function() {
         $state.go('app.lsit', { type: 'shopApply' })
       })
     },
@@ -136,8 +140,11 @@ angular.module('erp.services')
       apiName: 'shopPhoneNumber'
     }],
     actions: [{
-      text: '成为店主',
-      type: 'agreeHost'
+      text: '成为水果店主',
+      type: 'agreeFruitHost'
+    }, {
+      text: '成为洗衣店主',
+      type: 'agreeWashHost'
     }, {
       text: '成为店员',
       type: 'agree'

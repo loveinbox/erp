@@ -43,7 +43,7 @@ const URL = {
   'washClassRemove': '/mgr/classify/wash/disable',
   /*Fruit  ------------------------*/
   'fruit': '/mgr/fruit/query',
-  'fruitAdd': '/mgr/fruit/add',
+  'fruitAdd': '/mgr/fruit/add?XDEBUG_SESSION_START=31DAF623',
   'fruitRemove': '/mgr/fruit/disable',
   'fruitEdit': '/mgr/fruit/edit',
   'fruitDetail': '/mgr/fruit/editprequery',
@@ -90,7 +90,7 @@ const URL = {
   'banner': '/mgr/banner/query',
   'bannerAdd': '/mgr/banner/add',
   'bannerExport': '/mgr/banner/export',
-  'bannerDisable': '/mgr/banner/disable',
+  'bannerRemove': '/mgr/banner/disable',
   'bannerDetail': '/mgr/banner/editprequery',
   'bannerEdit': '/mgr/banner/edit',
   /*Apply  ------------------------------*/
@@ -101,6 +101,10 @@ const URL = {
   'applyShopRemove': '/mgr/apply/shop/disable',
   'applyShopAgree': '/mgr/apply/shop/toshopeployee',
   'applyShopAgreeHost': '/mgr/apply/shop/toshophost',
+  /*User  ---------------------------*/
+  'userVerify': '/mgr/comm/verifystatus',
+  'user': '/mgr/customer/query',
+  'userExport': '/mgr/customer/export',
 }
 
 angular.module('erp.services')

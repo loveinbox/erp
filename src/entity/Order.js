@@ -113,21 +113,6 @@ angular.module('erp.services')
   this.name = 'OrderTime'
   this.query = API.orderTime
   this.export = API.orderTimeExport
-  this.new = function() {
-    $state.go('app.new', { type: 'orderTime' })
-  }
-  this.rowActionHandler = {
-    'edit': function(rowData) {
-      $state.go('app.new', { type: 'orderTime', id: rowData.shopId })
-    },
-    'disable': function(rowData) {
-      if (confirm('确定要废弃么？')) {
-        API.washRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'orderTime' })
-        })
-      }
-    }
-  }
   this.filters = [{
     key: 'orderTypeId',
     name: '订单分类',

@@ -2,81 +2,58 @@ angular.module('erp.services')
 
 .service('User', function($resource, $state, API) {
   this.name = 'User'
-  this.query = API.guard
-  this.export = API.guardExport
-  this.new = function() {
-    $state.go('app.new', { type: 'guard' })
-  }
-  this.rowActionHandler = {
-    'edit': function(rowData) {
-      debugger
-      $state.go('app.new', { type: 'guard', id: rowData.eguardId })
-    },
-    'disable': function(rowData) {
-      if (confirm('确定要废弃么？')) {
-        API.guardRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'guard' })
-        })
-      }
-    }
-  }
+  this.query = API.user
+  this.export = API.userExport
   this.filters = [{
-    typeaheadKey: 'eguardName',
+    key: 'nickName',
     name: '微信昵称',
-    type: 'typeahead',
-    API: API.guardName
   }, {
-    typeaheadKey: 'eguardNickName',
+    key: 'userPhoneNumber',
     name: '手机号',
-    type: 'typeahead',
-    API: API.guardNickName
   }, {
-    key: 'hireTime',
+    key: 'focusDate',
     name: '日期',
-    type: 'dateInputRange'
   }, {
-    key: 'statusId',
+    key: 'verifyId',
     name: '是否认证',
     type: 'select',
-    API: API.guardStatus
+    API: API.userVerify
   }];
   this.meta = {
     header: [{
       text: '用户ID',
-      apiName: 'eguardName',
+      apiName: 'customerId',
     }, {
       text: '微信昵称',
-      apiName: 'eguardId',
+      apiName: 'nickName',
     }, {
       text: '手机号',
-      apiName: 'eguardName',
-      formKey: 'eguardName',
+      apiName: 'userPhoneNumber',
     }, {
       text: '认证',
-      apiName: 'eguardNickName'
+      apiName: 'verifyName'
     }, {
       text: '最近登录时间',
-      apiName: 'accountStatusName',
+      apiName: 'lastVisitTime',
     }, {
       text: '最近购买时间',
-      apiName: 'eguardAddress'
+      apiName: 'lastBuyTime'
     }, {
       text: '登录次数',
-      apiName: 'longitude'
+      apiName: 'totalVisitCount'
     }, {
       text: '购买次数',
-      apiName: 'latitude'
+      apiName: 'totalBuyCount'
     }, {
       text: '关注时间',
-      apiName: 'hireTime',
+      apiName: 'focusTime',
       type: 'date',
-      isHideInForm: true
     }, {
       text: '首次购买时间',
-      apiName: 'eguardPhoneNumber',
+      apiName: 'firstBuyTime',
     }, {
       text: '消费总额',
-      apiName: 'identifiedCardNo',
+      apiName: 'totalConsumeMoney',
     }],
     button: {
       query: true,

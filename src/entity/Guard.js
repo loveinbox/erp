@@ -14,9 +14,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.guardRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'guard' })
-        })
+        return API.guardRemove.get(rowData).$promise
       }
     }
   }
@@ -151,18 +149,6 @@ angular.module('erp.services')
   this.new = function() {
     $state.go('app.new', { type: 'fruit' })
   }
-  this.rowActionHandler = {
-    'edit': function(rowData) {
-      $state.go('app.new', { type: 'fruit', id: rowData.productId })
-    },
-    'disable': function(rowData) {
-      if (confirm('确定要废弃么？')) {
-        API.fruitRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'fruit' })
-        })
-      }
-    }
-  }
   this.filters = [{
     key: 'eguardName',
     name: '管家名称',
@@ -248,13 +234,6 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true
-    }],
-    actions: [{
-      text: '修改',
-      type: 'edit'
-    }, {
-      text: '废弃',
-      type: 'disable'
     }],
     button: {
       query: true,

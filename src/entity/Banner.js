@@ -13,12 +13,9 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.bannerDisable.get({
+        return API.bannerRemove.get({
           bannerId: rowData.bannerId
-        }, function() {
-          this.$emit('query')
-          alert('废弃成功')
-        })
+        }).$promise
       }
     }
   }

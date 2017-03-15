@@ -87,7 +87,8 @@
           </p>
           <div>
             <label style="width: auto"
-              ng-repeat="box in form.boxes track by $index">
+              ng-repeat="box in form.boxes track by $index"
+              ng-init="pic.type=1">
               <input ng-if="form.union === undefined"
                 type="radio"
                 ng-name="name{{$index}}"
@@ -123,14 +124,11 @@
         </div>
       </div>
     </div>
+    <div class="row btn-row">
+      <div class="col-md-4 col-md-offset-4">
+        <button class="btn btn-primary btn-block"
+          ng-click="submit()">确认</button>
+      </div>
+    </div>
+  </form>
 </div>
-<div class="row btn-row">
-  <div class="col-md-4 col-md-offset-4">
-    <button type="submit"
-      class="btn btn-primary btn-block"
-      ng-click="submit()">确认</button>
-  </div>
-</div>
-</form>
-</div>
-

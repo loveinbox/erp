@@ -50,7 +50,12 @@ angular.module('erp.controllers')
     })
   })
   $scope.$on('rowAction', function(action, type, rowData) {
-    Entity.rowActionHandler[type](rowData)
+    let promise = Entity.rowActionHandler[type](rowData)
+    if (promise && typeof promise.then === 'function') {
+      promise.then(function() {
+        query()
+      })
+    }
   })
 
   function pageInit() {
