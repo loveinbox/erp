@@ -80,16 +80,20 @@
 <script>
 $('.btn').click(function() {
   var data = {
-    'username': username.value,
-    'shop': shop.value,
-    'constract': constract.value,
-    'mobile': mobile.value
+    'shopHostName': username.value,
+    'shopName': shop.value,
+    'contractId': constract.value,
+    'shopPhoneNumber': mobile.value
   }
-  $.post({
-    url: '123',
-    data: data
-  }).done(function(data) {
-    alert("Data Loaded: " + data);
+  $.post(
+    'http://www.lifeuxuan.com/index.php/mgr/apply/shop/toshop',
+    data
+  ).success(function(data) {
+    if (data.code === 0) {
+      alert('申请成功！')
+    } else {
+      alert('申请失败！')
+    }
   });
 })
 </script>

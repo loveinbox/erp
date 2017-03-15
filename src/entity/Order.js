@@ -44,8 +44,6 @@ angular.module('erp.services')
   }, {
     key: 'shopName',
     name: '商家名称',
-    type: 'typeahead',
-    API: API.OrderGoodsName
   }];
   this.meta = {
     header: [{

@@ -76,18 +76,21 @@ angular.module('erp.controllers')
     let param = { page: $scope.data.page.current }
     for (var p in $scope.filters) {
       let value = $scope.filters[p]
-      if (value.type === 'dateInputRange') {
-        let temp = value.key + '[]'
-        if (value.value || value.value2) {
-          param[temp] = [
-            value.value ? new Date(value.value).getTime() : '',
-            value.value2 ? new Date(value.value2).getTime() : ''
-          ]
+      while (value) {
+        if (value.type === 'dateInputRange') {
+          let temp = value.key + '[]'
+          if (value.value || value.value2) {
+            param[temp] = [
+              value.value ? (new Date(value.value).getTime()) / 1000 : '',
+              value.value2 ? (new Date(value.value2).getTime()) / 1000 : ''
+            ]
+          }
+        } else {
+          if (value.value) {
+            param[value.key] = value.value
+          }
         }
-      } else {
-        if (value.value) {
-          param[value.key] = value.value
-        }
+        value = value.next
       }
     }
     console.log(param)

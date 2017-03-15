@@ -102,8 +102,8 @@ const URL = {
   'applyShopAgree': '/mgr/apply/shop/toshopeployee',
   'applyShopAgreeHost': '/mgr/apply/shop/toshophost',
   /*User  ---------------------------*/
-  'userVerify': '/mgr/comm/verifystatus',
   'user': '/mgr/customer/query',
+  'userVerify': '/mgr/comm/verifystatus',
   'userExport': '/mgr/customer/export',
 }
 
