@@ -85,10 +85,12 @@ $('.btn').click(function() {
     'contractId': constract.value,
     'shopPhoneNumber': mobile.value
   }
-  $.post(
+  $.get(
     'http://www.lifeuxuan.com/index.php/mgr/apply/shop/toshop',
-    data
-  ).success(function(data) {
+    data,
+    'json'
+  ).success(function(res) {
+    let data = JSON.parse(res)
     if (data.code === 0) {
       alert('申请成功！')
     } else {
