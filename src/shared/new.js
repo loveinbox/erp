@@ -69,15 +69,15 @@ angular.module('erp.controllers')
               name: $scope.good.shopName
             }
             break;
+          case 'imgUploadSingle':
+            value.imgList = [{ url: $scope.good.headImg }]
+            break;
           case 'dateRange':
             value.value = $scope.good[value.formKey] + ''
             value.value2 = $scope.good[value.formKey2] + ''
             value.API.get({}, function(data) {
               value.options = data.data
             })
-            break;
-          case 'imgUpload':
-            value.imgList = $scope.good[value.apiName || value.formKey]
             break
           default:
             value.value = $scope.good[value.formKey || value.apiName] || ''
@@ -157,6 +157,9 @@ angular.module('erp.controllers')
         case 'imgUpload':
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].imgList
           break;
+        case 'imgUploadSingle':
+          submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].imgList[0].url
+          break;
         case 'dateRange':
           submitObject[$scope.forms[i].formKey] = $scope.forms[i].value
           submitObject[$scope.forms[i].formKey2] = $scope.forms[i].value2
@@ -167,11 +170,6 @@ angular.module('erp.controllers')
     if (mainId) {
       submitObject[mainId] = $stateParams.id
     }
-    /*fbd*/
-    if (_switch === 'banner') {
-      submitObject.headImg = submitObject.headImg[0].url
-    }
-    /*fbd*/
     let methodEOA = submitObject[mainId] ? method.edit : method.add
     methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {

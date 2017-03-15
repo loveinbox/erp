@@ -13,6 +13,7 @@ angular.module('erp.services')
   }, {
     key: 'focusDate',
     name: '日期',
+    type: 'dateInputRange'
   }, {
     key: 'verifyId',
     name: '是否认证',
