@@ -78,8 +78,8 @@
           <td ng-repeat="td in header"
             ng-if="!td.isHideInTable">
             <span ng-if="td.type === 'date'">{{tr[td.apiName] | time}}</span>
-            <span ng-if="td.type === 'imgUpload'">
-              <img style="width: 375px;height: 220px" ng-src="tr[td.apiName]">
+            <span ng-if="td.type === 'imgUpload' || td.type === 'imgUploadSingle'">
+              <img style="width: 375px;height: 220px" ng-src="http://www.lifeuxuan.com/{{tr[td.apiName]}}">
             </span>
             <span ng-if="td.type === 'list'">
               <p ng-repeat="item in tr[td.apiName]">{{item.productName}}*
@@ -87,7 +87,7 @@
               {{item.productVolume}}
               </p>
             </span>
-            <span ng-if="td.type === undefined">{{tr[td.apiName]}}</span>
+            <span ng-if="td.type === undefined || td.type === 'select'">{{tr[td.apiName]}}</span>
           </td>
           <td ng-if="actions">
             <p class="action"

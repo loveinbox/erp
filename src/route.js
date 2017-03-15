@@ -28,6 +28,7 @@ angular.module('erp')
   .state('app.new', {
     url: '/goods/new/:type/:id',
     templateUrl: '/shared/template/new.html',
+    cache: false
   })
 
   .state('app.goods-class', {

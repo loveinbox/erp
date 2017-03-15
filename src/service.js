@@ -93,6 +93,14 @@ const URL = {
   'bannerDisable': '/mgr/banner/disable',
   'bannerDetail': '/mgr/banner/editprequery',
   'bannerEdit': '/mgr/banner/edit',
+  /*Apply  ------------------------------*/
+  'applyGuard': '/mgr/apply/eguard/query',
+  'applyGuardAgree': '/mgr/apply/eguard/agree',
+  'applyGuardRemove': '/mgr/apply/eguard/disable',
+  'applyShop': '/mgr/apply/shop/query',
+  'applyShopRemove': '/mgr/apply/shop/disable',
+  'applyShopAgree': '/mgr/apply/shop/toshopeployee',
+  'applyShopAgreeHost': '/mgr/apply/shop/toshophost',
 }
 
 angular.module('erp.services')

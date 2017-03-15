@@ -19,7 +19,7 @@ angular.module('erp.controllers')
     'washShop': { Entity: WashShop, mainId: 'shopId' },
     'guardWage': { Entity: GuardWage, mainId: '' },
     'shopWage': { Entity: ShopWage, mainId: '' },
-    'banner': { Entity: Banner, mainId: '' },
+    'banner': { Entity: Banner, mainId: 'bannerId' },
   }
   let _switch = $scope.type = $stateParams.type
   let Entity = typeMap[_switch].Entity
@@ -29,7 +29,13 @@ angular.module('erp.controllers')
     $state.go('login')
   }
 
-  $scope.forms = Entity.meta.header
+  $scope.forms = Entity.meta.header.map(a => {
+    if (typeof a === 'object') {
+      return Object.assign({}, a)
+    } else {
+      return a
+    }
+  });
   $scope.good = {}
   $scope.goBack = function() {
     $state.go('app.list', { type: _switch })
@@ -40,8 +46,6 @@ angular.module('erp.controllers')
     add: API[_switch + 'Add'],
     shopName: API[_switch + 'ShopName'],
   }
-
-
 
   if ($stateParams.id) {
     method.detail.get({

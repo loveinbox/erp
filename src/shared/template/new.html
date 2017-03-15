@@ -8,7 +8,7 @@
   <form class="form-inline">
     <div class="form-group"
       ng-class="{'col-md-10': form.colSpan, 'col-md-5': !form.colSpan}"
-      ng-repeat="form in forms"
+      ng-repeat="form in forms track by $index"
       ng-if="!form.isHideInForm">
       <label for="name">{{form.text}}</label>
       <div class="form-repeat-wrap"
@@ -51,6 +51,15 @@
           class="form-control">
       </div>
       <div class="form-repeat-wrap"
+        ng-if="form.type === 'imgUploadSingle'">
+        <input type="file"
+          name="file"
+          accept="image/*"
+          ngf-max-size="5MB"
+          ngf-select="uploadFile($file, form)"
+          class="form-control">
+      </div>
+      <div class="form-repeat-wrap"
         ng-if="form.type === 'dateRange'">
         <select ng-model="form.value"
           ng-options="option.id as option.name for option in form.options">
@@ -62,7 +71,7 @@
       </div>
       <div ng-if="form.type === 'list'">
         <div class="img-wrap list-item-wrap"
-          ng-repeat="item in form.value">
+          ng-repeat="item in form.value track by $index">
           <span>{{item.employeeName}}</span>
           <p class="img-remove"
             ng-click="removeItem(item, form, 'value' ,'id')"><i class="glyphicon glyphicon-remove"></i>
@@ -70,7 +79,7 @@
       </div>
       <div ng-if="form.type === 'imgUpload'">
         <div class="img-wrap"
-          ng-repeat="pic in form.imgList">
+          ng-repeat="pic in form.imgList track by $index">
           <img class="img-thumb"
             ng-src="http://www.lifeuxuan.com/{{pic.url}}">
           <p class="img-remove"
@@ -78,7 +87,7 @@
           </p>
           <div>
             <label style="width: auto"
-              ng-repeat="box in form.boxes">
+              ng-repeat="box in form.boxes track by $index">
               <input ng-if="form.union === undefined"
                 type="radio"
                 ng-name="name{{$index}}"
@@ -104,14 +113,24 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row btn-row">
-      <div class="col-md-4 col-md-offset-4">
-        <button type="submit"
-          class="btn btn-primary btn-block"
-          ng-click="submit()">确认</button>
+      <div ng-if="form.type === 'imgUploadSingle'">
+        <div class="img-wrap">
+          <img class="img-thumb"
+            ng-src="http://www.lifeuxuan.com/{{form.value}}">
+          <p class="img-remove"
+            ng-click="removeItem(pic, form, 'imgList' ,'url')"><i class="glyphicon glyphicon-remove"></i>
+          </p>
+        </div>
       </div>
     </div>
-  </form>
+</div>
+<div class="row btn-row">
+  <div class="col-md-4 col-md-offset-4">
+    <button type="submit"
+      class="btn btn-primary btn-block"
+      ng-click="submit()">确认</button>
+  </div>
+</div>
+</form>
 </div>
 

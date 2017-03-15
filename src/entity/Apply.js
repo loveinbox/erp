@@ -2,32 +2,29 @@ angular.module('erp.services')
 
 .service('GuardApply', function($resource, $state, API) {
   this.name = 'GuardApply'
-  this.query = API.guard
-  this.export = API.guardExport
-  this.new = function() {
-    $state.go('app.new', { type: 'guard' })
-  }
+  this.query = API.applyGuard
+    // this.export = API.guardExport
   this.rowActionHandler = {
-    'edit': function(rowData) {
-      debugger
-      $state.go('app.new', { type: 'guard', id: rowData.eguardId })
+    'agree': function(rowData) {
+      API.applyGuardAgree.get(rowData, function() {
+        $state.go('app.lsit', { type: 'guardApply' })
+      })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.guardRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'guard' })
+        API.applyGuardRemove.get(rowData, function() {
+          $state.go('app.lsit', { type: 'guardApply' })
         })
       }
     }
   }
   this.filters = [{
     key: 'eguardName',
-    typeaheadKey: 'eguardName',
     name: '管家名称',
     type: 'typeahead',
     API: API.guardName
   }, {
-    key: 'hireTime',
+    key: 'applyTime',
     name: '日期',
     type: 'dateInputRange'
   }, {
@@ -36,54 +33,53 @@ angular.module('erp.services')
   }];
   this.meta = {
     header: [{
-      text: '管家编号',
-      apiName: 'eguardId',
+      text: '申请编号',
+      apiName: 'applyId',
       isHideInForm: true
     }, {
       text: '管家名称',
-      apiName: 'eguardName',
+      apiName: 'applyName',
     }, {
       text: '管家昵称',
-      apiName: 'eguardNickName'
+      apiName: 'userNickName'
     }, {
       text: '住址',
-      apiName: 'accountStatusName',
+      apiName: 'applyAddress',
     }, {
       text: '注册时间',
-      apiName: 'hireTime',
+      apiName: 'applyTime',
       type: 'date',
       isHideInForm: true
     }, {
       text: '手机号',
-      apiName: 'eguardPhoneNumber',
-    }, {
-      text: '身份证',
-      apiName: 'identifiedCardNo',
-    }, {
-      text: '开户行',
-      apiName: 'bankName'
-    }, {
-      text: '支行',
-      apiName: 'branchBankName'
-    }, {
-      text: '银行卡',
-      apiName: 'bankCardNo'
+      apiName: 'applyPhoneNumber',
+      // }, {
+      //   text: '身份证',
+      //   apiName: 'identifiedCardNo',
+      // }, {
+      //   text: '开户行',
+      //   apiName: 'bankName'
+      // }, {
+      //   text: '支行',
+      //   apiName: 'branchBankName'
+      // }, {
+      //   text: '银行卡',
+      //   apiName: 'bankCardNo'
     }, {
       text: '区域',
-      formKey: 'regionId',
+      apiName: 'applyRegionName',
       type: 'select',
       API: API.region
     }],
     actions: [{
       text: '成为管家',
-      type: 'create'
+      type: 'agree'
     }, {
       text: '废弃',
       type: 'disable'
     }],
     button: {
       query: true,
-      export: true
     }
   }
 
@@ -91,25 +87,28 @@ angular.module('erp.services')
 
 .service('ShopApply', function($resource, $state, API) {
   this.name = 'ShopApply'
-  this.query = API.fruit
-  this.export = API.fruitExport
-  this.new = function() {
-    $state.go('app.new', { type: 'fruit' })
-  }
+  this.query = API.applyShop
   this.rowActionHandler = {
-    'edit': function(rowData) {
-      $state.go('app.new', { type: 'fruit', id: rowData.productId })
+    'agreeHost': function(rowData) {
+      API.applyShopAgreeHost.get(rowData, function() {
+        $state.go('app.lsit', { type: 'shopApply' })
+      })
+    },
+    'agree': function(rowData) {
+      API.applyShopAgree.get(rowData, function() {
+        $state.go('app.lsit', { type: 'shopApply' })
+      })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.fruitRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'fruit' })
+        API.applyShopRemove.get(rowData, function() {
+          $state.go('app.lsit', { type: 'shopApply' })
         })
       }
     }
   }
   this.filters = [{
-    key: 'eguardName',
+    key: 'shopName',
     name: '商家名称',
     type: 'typeahead',
     API: API.guardName
@@ -124,32 +123,30 @@ angular.module('erp.services')
   this.meta = {
     header: [{
       text: '合同号',
-      apiName: 'productName'
+      apiName: 'contractId'
     }, {
       text: '商家名称',
-      formKey: 'productDescription',
+      formKey: 'shopName',
       isHideInTable: true
     }, {
       text: '姓名',
-      apiName: 'productPrice'
+      apiName: 'shopHostName'
     }, {
       text: '手机号',
-      apiName: 'feeRate'
+      apiName: 'shopPhoneNumber'
     }],
     actions: [{
       text: '成为店主',
-      type: 'create'
+      type: 'agreeHost'
     }, {
       text: '成为店员',
-      type: 'create-ee'
+      type: 'agree'
     }, {
       text: '废弃',
       type: 'disable'
     }],
     button: {
       query: true,
-      new: true,
-      export: true
     }
   }
 

@@ -9,12 +9,15 @@ angular.module('erp.services')
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.new', { type: 'banner', id: rowData.productId })
+      $state.go('app.new', { type: 'banner', id: rowData.bannerId })
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.fruitRemove(rowData, function() {
-          $state.go('app.lsit', { type: 'banner' })
+        API.bannerDisable.get({
+          bannerId: rowData.bannerId
+        }, function() {
+          this.$emit('query')
+          alert('废弃成功')
         })
       }
     }
@@ -29,7 +32,7 @@ angular.module('erp.services')
     }, {
       text: '图片',
       apiName: 'headImg',
-      type: 'imgUpload',
+      type: 'imgUploadSingle',
       inputKey: 'pos'
     }, {
       text: '顺序',
