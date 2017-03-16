@@ -19,8 +19,6 @@ angular.module('erp.services')
   }, {
     key: 'eguardPhoneNumber',
     name: '手机号',
-    type: 'typeahead',
-    API: API.washShopName
   }, {
     key: 'orderTime',
     name: '日期',

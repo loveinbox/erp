@@ -114,8 +114,6 @@ angular.module('erp.services')
   this.filters = [{
     key: 'shopName',
     name: '商家名称',
-    type: 'typeahead',
-    API: API.guardName
   }, {
     key: 'applyTime',
     name: '日期',
@@ -130,8 +128,7 @@ angular.module('erp.services')
       apiName: 'contractId'
     }, {
       text: '商家名称',
-      formKey: 'shopName',
-      isHideInTable: true
+      apiName: 'shopName'
     }, {
       text: '姓名',
       apiName: 'shopHostName'
