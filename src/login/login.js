@@ -18,6 +18,7 @@ angular.module('erp.controllers')
       password: $scope.user.password
     }, function(data) {
       User.id = $scope.user.name
+      localStorage.setItem('list', '用户信息管理')
       $state.go('app.list', { type: 'user' })
     });
   }

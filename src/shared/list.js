@@ -93,7 +93,6 @@ angular.module('erp.controllers')
         value = value.next
       }
     }
-    console.log(param)
     return param
   }
 
