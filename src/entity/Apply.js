@@ -117,11 +117,11 @@ angular.module('erp.services')
     type: 'typeahead',
     API: API.guardName
   }, {
-    key: 'hireTime',
+    key: 'applyTime',
     name: '日期',
     type: 'dateInputRange'
   }, {
-    key: 'eguardPhoneNumber',
+    key: 'shopPhoneNumber',
     name: '手机号',
   }];
   this.meta = {

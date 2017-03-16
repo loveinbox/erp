@@ -68,6 +68,9 @@ const URL = {
   'guardDisable': '/mgr/eguard/disable',
   'guardDetail': '/mgr/eguard/editprequery',
   'guardEdit': '/mgr/eguard/edit',
+  /*GuardOrder  ------------------------------*/
+  'guardOrders': '/mgr/orderdetail/eguard/query',
+  'guardOrdersExport': '/mgr/orderdetail/eguard/export',
   /*Order  ------------------------------*/
   'order': '/mgr/order/query',
   'orderExport': '/mgr/order/export',

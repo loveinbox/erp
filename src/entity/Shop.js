@@ -77,7 +77,8 @@ angular.module('erp.services')
       type: 'date'
     }, {
       text: '状态',
-      apiName: 'statusId',
+      apiName: 'statusName',
+      formKey: 'statusId',
       type: 'select',
       API: API.shopStatus
     }, {
@@ -117,9 +118,9 @@ angular.module('erp.services')
     }, {
       text: '商家LOGO',
       apiName: 'shopImgsList',
-      type: 'imgUpload',
+      type: 'imgUploadSingle',
       colSpan: true,
-      isHideInTable: true
+      isHideInTable: true,
     }],
     actions: [{
       text: '修改',

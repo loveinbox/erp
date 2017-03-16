@@ -91,6 +91,8 @@ angular.module('erp.services')
       directive: 'modal',
       getAPI: API.guardFetch,
       goAPI: API.reFetch,
+      'sendEguardDispatchId': '', // 取货管家是否可改派 1001 是， 1002 否
+      'fetchEguardDispatchId': '' // 送回管家是否可改派
     }, {
       text: '送回管家',
       type: 'reSend',
@@ -240,21 +242,6 @@ angular.module('erp.services')
       text: '订单商品明细',
       apiName: 'detailsList',
       type: 'list',
-    }],
-    actions: [{
-      text: '改派取货',
-      type: 'reFetch',
-      keys: ['orderId', 'orderTypeId'],
-      directive: 'modal',
-      getAPI: API.guardFetch,
-      goAPI: API.reFetch,
-    }, {
-      text: '送回管家',
-      type: 'reSend',
-      key: 'sendEguardId',
-      directive: 'modal',
-      getAPI: API.guardSend,
-      goAPI: API.reSend,
     }],
     button: {
       query: true,

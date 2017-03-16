@@ -69,6 +69,9 @@ angular.module('erp.controllers')
               name: $scope.good.shopName
             }
             break;
+          case 'imgUpload':
+            value.imgList = $scope.good[value.formKey || value.apiName]
+            break;
           case 'imgUploadSingle':
             value.imgList = [{ url: $scope.good.headImg }]
             break;

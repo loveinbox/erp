@@ -17,12 +17,12 @@ angular.module('erp.services')
     type: 'typeahead',
     API: API.guardNickName
   }, {
-    key: 'shopName',
+    key: 'eguardPhoneNumber',
     name: '手机号',
     type: 'typeahead',
     API: API.washShopName
   }, {
-    key: 'date',
+    key: 'orderTime',
     name: '日期',
     type: 'dateInputRange'
   }];
@@ -77,7 +77,6 @@ angular.module('erp.services')
   this.filters = [{
     key: 'shopName',
     name: '商家名称',
-    type: 'typeahead',
   }, {
     key: 'shopTypeId',
     name: '商家分类',

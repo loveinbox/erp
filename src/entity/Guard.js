@@ -63,8 +63,8 @@ angular.module('erp.services')
       apiName: 'eguardNickName'
     }, {
       text: '管家状态',
-      apiName: 'accountStatusName',
-      formKey: 'accountStatusId',
+      apiName: 'statusName',
+      formKey: 'statusId',
       type: 'select',
       API: API.guardStatus
     }, {
@@ -144,10 +144,10 @@ angular.module('erp.services')
 
 .service('GuardOrders', function($resource, $state, API) {
   this.name = 'GuardOrders'
-  this.query = API.fruit
-  this.export = API.fruitExport
+  this.query = API.guardOrders
+  this.export = API.guardOrdersExport
   this.new = function() {
-    $state.go('app.new', { type: 'fruit' })
+    $state.go('app.new', { type: 'guardOrders' })
   }
   this.filters = [{
     key: 'eguardName',
@@ -160,7 +160,7 @@ angular.module('erp.services')
     type: 'typeahead',
     API: API.guardNickName
   }, {
-    key: 'hireTime',
+    key: 'orderTime',
     name: '日期',
     type: 'dateInputRange'
   }, {
@@ -169,75 +169,44 @@ angular.module('erp.services')
   }];
   this.meta = {
     header: [{
-      text: '水果名称',
-      apiName: 'productName'
+      text: '管家名称',
+      apiName: 'eguardName'
     }, {
-      text: '水果描述',
-      formKey: 'productDescription',
-      isHideInTable: true
+      text: '管家昵称',
+      apiName: 'eguardNickName',
     }, {
-      text: '售价',
-      apiName: 'productPrice'
+      text: '手机号',
+      apiName: 'eguardPhoneNumber'
     }, {
-      text: '佣金率',
-      apiName: 'feeRate'
+      text: '总配送订单数',
+      apiName: 'totalOrderVolume'
     }, {
-      text: '管家抽成',
-      apiName: 'eguardProfitRate'
+      text: '水果订单总数',
+      apiName: 'fruitOrderVolume'
     }, {
-      text: '库存',
-      apiName: 'productAvaliable'
+      text: '水果订单总金额',
+      apiName: 'fruitOrderMoney'
     }, {
-      text: '规格',
-      apiName: 'productMeasure'
+      text: '水果及时送达率',
+      apiName: 'fruitOrderFinishRate'
     }, {
-      text: '水果分类',
-      apiName: 'classifyName',
-      formKey: 'classifyId',
-      type: 'select',
-      API: API.fruitClass
+      text: '洗衣订单总数',
+      apiName: 'washOrderVolume'
     }, {
-      text: '商家名称',
-      apiName: 'shopName',
-      formKey: 'shopId',
-      type: 'typeahead',
-      API: API.fruitShopName
+      text: '洗衣订单总金额',
+      apiName: 'washOrderMoney'
     }, {
-      text: '状态',
-      apiName: 'statusName',
-      formKey: 'statusId',
-      type: 'select',
-      API: API.fruitFilterStatus
+      text: '洗衣及时送达率',
+      apiName: 'washOrderFinishRate'
     }, {
-      text: '上架日期',
-      apiName: 'marketDate',
-      type: 'date'
+      text: '拒单量',
+      apiName: 'refuseOrderVolume'
     }, {
-      text: '热卖',
-      apiName: 'onSaleName',
-      formKey: 'onSaleId',
-      type: 'select',
-      API: API.fruitFilterSale
-    }, {
-      text: '爆款',
-      apiName: 'hotName',
-      formKey: 'hotId',
-      type: 'select',
-      API: API.fruitFilterHot
-    }, {
-      text: '总销量',
-      apiName: 'totalSaleVolume',
-      isHideInForm: true
-    }, {
-      text: '图片',
-      formKey: 'productImgsList',
-      type: 'imgUpload',
-      colSpan: true,
-      isHideInTable: true
+      text: '拒单率',
+      apiName: 'refuseOrderRate'
     }],
     button: {
       query: true,
-      new: true,
       export: true
     }
   }
