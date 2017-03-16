@@ -101,6 +101,7 @@ angular.module('erp.services')
       apiName: 'bankCardNo'
     }, {
       text: '区域',
+      apiName: 'regionName',
       formKey: 'regionId',
       type: 'select',
       API: API.region
