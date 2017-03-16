@@ -62,7 +62,14 @@ angular.module('erp.services')
       apiName: 'statusName',
       formKey: 'statusId',
       type: 'select',
-      API: API.guardStatus
+      API: API.guardStatus,
+      isHideInForm: true
+    }, {
+      text: '账号状态',
+      formKey: 'accountStatusId',
+      type: 'select',
+      API: API.accountStatus,
+      isHideInTable: true
     }, {
       text: '管家地址',
       apiName: 'eguardAddress'
