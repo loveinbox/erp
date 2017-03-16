@@ -54,12 +54,12 @@ const URL = {
   /*Shop  ------------------------------*/
   'washShop': '/mgr/washshop/query',
   'washShopExport': '/mgr/washshop/export',
-  'washShopDisable': '/mgr/washshop/disable',
+  'washShopRemove': '/mgr/washshop/disable',
   'washShopDetail': '/mgr/washshop/editprequery',
   'washShopEdit': '/mgr/washshop/edit',
   'fruitShop': '/mgr/fruitshop/query',
   'fruitShopExport': '/mgr/fruitshop/export',
-  'fruitShopDisable': '/mgr/fruitshop/disable',
+  'fruitShopRemove': '/mgr/fruitshop/disable',
   'fruitShopDetail': '/mgr/fruitshop/editprequery',
   'fruitShopEdit': '/mgr/fruitshop/edit',
   /*Guard  ------------------------------*/

@@ -156,7 +156,7 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        return API.washRemove.get(rowData).$promise
+        return API.washShopRemove.get(rowData).$promise
       }
     }
   }

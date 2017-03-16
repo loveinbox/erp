@@ -48,16 +48,12 @@ angular.module('erp.services')
   }];
   this.meta = {
     header: [{
-      text: '管家名称',
+      text: '管家姓名',
       apiName: 'eguardName',
     }, {
       text: '管家编号',
       apiName: 'eguardId',
       isHideInForm: true
-    }, {
-      text: '管家名称',
-      formKey: 'eguardName',
-      isHideInTable: true
     }, {
       text: '管家昵称',
       apiName: 'eguardNickName'
