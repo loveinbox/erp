@@ -2,11 +2,11 @@
 angular.module('erp.controllers')
 
 .controller('listCtrl', function($scope, $state, $stateParams,
-  User, Fruit, Wash, Orders, OrderTime, OrderGoods,
+  Customer, Fruit, Wash, Orders, OrderTime, OrderGoods,
   Guard, GuardOrders, FruitShop, WashShop, GuardWage,
   ShopWage, Banner, GuardApply, ShopApply) {
   const typeMap = {
-    'user': User,
+    'user': Customer,
     'fruit': Fruit,
     'wash': Wash,
     'orders': Orders,

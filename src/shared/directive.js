@@ -77,6 +77,9 @@ function filter() {
         }
       }
       $scope.$watch('filterParam', function(ov, nv) {
+        if(ov === nv){
+          return 
+        }
         if ($scope.filter) {
           let param = {}
           if ($scope.filter.paramKey) {

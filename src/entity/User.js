@@ -1,7 +1,7 @@
 angular.module('erp.services')
 
-.service('User', function($resource, $state, API) {
-  this.name = 'User'
+.service('Customer', function($resource, $state, API) {
+  this.name = 'Customer'
   this.query = API.user
   this.export = API.userExport
   this.filters = [{

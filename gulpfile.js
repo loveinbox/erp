@@ -70,7 +70,7 @@ gulp.task('src-js', function() {
       presets: ['es2015']
     }))
     .pipe(concat('main.js'))
-    // .pipe(ngAnnotate())
+    .pipe(ngAnnotate())
     // .pipe(uglify())
     .pipe(gulp.dest(codebase))
     .pipe(livereload());
