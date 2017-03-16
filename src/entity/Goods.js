@@ -266,10 +266,6 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
-      boxes: [{
-        value: 1,
-        text: '图标'
-      }]
     }],
     actions: [{
       text: '修改',

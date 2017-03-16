@@ -90,6 +90,7 @@
             <label style="width: auto"
               ng-repeat="box in form.boxes track by $index"
               ng-init="pic.type=1">
+              <!-- union仅用于水果 -->
               <input ng-if="form.union === undefined"
                 type="radio"
                 ng-name="name{{$index}}"
@@ -97,21 +98,15 @@
                 ng-model="pic.type"
                 class="form-control">
               <span ng-if="form.union === undefined">{{box.text}}</span>
+              <!-- union用于banner，管家，商家等 -->
               <input ng-if="form.union === true"
                 type="radio"
                 name="name"
                 ng-value="box.value"
-                ng-model="pic.type"
+                ng-model="pic[form.boxKey]"
                 class="form-control">
               <span ng-if="form.union">{{box.text}}</span>
             </label>
-            <!-- <label ng-if="form.inputKey">
-              <span>顺序</span>
-              <input type="text"
-                style="display:line-block;width: 50px;"
-                class="form-control"
-                ng-model="pic.pos">
-            </label> -->
           </div>
         </div>
       </div>

@@ -118,9 +118,15 @@ angular.module('erp.services')
     }, {
       text: '商家LOGO',
       apiName: 'shopImgsList',
-      type: 'imgUploadSingle',
+      type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
+      union: true,
+      boxKey: 'isUsed',
+      boxes: [{
+        value: 1001,
+        text: 'LOGO'
+      }]
     }],
     actions: [{
       text: '修改',
@@ -256,7 +262,12 @@ angular.module('erp.services')
       apiName: 'shopImgsList',
       type: 'imgUpload',
       colSpan: true,
-      isHideInTable: true
+      isHideInTable: true,
+      boxKey: 'isUsed',
+      boxes: [{
+        value: 1001,
+        text: 'LOGO'
+      }]
     }],
     actions: [{
       text: '修改',

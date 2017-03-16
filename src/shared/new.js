@@ -124,14 +124,14 @@ angular.module('erp.controllers')
         alert('所有字段必填')
         return
       }
+      if ($scope.forms[i].imgList && $scope.forms[i].imgList.length < 1) {
+        alert('需要上传图片')
+        return
+      }
       if ($scope.forms[i].isNeedValidation) {
         let type1 = 0,
           type2 = 0,
           type3 = 0;
-        if (!$scope.forms[i].imgList || $scope.forms[i].imgList.length === 0) {
-          alert('需要上传图片')
-          return
-        }
         $scope.forms[i].imgList.forEach((value) => {
           if (value.type === 1) type1++;
           if (value.type === 0) type2++;
