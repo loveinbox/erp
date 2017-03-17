@@ -110,9 +110,9 @@
     id="buttonAvaiable">
     <div class="col-xs">
       《
-      <input id="avaiable"
+      <input
         type="checkbox">
-      <label for="avaiable">本人同意管家合作协议</label>
+      <span>本人同意<a href="http://mp.weixin.qq.com/s/rrXFzZveFD3MvY76wvDHNQ ">管家合作协议</a></span>
       》
     </div>
   </div>
@@ -123,7 +123,7 @@
 <script src="./jquery.min.js"></script>
 <script>
 let flag = true
-$("label").click(function(event) {
+$("input").click(function(event) {
   if (flag) {
     $('.btn').attr('disabled', false)
   } else {
