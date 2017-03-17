@@ -53,6 +53,7 @@ angular.module('erp.controllers')
     let promise = Entity.rowActionHandler[type](rowData)
     if (promise && typeof promise.then === 'function') {
       promise.then(function() {
+        alert('操作成功')
         query()
       })
     }

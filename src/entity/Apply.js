@@ -5,9 +5,7 @@ angular.module('erp.services')
   this.query = API.applyGuard
   this.rowActionHandler = {
     'agree': function(rowData) {
-      API.applyGuardAgree.get(rowData, function() {
-        $state.go('app.lsit', { type: 'guardApply' })
-      })
+        return API.applyGuardAgree.get(rowData).$promise
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
@@ -88,26 +86,18 @@ angular.module('erp.services')
   this.rowActionHandler = {
     'agreeFruitHost': function(rowData) {
       let data = Object.assign({}, rowData, { shopTypeId: 17001 })
-      API.applyShopAgreeHost.get(data, function() {
-        $state.go('app.lsit', { type: 'shopApply' })
-      })
+      return API.applyShopAgreeHost.get(data).$promise
     },
     'agreeWashHost': function(rowData) {
       let data = Object.assign({}, rowData, { shopTypeId: 17002 })
-      API.applyShopAgreeHost.get(data, function() {
-        $state.go('app.lsit', { type: 'shopApply' })
-      })
+      return API.applyShopAgreeHost.get(data).$promise
     },
     'agree': function(rowData) {
-      API.applyShopAgree.get(rowData, function() {
-        $state.go('app.lsit', { type: 'shopApply' })
-      })
+      return API.applyShopAgree.get(rowData).$promise
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        API.applyShopRemove.get(rowData, function() {
-          $state.go('app.lsit', { type: 'shopApply' })
-        })
+        return API.applyShopRemove.get(rowData).$promise
       }
     }
   }

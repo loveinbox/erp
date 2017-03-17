@@ -102,7 +102,7 @@ const URL = {
   'applyGuardRemove': '/mgr/apply/eguard/disable',
   'applyShop': '/mgr/apply/shop/query',
   'applyShopRemove': '/mgr/apply/shop/disable',
-  'applyShopAgree': '/mgr/apply/shop/toshopeployee',
+  'applyShopAgree': '/mgr/apply/shop/toshopemployee',
   'applyShopAgreeHost': '/mgr/apply/shop/toshophost',
   /*User  ---------------------------*/
   'user': '/mgr/customer/query',
