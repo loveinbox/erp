@@ -45,7 +45,7 @@
         ng-if="form.type === 'imgUpload'">
         <input type="file"
           name="file"
-          accept="image/*"
+          accept="image/png,image/jpg,image/gif"
           ngf-max-size="5MB"
           ngf-select="uploadFile($file, form)"
           class="form-control">
