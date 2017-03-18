@@ -48,9 +48,15 @@ function tableData() {
 
       function buildPage() {
         $scope.page.show = $scope.page.totalPage > 10 ? 10 : $scope.page.totalPage
-        $scope.page.adjust = $scope.page.current - 5 <= 0 ?
-          $scope.page.current - 1 :
-          $scope.page.current + 5 > $scope.page.totalPage ? 9 : 5
+        if ($scope.page.totalPage < 11 || $scope.page.current < 5) {
+          $scope.page.adjust = $scope.page.current - 1
+        } else {
+          if ($scope.page.current + 4 < $scope.page.totalPage) {
+            $scope.page.adjust = 4
+          } else {
+            $scope.page.adjust = $scope.page.current - ($scope.page.totalPage - 9)
+          }
+        }
       }
     }
   }
@@ -77,8 +83,8 @@ function filter() {
         }
       }
       $scope.$watch('filterParam', function(ov, nv) {
-        if(ov === nv){
-          return 
+        if (ov === nv) {
+          return
         }
         if ($scope.filter) {
           let param = {}

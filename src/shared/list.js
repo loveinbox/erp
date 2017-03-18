@@ -61,7 +61,7 @@ angular.module('erp.controllers')
 
   function pageInit() {
     $scope.data.page = {
-      totalPage: 3,
+      totalPage: 1,
       current: 1
     }
   }
