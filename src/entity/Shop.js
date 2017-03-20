@@ -114,6 +114,7 @@ angular.module('erp.services')
       apiName: 'employeesList',
       type: 'list',
       colSpan: true,
+      noValidate: true,
       isHideInTable: true
     }, {
       text: '商家LOGO',
@@ -256,7 +257,8 @@ angular.module('erp.services')
       apiName: 'employeesList',
       type: 'list',
       colSpan: true,
-      isHideInTable: true
+      isHideInTable: true,
+      noValidate: true,
     }, {
       text: '商家LOGO',
       apiName: 'shopImgsList',
@@ -278,7 +280,6 @@ angular.module('erp.services')
     }],
     button: {
       query: true,
-      new: true,
       export: true
     }
   }

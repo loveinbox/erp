@@ -120,7 +120,7 @@ angular.module('erp.controllers')
       if ($scope.forms[i].isHideInForm) {
         continue
       }
-      if (!$scope.forms[i].value && !$scope.forms[i].imgList) {
+      if (!$scope.forms[i].value && !$scope.forms[i].imgList && !$scope.forms[i].noValidate) {
         alert('所有字段必填')
         return
       }

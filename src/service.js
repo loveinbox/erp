@@ -43,7 +43,7 @@ const URL = {
   'washClassRemove': '/mgr/classify/wash/disable',
   /*Fruit  ------------------------*/
   'fruit': '/mgr/fruit/query',
-  'fruitAdd': '/mgr/fruit/add?XDEBUG_SESSION_START=31DAF623',
+  'fruitAdd': '/mgr/fruit/add',
   'fruitRemove': '/mgr/fruit/disable',
   'fruitEdit': '/mgr/fruit/edit',
   'fruitDetail': '/mgr/fruit/editprequery',
