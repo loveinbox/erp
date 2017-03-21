@@ -1,4 +1,4 @@
-const baseUrl = 'http://www.lifeuxuan.com/index.php';
+const baseUrl = '' //'http://www.lifeuxuan.com/index.php';
 const URL = {
   'login': '/mgr/admin/login',
   'logout': '/mgr/admin/logout',
