@@ -13,7 +13,8 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        return API.fruitRemove.get(rowData).$promise
+        return API.fruitRemove.get(rowData)
+          .$promise
       }
     }
   }
@@ -57,7 +58,8 @@ angular.module('erp.services')
   this.meta = {
     header: [{
       text: '水果名称',
-      apiName: 'productName'
+      apiName: 'productName',
+      isClear: true
     }, {
       text: '水果描述',
       formKey: 'productDescription',
@@ -121,6 +123,7 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
+      isClear: true,
       isNeedValidation: true,
       boxes: [{
         value: 1,
@@ -162,7 +165,8 @@ angular.module('erp.services')
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
-        return API.washRemove.get(rowData).$promise
+        return API.washRemove.get(rowData)
+          .$promise
       }
     }
   }
@@ -206,7 +210,8 @@ angular.module('erp.services')
   this.meta = {
     header: [{
       text: '衣服名称',
-      apiName: 'productName'
+      apiName: 'productName',
+      isClear: true
     }, {
       text: '衣服分类',
       apiName: 'classifyName',
@@ -266,6 +271,7 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
+      isClear: true
     }],
     actions: [{
       text: '修改',

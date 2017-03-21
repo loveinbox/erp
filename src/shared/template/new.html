@@ -16,7 +16,7 @@
         <input type="text"
           class="form-control"
           ng-model="form.value"
-          ng-placeholder="form.text">
+          placeholder="{{form.text}}">
       </div>
       <div class="form-repeat-wrap"
         ng-if="form.type === 'date'">
@@ -34,7 +34,7 @@
         ng-if="form.type === 'typeahead'">
         <input type="text"
           ng-model="form.value"
-          placeholder="{{form.text}}"
+          placeholder="{{form.text}}--模糊查询"
           uib-typeahead="state as state.name for state in getOptions($viewValue)"
           typeahead-loading="loadingLocations"
           typeahead-no-results="noResults"
@@ -45,7 +45,6 @@
         ng-if="form.type === 'imgUpload'">
         <input type="file"
           name="file"
-          accept="image/png,image/jpg,image/gif"
           ngf-max-size="5MB"
           ngf-select="uploadFile($file, form)"
           class="form-control">

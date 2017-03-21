@@ -182,8 +182,16 @@ angular.module('erp.controllers')
     let methodEOA = submitObject[mainId] ? method.edit : method.add
     methodEOA.save(submitObject, function(data) {
       if (data.code === 0) {
+        for (var i = $scope.forms.length - 1; i >= 0; i--) {
+          if ($scope.forms[i].isClear) {
+            $scope.forms[i].value = '';
+            if ($scope.forms[i].imgList) {
+              $scope.forms[i].imgList = []
+            }
+          }
+        }
         alert('操作成功！')
-        $state.go('app.list', { type: _switch })
+          // $state.go('app.list', { type: _switch })
       }
     })
   }
