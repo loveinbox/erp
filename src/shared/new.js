@@ -109,10 +109,11 @@ angular.module('erp.controllers')
     }
   };
   $scope.getOptions = function(searchVal) {
-    return method.shopName.get({ shopName: searchVal }).$promise.then(function(data) {
-      $scope.typeaheadOptions = data.data
-      return data.data
-    })
+    return method.shopName.get({ shopName: searchVal })
+      .$promise.then(function(data) {
+        $scope.typeaheadOptions = data.data
+        return data.data
+      })
   };
   $scope.submit = function() {
     let submitObject = {}
@@ -152,10 +153,15 @@ angular.module('erp.controllers')
       }
       switch ($scope.forms[i].type) {
         case 'date':
-          submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = moment($scope.forms[i].value).unix();
+          submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = moment($scope.forms[i].value)
+            .unix();
           break;
         case 'typeahead':
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].value.id || $scope.forms[i].value
+          if ($scope.forms[i].formKey && $scope.forms[i].value && !$scope.forms[i].value.id) {
+            alert('模糊查询字段需要进行选择')
+            return
+          }
           break;
         case 'imgUpload':
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].imgList
@@ -184,12 +190,13 @@ angular.module('erp.controllers')
 
   $scope.uploadFile = function(file, form) {
     if (!file) return;
-    uploadFile(file).success(function(data) {
-      form.imgList = form.imgList || []
-      form.imgList.push({
-        url: data.data[0]
+    uploadFile(file)
+      .success(function(data) {
+        form.imgList = form.imgList || []
+        form.imgList.push({
+          url: data.data[0]
+        });
       });
-    });
   }
   $scope.removeItem = function(item, form, formPart, listPart) {
     let list = form[formPart]
