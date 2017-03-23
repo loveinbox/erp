@@ -266,6 +266,7 @@ angular.module('erp.services')
       colSpan: true,
       isHideInTable: true,
       boxKey: 'isUsed',
+      union: true,
       boxes: [{
         value: 1001,
         text: 'LOGO'

@@ -73,7 +73,7 @@ angular.module('erp.controllers')
             value.imgList = $scope.good[value.formKey || value.apiName]
             break;
           case 'imgUploadSingle':
-            value.imgList = [{ url: $scope.good.headImg }]
+            value.imgList = [{ url: $scope.good.headImg}]
             break;
           case 'dateRange':
             value.value = $scope.good[value.formKey] + ''
