@@ -73,7 +73,7 @@ angular.module('erp.controllers')
             value.imgList = $scope.good[value.formKey || value.apiName]
             break;
           case 'imgUploadSingle':
-            value.imgList = [{ url: $scope.good.headImg}]
+            value.imgList = [{ url: $scope.good.headImg }]
             break;
           case 'dateRange':
             value.value = $scope.good[value.formKey] + ''
@@ -164,7 +164,23 @@ angular.module('erp.controllers')
           }
           break;
         case 'imgUpload':
-          submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].imgList
+          let tempImgList = $scope.forms[i].imgList.slice()
+          if ($scope.forms[i].union) {
+            let isFindSelected = false
+            tempImgList.forEach(value => {
+              if ($scope.forms[i].picSelected === value.url) {
+                value.type = 1
+                isFindSelected = true
+              } else {
+                value.type = 0
+              }
+            })
+            if (!isFindSelected) {
+              alert('需要选择一张图片')
+              return
+            }
+          }
+          submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = tempImgList
           break;
         case 'imgUploadSingle':
           submitObject[$scope.forms[i].formKey || $scope.forms[i].apiName] = $scope.forms[i].imgList[0].url
@@ -194,6 +210,13 @@ angular.module('erp.controllers')
           // $state.go('app.list', { type: _switch })
       }
     })
+  }
+
+  $scope.radioInit = function(form, pic, index) {
+    debugger
+    if (pic.type === 1) {
+      form.picSelected = pic.url
+    }
   }
 
   $scope.uploadFile = function(file, form) {

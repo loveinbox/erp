@@ -87,7 +87,7 @@
           <div>
             <label style="width: auto"
               ng-repeat="box in form.boxes track by $index"
-              ng-init="pic.type=1">
+              ng-init="radioInit(form, pic, $index)">
               <!-- union仅用于水果 -->
               <input ng-if="form.union === undefined"
                 type="radio"
@@ -100,8 +100,8 @@
               <input ng-if="form.union === true"
                 type="radio"
                 name="name"
-                ng-value="box.value"
-                ng-model="pic[form.boxKey]"
+                ng-value="pic.url"
+                ng-model="form.picSelected"
                 class="form-control">
               <span ng-if="form.union">{{box.text}}</span>
             </label>

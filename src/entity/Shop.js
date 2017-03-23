@@ -125,7 +125,7 @@ angular.module('erp.services')
       union: true,
       boxKey: 'isUsed',
       boxes: [{
-        value: 1001,
+        value: 1,
         text: 'LOGO'
       }]
     }],
@@ -268,7 +268,7 @@ angular.module('erp.services')
       boxKey: 'isUsed',
       union: true,
       boxes: [{
-        value: 1001,
+        value: 1,
         text: 'LOGO'
       }]
     }],

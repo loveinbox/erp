@@ -271,6 +271,7 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
+      union: true,
       isClear: true,
       boxes: [{
         value: 1,
