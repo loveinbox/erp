@@ -165,7 +165,7 @@ angular.module('erp.controllers')
           break;
         case 'imgUpload':
           let tempImgList = $scope.forms[i].imgList.slice()
-          if ($scope.forms[i].union) {
+          if ($scope.forms[i].isRadioBoxSeprated === undefined) {
             let isFindSelected = false
             tempImgList.forEach(value => {
               if ($scope.forms[i].picSelected === value.url) {

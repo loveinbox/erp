@@ -89,21 +89,21 @@
               ng-repeat="box in form.boxes track by $index"
               ng-init="radioInit(form, pic, $index)">
               <!-- union仅用于水果 -->
-              <input ng-if="form.union === undefined"
+              <input ng-if="form.isRadioBoxSeprated"
                 type="radio"
                 ng-name="name{{$index}}"
                 ng-value="box.value"
                 ng-model="pic.type"
                 class="form-control">
-              <span ng-if="form.union === undefined">{{box.text}}</span>
+              <span ng-if="form.isRadioBoxSeprated">{{box.text}}</span>
               <!-- union用于banner，管家，商家等 -->
-              <input ng-if="form.union === true"
+              <input ng-if="form.isRadioBoxSeprated === undefined"
                 type="radio"
                 name="name"
                 ng-value="pic.url"
                 ng-model="form.picSelected"
                 class="form-control">
-              <span ng-if="form.union">{{box.text}}</span>
+              <span ng-if="form.isRadioBoxSeprated === undefined">{{box.text}}</span>
             </label>
           </div>
         </div>

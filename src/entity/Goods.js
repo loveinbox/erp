@@ -125,6 +125,7 @@ angular.module('erp.services')
       isHideInTable: true,
       isClear: true,
       isNeedValidation: true,
+      isRadioBoxSeprated: true,
       boxes: [{
         value: 1,
         text: '图标'
@@ -271,7 +272,6 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
-      union: true,
       isClear: true,
       boxes: [{
         value: 1,

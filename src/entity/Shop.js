@@ -122,7 +122,6 @@ angular.module('erp.services')
       type: 'imgUpload',
       colSpan: true,
       isHideInTable: true,
-      union: true,
       boxKey: 'isUsed',
       boxes: [{
         value: 1,
@@ -266,7 +265,6 @@ angular.module('erp.services')
       colSpan: true,
       isHideInTable: true,
       boxKey: 'isUsed',
-      union: true,
       boxes: [{
         value: 1,
         text: 'LOGO'

@@ -125,7 +125,6 @@ angular.module('erp.services')
       formKey: 'eguardImgsList',
       type: 'imgUpload',
       isHideInTable: true,
-      union: true,
       boxes: [{
         value: 1,
         text: '头像'
