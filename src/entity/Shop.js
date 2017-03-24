@@ -40,7 +40,6 @@ angular.module('erp.services')
     }, {
       text: '合同号',
       apiName: 'contractId',
-      isHideInForm: true
     }, {
       text: '店主姓名',
       apiName: 'hostName'
@@ -183,7 +182,6 @@ angular.module('erp.services')
     }, {
       text: '合同号',
       apiName: 'contractId',
-      isHideInForm: true
     }, {
       text: '店主姓名',
       apiName: 'hostName'
