@@ -47,7 +47,10 @@ angular.module('erp.controllers')
     shopName: API[_switch + 'ShopName'],
   }
 
+  $scope.submitText = '新建'
+
   if ($stateParams.id) {
+    $scope.submitText = '修改'
     method.detail.get({
       [mainId]: $stateParams.id
     }, function(data) {
@@ -206,14 +209,15 @@ angular.module('erp.controllers')
             }
           }
         }
-        alert('操作成功！')
-          // $state.go('app.list', { type: _switch })
+        alert($scope.submitText + '成功！')
+        if (submitObject[mainId]) {
+          window.close()
+        }
       }
     })
   }
 
   $scope.radioInit = function(form, pic, index) {
-    debugger
     if (pic.type === 1) {
       form.picSelected = pic.url
     }

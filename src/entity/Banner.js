@@ -9,7 +9,8 @@ angular.module('erp.services')
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      $state.go('app.new', { type: 'banner', id: rowData.bannerId })
+      var url = $state.href('app.new', { type: 'banner', id: rowData.bannerId });
+      window.open(url, '_blank');
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
