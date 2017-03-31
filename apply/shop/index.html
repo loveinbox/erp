@@ -93,6 +93,7 @@ $('.btn').click(function() {
     let data = JSON.parse(res)
     if (data.code === 0) {
       alert('申请成功！')
+      window.location.href = '//www.lifeuxuan.com';
     } else {
       alert('申请失败！')
     }
