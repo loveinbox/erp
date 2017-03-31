@@ -1,9 +1,11 @@
 <div ng-controller="listCtrl"
   class="main-wrap">
-  <table-data filters=filters
-    header=data.header
+  <table-data header=data.header
     body=data.body
     actions=data.actions
     button=data.button
-    page=data.page></table-data>
+    filters=filters
+    page=page
+    page-default=pageDefault
+    filters-default=filtersDefault></table-data>
 </div>

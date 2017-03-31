@@ -78,26 +78,31 @@
 </body>
 <script src="./jquery.min.js"></script>
 <script>
-$('.btn').click(function() {
-  var data = {
-    'shopHostName': username.value,
-    'shopName': shop.value,
-    'contractId': constract.value,
-    'shopPhoneNumber': mobile.value
-  }
-  $.get(
-    'http://www.lifeuxuan.com/index.php/mgr/apply/shop/toshop',
-    data,
-    'json'
-  ).success(function(res) {
-    let data = JSON.parse(res)
-    if (data.code === 0) {
-      alert('申请成功！')
-      window.location.href = '//www.lifeuxuan.com';
-    } else {
-      alert('申请失败！')
+$(function() {
+  $('.btn').click(function() {
+    var self = this;
+    $(self).html('提交中...')
+    var data = {
+      'shopHostName': username.value,
+      'shopName': shop.value,
+      'contractId': constract.value,
+      'shopPhoneNumber': mobile.value
     }
-  });
+    $.get(
+      'http://www.lifeuxuan.com/index.php/mgr/apply/shop/toshop',
+      data,
+      'json'
+    ).success(function(res) {
+      let data = JSON.parse(res)
+      if (data.code === 0) {
+        alert('申请成功！')
+        window.location.href = '//www.lifeuxuan.com';
+      } else {
+        $(self).html('重新提交')
+        alert('申请失败！')
+      }
+    });
+  })
 })
 </script>
 

@@ -22,6 +22,7 @@ angular.module('erp')
 
   .state('app.list', {
     url: '/list/:type',
+    cache: false,
     templateUrl: '/shared/template/list.html',
   })
 

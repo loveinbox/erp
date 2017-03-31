@@ -7,10 +7,14 @@ function tableData() {
       body: '=?',
       actions: '=?',
       button: '=?',
-      page: '='
+      page: '=',
+      pageDefault: '=',
+      filtersDefault: '=',
     },
     templateUrl: '/shared/template/tableData.html',
     controller: function($scope) {
+      $scope.page = {}
+      $scope.page.current = $scope.pageDefault || 1
       $scope.$watch('page.current', function() {
         buildPage()
       })
@@ -37,7 +41,7 @@ function tableData() {
           default:
             $scope.page.current = page
         }
-        $scope.$emit('query')
+        $scope.$emit('page-query')
       }
       $scope.rowActionHandler = function(action, rowData) {
         $scope.$emit('rowAction', action.type, rowData)
@@ -67,10 +71,11 @@ function filter() {
     restrict: 'E',
     scope: {
       filter: '=',
+      filterDefault: '=',
       filterParam: '='
     },
     templateUrl: '/shared/template/filterBuilder.html',
-    controller: function($scope) {
+    controller: function($scope, $rootScope) {
       if ($scope.filter) {
         let param = {}
         if ($scope.filter.paramKey) {
@@ -96,6 +101,9 @@ function filter() {
               $scope.filter.options = data.data
             })
           }
+          $scope.filter.value = $scope.filterDefault
+        } else {
+          $scope.filter.value = undefined
         }
       })
       $scope.getOptions = function(method, key, param) {

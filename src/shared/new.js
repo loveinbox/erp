@@ -211,7 +211,7 @@ angular.module('erp.controllers')
         }
         alert($scope.submitText + '成功！')
         if (submitObject[mainId]) {
-          window.close()
+          $state.go('app.list', { type: _switch })
         }
       }
     })

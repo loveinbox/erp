@@ -120,35 +120,40 @@
 </body>
 <script src="./jquery.min.js"></script>
 <script>
-let flag = true
-$("input[type=checkbox]").click(function(event) {
-  if (flag) {
-    $('.btn').attr('disabled', false)
-  } else {
-    $('.btn').attr('disabled', 'disabled')
-  }
-  flag = !flag
-});
-
-$('.btn').click(function() {
-  var data = {
-    'applyName': username.value,
-    'applyPhoneNumber': mobile.value,
-    'applyAddress': address.value,
-  }
-  $.get(
-    'http://www.lifeuxuan.com/index.php/mgr/apply/eguard/toeguard',
-    data,
-    'json'
-  ).success(function(res) {
-    let data = JSON.parse(res)
-    if (data.code === 0) {
-      alert('申请成功！')
-      window.location.href = '//www.lifeuxuan.com';
+$(function() {
+  let flag = true
+  $("input[type=checkbox]").click(function(event) {
+    if (flag) {
+      $('.btn').attr('disabled', false)
     } else {
-      alert('申请失败！')
+      $('.btn').attr('disabled', 'disabled')
     }
+    flag = !flag
   });
+
+  $('.btn').click(function() {
+    var self = this;
+    $(self).html('提交中...')
+    var data = {
+      'applyName': username.value,
+      'applyPhoneNumber': mobile.value,
+      'applyAddress': address.value,
+    }
+    $.get(
+      'http://www.lifeuxuan.com/index.php/mgr/apply/eguard/toeguard',
+      data,
+      'json'
+    ).success(function(res) {
+      let data = JSON.parse(res)
+      if (data.code === 0) {
+        alert('申请成功！')
+        window.location.href = '//www.lifeuxuan.com';
+      } else {
+        $(self).html('重新提交')
+        alert('申请失败！')
+      }
+    });
+  })
 })
 </script>
 

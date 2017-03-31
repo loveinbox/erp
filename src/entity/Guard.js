@@ -9,8 +9,7 @@ angular.module('erp.services')
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      var url = $state.href('app.new', { type: 'guard', id: rowData.eguardId });
-      window.open(url, '_blank');
+      $state.go('app.new', { type: 'guard', id: rowData.eguardId });
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {

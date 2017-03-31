@@ -9,8 +9,7 @@ angular.module('erp.services')
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      var url = $state.href('app.new', { type: 'fruit', id: rowData.productId });
-      window.open(url, '_blank');
+      $state.go('app.new', { type: 'fruit', id: rowData.productId });
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {
@@ -163,8 +162,7 @@ angular.module('erp.services')
   }
   this.rowActionHandler = {
     'edit': function(rowData) {
-      var url = $state.href('app.new', { type: 'wash', id: rowData.productId });
-      window.open(url, '_blank');
+      $state.go('app.new', { type: 'wash', id: rowData.productId });
     },
     'disable': function(rowData) {
       if (confirm('确定要废弃么？')) {

@@ -1,7 +1,7 @@
 ;
 angular.module('erp.controllers')
 
-.controller('listCtrl', function($scope, $state, $stateParams,
+.controller('listCtrl', function($scope, $state, $stateParams, QueryParams,
   Customer, Fruit, Wash, Orders, OrderTime, OrderGoods,
   Guard, GuardOrders, FruitShop, WashShop, GuardWage,
   ShopWage, Banner, GuardApply, ShopApply) {
@@ -25,9 +25,6 @@ angular.module('erp.controllers')
   let type = $stateParams.type;
   let Entity = typeMap[type];
 
-  $scope.data = Entity.meta
-  $scope.filters = Entity.filters
-
   if (!Entity) {
     console.error('[MY ERROR]No Entity!')
     $state.go('login')
@@ -35,10 +32,15 @@ angular.module('erp.controllers')
 
   //init
   pageInit()
-  query()
 
   $scope.$on('query', function() {
-    query()
+    $scope.page = {
+      current: 1
+    }
+    query(buildParam())
+  })
+  $scope.$on('page-query', function() {
+    query(buildParam())
   })
   $scope.$on('new', function() {
     Entity.new()
@@ -54,27 +56,38 @@ angular.module('erp.controllers')
     if (promise && typeof promise.then === 'function') {
       promise.then(function() {
         alert('操作成功')
-        query()
+        query(QueryParams.param[type])
       })
     }
   })
 
   function pageInit() {
-    $scope.data.page = {
-      totalPage: 1,
-      current: 1
-    }
+    $scope.data = Entity.meta
+    $scope.filters = Entity.filters
+    $scope.pageDefault = QueryParams.param[type] ? QueryParams.param[type].page : undefined
+    $scope.filtersDefault = QueryParams.param[type] ? QueryParams.param[type].filters : undefined
+    query(QueryParams.param[type])
   }
 
-  function query() {
-    Entity.query.get(buildParam(), function(data) {
+  function query(param) {
+    debugger
+    QueryParams.param[type] = param
+    param = param || {
+      page: {
+        totalPage: 1,
+        current: 1
+      }
+    }
+    Entity.query.get(param, function(data) {
       $scope.data.body = data.data.content
-      $scope.data.page.totalPage = data.data.totalPage
+      $scope.page.totalPage = data.data.totalPage
     })
   }
 
   function buildParam() {
-    let param = { page: $scope.data.page.current }
+    let param = {
+      page: $scope.page.current
+    }
     for (var p in $scope.filters) {
       let value = $scope.filters[p]
       while (value) {
