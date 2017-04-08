@@ -51,8 +51,8 @@ angular.module('erp.controllers')
       window.open('http://www.lifeuxuan.com/' + url)
     })
   })
-  $scope.$on('rowAction', function(action, type, rowData) {
-    let promise = Entity.rowActionHandler[type](rowData)
+  $scope.$on('rowAction', function(action, actionSwitch, rowData) {
+    let promise = Entity.rowActionHandler[actionSwitch](rowData)
     if (promise && typeof promise.then === 'function') {
       promise.then(function() {
         alert('操作成功')
