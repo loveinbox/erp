@@ -70,13 +70,9 @@ angular.module('erp.controllers')
   }
 
   function query(param) {
-    debugger
     QueryParams.param[type] = param
     param = param || {
-      page: {
-        totalPage: 1,
-        current: 1
-      }
+        page: 1
     }
     Entity.query.get(param, function(data) {
       $scope.data.body = data.data.content
