@@ -87,7 +87,7 @@ $(function() {
   $('.btn').click(function() {
     var self = this;
     $(self).html('提交中...')
-    var data = {
+    var request = {
       'shopHostName': username.value,
       'shopName': shop.value,
       'contractId': constract.value,
@@ -95,11 +95,11 @@ $(function() {
     }
     $.get(
       'http://www.lifeuxuan.com/index.php/mgr/apply/shop/toshop',
-      data,
+      request,
       'json'
     ).success(function(res) {
-      var data = JSON.parse(res)
-      if (data.code === 0) {
+      var request = JSON.parse(res)
+      if (request.code === 0) {
         alert('申请成功！')
         window.location.href = '//www.lifeuxuan.com';
       } else {
