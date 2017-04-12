@@ -42,9 +42,9 @@
     }
   </style>
   <script>
-    window.onerror = function(message, source, lineno, colno, error) {
-      alert(message);
-    }
+  window.onerror = function(message, source, lineno, colno, error) {
+    alert(message);
+  }
   </script>
 </head>
 
@@ -98,7 +98,7 @@ $(function() {
       data,
       'json'
     ).success(function(res) {
-      let data = JSON.parse(res)
+      var data = JSON.parse(res)
       if (data.code === 0) {
         alert('申请成功！')
         window.location.href = '//www.lifeuxuan.com';
